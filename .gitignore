@@ -1,0 +1,10 @@
+# ignore everything
+*
+/*
+
+# except gitignore
+!.gitignore
+
+# and following dirs/filesw
+!.vim
+!.vimrc
