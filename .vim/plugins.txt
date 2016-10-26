@@ -1,0 +1,16 @@
+vundle
+indentLine
+youcompleteme
+badwolf ?
+gruvbox?
+jellybeans?
+nerdtree
+vim-airline
+vim-fugitive?
+vim-indent-guides
+vim-pasta?
+vim-spell
+tags
+smooth-scroll
+camelcasemotion
+matchit
