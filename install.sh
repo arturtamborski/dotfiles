@@ -1,8 +1,6 @@
 #!/bin/bash
 
-echo "Exporting variables"
-eval $(cat export.sh)
-
 echo "Installing dotfiles"
+dirs=$(find -type d -except -maxdepth 1)
 
 echo "Done!"
