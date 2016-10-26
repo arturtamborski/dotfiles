@@ -1,0 +1,25 @@
+: 1466244260:0;firefox
+: 1466244419:0;ls
+: 1466244503:0;pacman -S conky
+: 1466244505:0;sudo pacman -S conky
+: 1466244546:0;ls
+: 1466244548:0;ls -al
+: 1466245391:0;cd .oh-my-zsh
+: 1466245392:0;ls
+: 1466245404:0;ls tools
+: 1466245408:0;cd tools
+: 1466245409:0;ls
+: 1466245415:0;./uninstall.sh
+: 1466245418:0;sudo ./uninstall.sh
+: 1466245427:0;chmod +x uninstall.sh
+: 1466245436:0;uname
+: 1466245443:0;echo $USER
+: 1466245446:0;sudo su
+: 1466245472:0;cd ..
+: 1466245483:0;ls
+: 1466245487:0;sl -al
+: 1466245488:0;ls -la
+: 1466245495:0;rm .zshrc
+: 1466245503:0;mv .zshrc.pre-oh-my-zsh .zshrc
+: 1466245511:0;cat .zsh-update
+: 1466245515:0;rm .zsh-update

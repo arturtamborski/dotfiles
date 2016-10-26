@@ -1,0 +1,473 @@
+################################################################################
+umask 077
+
+#uu# set command prediction from history, see 'man 1 zshcontrib'
+#uuzis4 && zrcautoload predict-on && \
+#uuzle -N predict-on         && \
+#uuzle -N predict-off        && \
+#uubindkey "^X^Z" predict-on && \
+#uubindkey "^Z" predict-off
+
+## press ctrl-q to quote line:
+mquote () {
+      zle beginning-of-line
+      zle forward-word
+      # RBUFFER="'$RBUFFER'"
+      RBUFFER=${(q)RBUFFER}
+      zle end-of-line
+}
+zle -N mquote && bindkey '^q' mquote
+
+## define word separators (for stuff like backward-word, forward-word, backward-kill-word,..)
+#WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' # the default
+#WORDCHARS=.
+#WORDCHARS='*?_[]~=&;!#$%^(){}'
+#WORDCHARS='${WORDCHARS:s@/@}'
+
+# just type '...' to get '../..'
+rationalise-dot() {
+local MATCH
+if [[ $LBUFFER =~ '(^|/| |	|'$'\n''|\||;|&)\.\.$' ]]; then
+  LBUFFER+=/
+  zle self-insert
+  zle self-insert
+else
+  zle self-insert
+fi
+}
+zle -N rationalise-dot
+bindkey . rationalise-dot
+
+# without this, typing a . aborts incremental history search
+bindkey -M isearch . self-insert
+
+#bindkey '\eq' push-line-or-edit
+
+## some popular options ##
+
+## add `|' to output redirections in the history
+#setopt histallowclobber
+
+# try to avoid the 'zsh: no matches found...'
+setopt nonomatch
+
+## warning if file exists ('cat /dev/null > ~/.zshrc')
+#setopt NO_clobber
+
+# don't warn me about bg processes when exiting
+setopt nocheckjobs
+
+# alert me if something failed
+#setopt printexitvalue
+
+## with spelling correction, assume dvorak kb
+#setopt dvorak
+
+## Allow comments even in interactive shells
+#setopt interactivecomments
+
+
+## compsys related snippets ##
+
+# changed completer settings
+zstyle ':completion:*' completer _complete _correct _approximate
+zstyle ':completion:*' expand prefix suffix
+
+## another different completer setting: expand shell aliases
+zstyle ':completion:*' completer _expand_alias _complete _approximate
+
+## to have more convenient account completion, specify your logins:
+#my_accounts=(
+# {grml,grml1}@foo.invalid
+# grml-devel@bar.invalid
+#)
+#other_accounts=(
+# {fred,root}@foo.invalid
+# vera@bar.invalid
+#)
+#zstyle ':completion:*:my-accounts' users-hosts $my_accounts
+#zstyle ':completion:*:other-accounts' users-hosts $other_accounts
+
+## add grml.org to your list of hosts
+#hosts+=(grml.org)
+#zstyle ':completion:*:hosts' hosts $hosts
+
+## telnet on non-default ports? ...well:
+## specify specific port/service settings:
+#telnet_users_hosts_ports=(
+#  user1@host1:
+#  user2@host2:
+#  @mail-server:{smtp,pop3}
+#  @news-server:nntp
+#  @proxy-server:8000
+#)
+#zstyle ':completion:*:*:telnet:*' users-hosts-ports $telnet_users_hosts_ports
+
+## the default grml setup provides '..' as a completion. it does not provide
+## '.' though. If you want that too, use the following line:
+#zstyle ':completion:*' special-dirs true
+
+## aliases ##
+
+## translate
+#alias u='translate -i'
+
+## ignore ~/.ssh/known_hosts entries
+#alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive"'
+
+## instead of global aliase it might be better to use grmls $abk assoc array, whose contents are expanded after pressing ,.
+#$abk[SnL]="| sort -n | less"
+
+## get top 10 shell commands:
+#alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
+
+## Execute \kbd{./configure}
+#alias CO="./configure"
+
+## Execute \kbd{./configure --help}
+#alias CH="./configure --help"
+
+## miscellaneous code ##
+
+# Use a default width of 80 for manpages for more convenient reading
+#export MANWIDTH=${MANWIDTH:-80}
+
+## Set a search path for the cd builtin
+#cdpath=(.. ~)
+
+## variation of our manzsh() function; pick you poison:
+#manzsh()  { /usr/bin/man zshall |  most +/"$1" ; }
+
+# Switching shell safely and efficiently? http://www.zsh.org/mla/workers/2001/msg02410.html
+bash() {
+    NO_SWITCH="yes" command bash "$@"
+}
+restart () {
+    exec $SHELL $SHELL_ARGS "$@"
+}
+
+# Handy functions for use with the (e::) globbing qualifier (like nt)
+contains() { grep -q "$*" $REPLY }
+sameas() { diff -q "$*" $REPLY &>/dev/null }
+ot () { [[ $REPLY -ot ${~1} ]] }
+
+## get_ic() - queries imap servers for capabilities; real simple. no imaps
+#ic_get() {
+#    emulate -L zsh
+#    local port
+#    if [[ ! -z $1 ]] ; then
+#        port=${2:-143}
+#        print "querying imap server on $1:${port}...\n";
+#        print "a1 capability\na2 logout\n" | nc $1 ${port}
+#    else
+#        print "usage:\n  $0 <imap-server> [port]"
+#    fi
+#}
+
+# List all occurrences of programm in current PATH
+plap() {
+    emulate -L zsh
+    if [[ $# = 0 ]] ; then
+        echo "Usage:    $0 program"
+        echo "Example:  $0 zsh"
+        echo "Lists all occurrences of program in the current PATH."
+    else
+        ls -l ${^path}/*$1*(*N)
+    fi
+}
+
+# Find out which libs define a symbol
+lcheck() {
+    if [[ -n "$1" ]] ; then
+        nm -go /usr/lib/lib*.a 2>/dev/null | grep ":[[:xdigit:]]\{8\} . .*$1"
+    else
+        echo "Usage: lcheck <function>" >&2
+    fi
+}
+
+## Download a file and display it locally
+#uopen() {
+#    emulate -L zsh
+#    if ! [[ -n "$1" ]] ; then
+#        print "Usage: uopen \$URL/\$file">&2
+#        return 1
+#    else
+#        FILE=$1
+#        MIME=$(curl --head $FILE | \
+#               grep Content-Type | \
+#               cut -d ' ' -f 2 | \
+#               cut -d\; -f 1)
+#        MIME=${MIME%$'\r'}
+#        curl $FILE | see ${MIME}:-
+#    fi
+#}
+
+## Memory overview
+memusage() {
+    ps aux | awk '{if (NR > 1) print $5;
+                   if (NR > 2) print "+"}
+                   END { print "p" }' | dc
+}
+
+# print hex value of a number
+hex() {
+    emulate -L zsh
+    if [[ -n "$1" ]]; then
+        printf "%x\n" $1
+    else
+        print 'Usage: hex <number-to-convert>'
+        return 1
+    fi
+}
+
+# log out? set timeout in seconds...
+# ...and do not log out in some specific terminals:
+if [[ "${TERM}" == ([Exa]term*|rxvt|dtterm|screen*) ]] ; then
+    unset TMOUT
+else
+    TMOUT=1800
+fi
+
+## associate types and extensions (be aware with perl scripts and anwanted behaviour!)
+#check_com zsh-mime-setup || { autoload zsh-mime-setup && zsh-mime-setup }
+#alias -s pl='perl -S'
+
+# ctrl-s will no longer freeze the terminal.
+stty erase "^?"
+
+## you want to automatically use a bigger font on big terminals?
+#if [[ "$TERM" == "xterm" ]] && [[ "$LINES" -ge 50 ]] && [[ "$COLUMNS" -ge 100 ]] && [[ -z "$SSH_CONNECTION" ]] ; then
+#    large
+#fi
+
+## Some quick Perl-hacks aka /useful/ oneliner
+bew() { perl -le 'print unpack "B*","'$1'"' }
+web() { perl -le 'print pack "B*","'$1'"' }
+hew() { perl -le 'print unpack "H*","'$1'"' }
+weh() { perl -le 'print pack "H*","'$1'"' }
+#pversion()    { perl -M$1 -le "print $1->VERSION" } # i. e."pversion LWP -> 5.79"
+#getlinks ()   { perl -ne 'while ( m/"((www|ftp|http):\/\/.*?)"/gc ) { print $1, "\n"; }' $* }
+#gethrefs ()   { perl -ne 'while ( m/href="([^"]*)"/gc ) { print $1, "\n"; }' $* }
+#getanames ()  { perl -ne 'while ( m/a name="([^"]*)"/gc ) { print $1, "\n"; }' $* }
+#getforms ()   { perl -ne 'while ( m:(\</?(input|form|select|option).*?\>):gic ) { print $1, "\n"; }' $* }
+#getstrings () { perl -ne 'while ( m/"(.*?)"/gc ) { print $1, "\n"; }' $*}
+#getanchors () { perl -ne 'while ( m/«([^«»\n]+)»/gc ) { print $1, "\n"; }' $* }
+#showINC ()    { perl -e 'for (@INC) { printf "%d %s\n", $i++, $_ }' }
+#vimpm ()      { vim `perldoc -l $1 | sed -e 's/pod$/pm/'` }
+#vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
+#
+bak () {
+    file=$1
+    if [[ ${file: -4} == ".bak" ]]; then
+        mv $file ${file:0:-4} 
+    else
+        mv $file ${file}.bak
+    fi
+}
+
+## quickly find files that contain passed string.
+## src: blog.smalleycreative.com/category/linux/tip-easly-find-files-within-the-current-directory/
+qfind () {
+    find . -exec grep -l $1 {} \;
+    return 0
+}
+
+
+unpack () {
+    if [ -f $1 ]; then
+        case $1 in
+            *.tar.bz2)  tar -jxvf $1        ;;
+            *.tar.gz)   tar -zxvf $1        ;;
+            *.bz2)      bunzip2 $1          ;;
+            *.dmg)      hdiutil mount $1    ;;
+            *.gz)       gunzip $1           ;;
+            *.tar)      tar -xvf $1         ;;
+            *.tbz2)     tar -jxvf $1        ;;
+            *.tgz)      tar -zxvf $1        ;;
+            *.zip)      unzip $1            ;;
+            *.Z)        uncompress $1       ;;
+            *.rar)      unrar e $1          ;;
+            *)          echo "'$1' cannot be extracted/mounted via smartextract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+
+
+############################################################################################################
+#
+#   My stuff goes here...
+#
+############################################################################################################
+
+# EMACS is cool in shel ;)
+bindkey -e
+
+export EDITOR="vim"
+export LC_ALL="C"
+export LANG="en_US.UTF-8"
+export PAGER="less"
+export TERM="xterm"
+export COLORTERM="yes"
+export HISTFILE="~/.cache/shell-history"
+export HISTSIZE="10000"
+export SAVEHIST="10000"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+alias ls="ls --color=auto -F"
+alias sl="ls --color=auto -F"
+alias ll="ls -hAlF --color=auto"
+alias la="ls -hAlF --color=auto"
+
+alias pingg="ping google.com"
+
+alias cd.="cd .."
+alias cd~="cd ~"
+alias cdl="cdr -l"
+alias cd1="cdr 1"
+alias cd2="cdr 2"
+alias cd3="cdr 3"
+alias cd4="cdr 4"
+alias cd5="cdr 5"
+alias cd6="cdr 6"
+alias cd7="cdr 7"
+alias cd8="cdr 8"
+alias cd9="cdr 9"
+alias cd0="cdr 10"
+
+alias x="exit"
+alias c="clear"
+
+alias vi="vim"
+alias svim="sudo vim"
+alias sgvim="sudo gvim"
+alias snvim="sudo nvim"
+
+alias s!!="sudo !!"
+alias s!"sudo !!"
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+## PROMPT
+# old ones:
+#export PROMPT="[ %B%*%b ][ %B%n@%m%b ][ %B%~%b ]%B%%(!.#.$)%b "
+#export PROMPT=$'[ %{\e[0;32m%}%B%*%b%{\e[0m%} ][ %{\e[0;32m%}%B%n%{\e[0m%}@%{\e[0;32m%}%B%m%b%{\e[0m%} ][ %{\e[0;32m%}%B%~%b%{\e[0m%} ]%{\e[0;32m%}%B$%b%{\e[0m%} '
+
+prompt_user=$'%{\e[1;32m%}%n%{\e[0m%}@%{\e[1;32m%}%m%{\e[0m%} %{\e[1;32m%}%~%{\e[0m%} %{\e[1;32m%}$%{\e[0m%} '
+prompt_root=$'%{\e[1;31m%}%n%{\e[0m%}@%{\e[1;31m%}%m%{\e[0m%} %{\e[1;31m%}%~%{\e[0m%} %{\e[1;31m%}#%{\e[0m%} '
+
+[ $UID != 0 ] && export PROMPT="$prompt_user"
+[ $UID  = 0 ] && export PROMPT="$prompt_root"
+
+# compinit initializes various advanced completions for zsh
+autoload -U compinit && compinit 
+
+# zmv is a batch file rename tool; e.g. zmv '(*).text' '$1.txt'
+autoload zmv
+
+# -----------------------------------------------
+# Set up zsh autocompletions
+# -----------------------------------------------
+
+# case-insensitive tab completion for filenames (useful on Mac OS X)
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# General completion technique
+zstyle ':completion:*' completer _complete _correct _approximate _prefix
+zstyle ':completion:*' completer _complete _prefix
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:predict:*' completer _complete
+
+# Completion caching
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
+
+# Expand partial paths
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-slashes 'yes'
+
+# Don't complete backup files as executables
+zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
+
+# Separate matches into groups
+zstyle ':completion:*:matches' group 'yes'
+
+# Describe each match group.
+zstyle ':completion:*:descriptions' format "%B---- %d%b"
+
+# Messages/warnings format
+zstyle ':completion:*:messages' format '%B%U---- %d%u%b' 
+zstyle ':completion:*:warnings' format '%B%U---- no match for: %d%u%b'
+ 
+# Describe options in full
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+
+zstyle ':completion:*:history-words' stop yes
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:history-words' list false
+zstyle ':completion:*:history-words' menu yes
+
+zstyle ':completion:*' menu select
+setopt COMPLETE_ALIASES
+setopt HIST_IGNORE_DUPS
+
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+zstyle ':chpwd:*' recent-dirs-file "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/chpwd-recent-dirs"
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+setopt no_beep
+setopt correct
+setopt auto_list
+setopt complete_in_word
+setopt auto_pushd
+setopt complete_aliases
+setopt extended_glob
+setopt zle
+
+
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+[[ -n "${key[Up]}"   ]] && bindkey "${key[Up]}"   up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" down-line-or-beginning-search
+
+# enable vi keybindings for zle
+#bindkey -e
+#bindkey  kill-whole-line
+#bindkey  backward-kill-word
+
+
+# Avoid duplicates
+export HISTCONTROL=ignoredups:erasedups  
+# When the shell exits, append to the history file instead of overwriting it
+#shopt -s histappend
+
+# After each command, append to the history file and reread it
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
+alias bc='bc -q'
+
+alias mc='mc -S nicedark'
+alias view="vim -R"
+alias vless="vim -u /usr/share/vim/vim74/macros/less.vim"
+alias cross1='echo "x" | osd_cat -p middle -A center -d 0 -c green -o -20 \
+    -f -*-*-*-*-*-*-20-*-*-*-*-*-*-*'
+alias cross2='echo "+" | osd_cat -p middle -A center -d 0 -c green -o -20 \
+    -f -*-*-*-*-*-*-20-*-*-*-*-*-*-*'
+alias cross3='echo "+" | osd_cat -p middle -A center -d 0 -c green -o -32 \
+    -f -*-*-*-*-*-*-32-*-*-*-*-*-*-*'
+
+export RPROMPT='%?'
+
+
+alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
