@@ -17,8 +17,8 @@
 dot="$HOME/dotfiles"
 
 # -------------------------------------------------------------------- vim --- #
-export VIMINIT="$dot/.vim/"
-export MYVIMRC="$dot/.vim/vimrc"
+export VIMINIT="$dot/vim/"
+export MYVIMRC="$dot/vim/vimrc"
 
 # -------------------------------------------------------------------- zsh --- #
-export ZDOTDIR='$dot/.zsh'
+export ZDOTDIR='$dot/zsh'
