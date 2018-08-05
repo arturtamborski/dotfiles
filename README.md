@@ -16,6 +16,7 @@ and link `.zshrc` and `.vimrc` there somehow:
   # it should look like that
   ~/.zshrc -> ~/.config/zsh/zshrc
   ~/.vimrc -> ~/.config/vim/vimrc
+  ~/.vim   -> ~/.config/vim/
 ```
 
 but the better solution would be to just copy the parts that 
@@ -26,3 +27,17 @@ Dotfiles are personal thing. They are your settings. You
 should configure them for yourself which unfortunately means
 that you have to spend some time with them instead of copying them
 blindly from some public repos such as this.
+
+## vim
+
+```
+# Run this command
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# Open up Vim
+vim
+
+# In vim, run this command
+:BundleInstall
+```
+
