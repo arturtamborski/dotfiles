@@ -9,50 +9,41 @@
 " ======================================================   P L U G I N S   === "
 filetype off
 set nocompatible
-set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " ---------------------------------------------------------------------------- "
 
 " ----------------------------------------------------------------- Vundle --- "
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'VundleVim/Vundle.vim'
-
-" ------------------------------------------------------------ vim-airline --- "
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 
 " --------------------------------------------------------------- NERDtree --- "
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " ---------------------------------------------------------------- tabular --- "
-Plugin 'godlygeek/tabular'
+"Plugin 'godlygeek/tabular'
 
 " ----------------------------------------------------------------- tagbar --- "
-Plugin 'majutsushi/tagbar'
-
-" ---------------------------------------------------------- indent-guides --- "
-Plugin 'nathanaelkane/vim-indent-guides'
-
-" ---------------------------------------------------------- smooth-scroll --- "
-Plugin 'Smooth-Scroll'
+"Plugin 'majutsushi/tagbar'
 
 " ---------------------------------------------------------- vim-gitgutter --- "
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
 
 " ------------------------------------------------------------ vim-easygit --- "
-Plugin 'chemzqm/vim-easygit'
+"Plugin 'chemzqm/vim-easygit'
 
 " -------------------------------------------------------- camelCaseMotion --- "
-Plugin 'bkad/camelcasemotion'
+"Plugin 'bkad/camelcasemotion'
 
 " ------------------------------------------------------------------ Gundo --- "
-Plugin 'sjl/gundo.vim'
+"Plugin 'sjl/gundo.vim'
 
 " ---------------------------------------------------------- validator.vim --- "
-Plugin 'maralla/validator.vim'
+"Plugin 'maralla/validator.vim'
 
 " ---------------------------------------------------------- completor.vim --- "
-Plugin 'maralla/completor.vim'
+"Plugin 'maralla/completor.vim'
 
 " ------------------------------------------------------------------ ctrlP --- "
 Plugin 'kien/ctrlp.vim'
@@ -132,15 +123,13 @@ colo handmade-hero
 " ------------------------------------------------------------- secure vim --- "
 set exrc
 set secure
+set nocompatible
 
 " --------------------------------------------------------------- encoding --- "
 set encoding=utf-8
 
 " ----------------------------------------------------- set terminal title --- "
 set title
-
-" ------------------------------------------------------------ color theme --- "
-colo jellybeans
 
 " ------------------------------------------------- highlight current line --- "
 set cursorline
@@ -183,9 +172,13 @@ set mouse=a
 "set spelllang=en,pl
 
 " ------------------------------------------------------------- text width --- "
-set textwidth=80
-set colorcolumn=+1
-set virtualedit=onemore
+"set textwidth=80
+"set colorcolumn=+1
+"set virtualedit=onemore
+
+" better solution, mark too wide lines with error colors
+set textwidth=0
+match ErrorMsg '\%>80v.\+'
 
 " ---------------------------------------------------------- line wrapping --- "
 set wrap
@@ -238,7 +231,7 @@ set wildignore=*.o,*.fasl
 " ---------------------------------------------------------- swap & backup --- "
 set noswapfile
 set backup
-set wb
+set writebackup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
@@ -294,15 +287,17 @@ set winheight=1
 set number
 set numberwidth=5
 
+set nonumber
+
 " ----------------------------------------- more context around the cursor --- "
 set scrolloff=3
 set sidescroll=1
 set sidescrolloff=1
 
-" -------------------------------------- not needed, vim-airline is better --- "
-set noruler
+" ------------------------------------------------------------------ ruler --- "
+set ruler
 set noshowcmd
-set noshowmode
+set showmode
 
 " ----------------------------------------------- tab line and status line --- "
 set showtabline=1
@@ -318,7 +313,8 @@ set clipboard=unnamed
 set hidden
 
 " ------------------------------------------------------ redraw everything --- "
-set nolazyredraw
+"set nolazyredraw
+set lazyredraw
 
 " ------------------------------------------ turn off interruptive prompts --- "
 set shortmess=astTI
@@ -332,7 +328,7 @@ set matchtime=1
 
 " ------------------------------------------------------- relative numbers --- "
 "set relativenumber
-"
+
 " ------------------------------------------------------------ local vimrc --- "
 if $PWD != $HOME && filereadable($PWD . "/.vimrc")
     source $PWD . "/.vimrc"
@@ -375,6 +371,9 @@ nmap <silent> <leader>w :set nolist!<CR>
 " ------------------------------------------- turn off man search key bind --- "
 nnoremap <S-K> <NOP>
 
+" ---------------------------------------------------------- turn off help --- "
+nnoremap <F1> <NOP>
+
 " -------------------------------------------------- make your life easier --- "
 nmap ; :
 
@@ -394,6 +393,7 @@ nnoremap <silent> <Leader>tt call ToTabs()<CR>
 nnoremap <silent> <Leader>ts call ToSpaces()<CR>
 nnoremap <silent> <Leader>sw call StripWhiteSpaces()<CR>
 nnoremap <silent> <Leader>sb call StripBlankLines()<CR>
+nnoremap <silent> <Leader>ws call WhiteSpace()<CR>
 
 " --------------------------------------- better movement in wrapped lines --- "
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -439,7 +439,7 @@ nnoremap Y y$
 "nnoremap ` '
 
 " ------------------------------------------------------- remap leader key --- "
-"let mapleader = ","
+let mapleader = ","
 
 " ============================================================================ "
 " ============================================================================ "
@@ -452,57 +452,8 @@ nnoremap Y y$
 
 " ----------------------------------------------------------------- Vundle --- "
 
-" ------------------------------------------------------------ vim-airline --- "
-let g:airline_detect_modified     = 1
-let g:airline_skip_empty_sections = 1
-let g:airline_theme               = 'jellybeans'
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep              = ''
-let g:airline_right_sep             = ''
-let g:airline_symbols.branch        = '⎇'
-let g:airline_symbols.crypt         = '*'
-let g:airline_symbols.linenr        = ''
-let g:airline_symbols.maxlinenr     = ''
-let g:airline_symbols.notexists     = ''
-let g:airline_symbols.paste         = ''
-let g:airline_symbols.spell         = ''
-let g:airline_symbols.whitespace    = ''
-
-let g:airline#extensions#whitespace#enabled = 0
-
-let g:airline#extensions#whitespace#enabled      = 0
-let g:airline#extensions#whitespace#symbol       = '!'
-let g:airline#extensions#whitespace#show_message = 1
-
-let g:airline#extensions#tabline#enabled         = 1
-let g:airline#extensions#tabline#show_tab_type   = 0
-let g:airline#extensions#tabline#buffers_label   = 'B'
-let g:airline#extensions#tabline#tabs_label      = 'T'
-let g:airline#extensions#tabline#buffer_nr_show  = 0
-let g:airline#extensions#tabline#fnamecollapse   = 0
-let g:airline#extensions#tabline#fnametruncate   = 0
-
-"let g:airline#extensions#tabline#buffer_idx_mode = 1
-"nmap <leader>1 <Plug>AirlineSelectTab1
-"nmap <leader>2 <Plug>AirlineSelectTab2
-"nmap <leader>3 <Plug>AirlineSelectTab3
-"nmap <leader>4 <Plug>AirlineSelectTab4
-"nmap <leader>5 <Plug>AirlineSelectTab5
-"nmap <leader>6 <Plug>AirlineSelectTab6
-"nmap <leader>7 <Plug>AirlineSelectTab7
-"nmap <leader>8 <Plug>AirlineSelectTab8
-"nmap <leader>9 <Plug>AirlineSelectTab9
-"nmap <leader>- <Plug>AirlineSelectPrevTab
-"nmap <leader>= <Plug>AirlineSelectNextTab
-
 " --------------------------------------------------------------- NERDtree --- "
 map <F4> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && \
-    exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "✹",
             \ "Staged"    : "✚",
@@ -523,21 +474,6 @@ vmap <Leader>t: :Tab /:\zs<CR>
 
 " ------------------------------------------------------------------tagbar --- "
 nmap <F5> :TagbarToggle<CR>
-
-" ---------------------------------------------------------- indent-guides --- "
-let g:indent_guides_tab_guides = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_space_guides = 1
-let g:indent_guides_default_mapping = 0
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'txt', 'vimrc']
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
-
-" ---------------------------------------------------------- smooth-scroll --- "
-let g:scroll_factor = 300
 
 " ---------------------------------------------------------- vim-gitgutter --- "
 let g:gitgutter_sign_column_always = 0
@@ -568,6 +504,8 @@ let g:validator_permament_sign = 0
 " ---------------------------------------------------------- completor.vim --- "
 
 " ------------------------------------------------------------------ ctrlP --- "
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_working_path_mode = 'ra'
 
 " --------------------------------------------------------- VimCompletesMe --- "
 

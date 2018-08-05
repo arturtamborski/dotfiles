@@ -95,6 +95,7 @@ call s:HL('IncSearch', s:at_highlight, s:highlight)
 " The column separating vertically split windows
 call s:HL('VertSplit', s:margin_active, s:margin)
 
+
 " Current match in wildmenu completion
 hi! link WildMenu Search
 
@@ -104,6 +105,7 @@ call s:HL('ErrorMsg', s:special, s:back)
 " Line number for :number and :# commands
 call s:HL('LineNr', s:default, s:back)
 call s:HL('CursorLine', s:none, s:highlight)
+call s:HL('ColorColumn', s:none, s:highlight)
 call s:HL('CursorLineNr', s:keyword, s:highlight)
 
 " Tilde (~)
@@ -197,6 +199,7 @@ hi! link multiple_cursors_visual Visual
 hi! link markdownH1 Statement
 hi! link markdownH2 Statement
 hi! link markdownH3 Statement
+
 
 hi! link markdownLinkText Statement
 call s:HL('markdownLinkText', s:keyword, s:back, s:underline)
