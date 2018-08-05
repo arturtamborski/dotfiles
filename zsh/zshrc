@@ -466,9 +466,6 @@ export HISTCONTROL=ignoredups:erasedups
 # When the shell exits, append to the history file instead of overwriting it
 #shopt -s histappend
 
-# After each command, append to the history file and reread it
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
-
 export GOPATH=$HOME/Work/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
@@ -479,18 +476,10 @@ alias dog='highlight -O ansi'
 alias mc='mc -S nicedark'
 alias view="vim -R"
 alias vless="vim -u /usr/share/vim/vim74/macros/less.vim"
-alias cross1='echo "x" | osd_cat -p middle -A center -d 0 -c green -o -20 \
-    -f -*-*-*-*-*-*-20-*-*-*-*-*-*-*'
-alias cross2='echo "+" | osd_cat -p middle -A center -d 0 -c green -o -20 \
-    -f -*-*-*-*-*-*-20-*-*-*-*-*-*-*'
-alias cross3='echo "+" | osd_cat -p middle -A center -d 0 -c green -o -32 \
-    -f -*-*-*-*-*-*-32-*-*-*-*-*-*-*'
 
 alias bgrep='ack'
 
 export RPROMPT='%?'
-
-#exec /opt/VulkanSDK/1.0.33.0/setup-env.sh
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
