@@ -1,11 +1,5 @@
 " ============================================================================ "
 " ========================   V I M   C O N F I G U R A T I O N   F I L E   === "
-
-" ----------------------------------------------------------- fuck off, vi --- "
-set nocompatible
-" vim: et:ts=4:sw=4
-
-" ============================================================================ "
 " ============================================================================ "
 
 
@@ -14,6 +8,7 @@ set nocompatible
 " ============================================================================ "
 " ======================================================   P L U G I N S   === "
 filetype off
+set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " ---------------------------------------------------------------------------- "
@@ -50,14 +45,8 @@ Plugin 'chemzqm/vim-easygit'
 " -------------------------------------------------------- camelCaseMotion --- "
 Plugin 'bkad/camelcasemotion'
 
-" ------------------------------------------------- vim-operator-highlight --- "
-Plugin 'Valloric/vim-operator-highlight'
-
 " ------------------------------------------------------------------ Gundo --- "
 Plugin 'sjl/gundo.vim'
-
-" ------------------------------------------------------------open-pdf.vim --- "
-Plugin 'rhysd/open-pdf.vim'
 
 " ---------------------------------------------------------- validator.vim --- "
 Plugin 'maralla/validator.vim'
@@ -65,14 +54,8 @@ Plugin 'maralla/validator.vim'
 " ---------------------------------------------------------- completor.vim --- "
 Plugin 'maralla/completor.vim'
 
-" ----------------------------------------------------------- Conque Shell --- "
-"Plugin 'Conque-Shell'
-
 " ------------------------------------------------------------------ ctrlP --- "
-"Plugin 'kien/ctrlp.vim'
-
-" ---------------------------------------------------- gruvbox colorscheme --- "
-"Plugin 'morhetz/gruvbox'
+Plugin 'kien/ctrlp.vim'
 
 " ----------------------------------------------------------- vimshell.vim --- "
 "Plugin 'shougo/vimshell.vim'
@@ -80,12 +63,12 @@ Plugin 'maralla/completor.vim'
 " --------------------------------------------------------- promptline.vim --- "
 "Plugin 'edkolev/promptline.vim'
 
-" ---------------------------------------------------------- VimCompletesMe --- "
+" --------------------------------------------------------- VimCompletesMe --- "
 "Plugin 'ajh17/vimcompletesme'
 
 " ---------------------------------------------------------------------------- "
 call vundle#end()
-filetype plugin indent on
+
 " ============================================================================ "
 " ============================================================================ "
 
@@ -101,6 +84,11 @@ function! RestoreCursorPosition()
         normal! g`"
         return 1
     endif
+endfunction
+
+" ----------------------------------------------------------- WhiteSpace() --- "
+function! WhiteSpace()
+    set list!
 endfunction
 
 " ------------------------------------------------------------- ToSpaces() --- "
@@ -125,26 +113,8 @@ function! StripBlankLines()
     run global/^$/d
 endfunction
 
-" ------------------------------------------------------- create undo file --- "
-if !isdirectory($HOME."/.dotfiles/vim/undodir")
-    call mkdir($HOME."/.dotfiles/vim/undodir", "p")
-endif
-
-" ------------------------------------------------------------- ugh... gui --- "
-if has('gui_running')
-    set encoding=utf-8
-    set guioptions-=T
-    set guioptions-=m
-end
-
-" ------------------------------------------------------------ local vimrc --- "
-if $PWD != system("pwd")
-    if $PWD != $HOME
-        if filereadable($PWD . "/.vimrc")
-            source $PWD . "/.vimrc"
-        endif
-    endif
-endif
+" ----------------------------------- save file when you forget to be root --- "
+cnoremap w!! execute 'silent! write !sudo tee > /dev/null %' <bar> edit!<enter>
 
 " ============================================================================ "
 " ============================================================================ "
@@ -154,6 +124,10 @@ endif
 
 " ============================================================================ "
 " ====================================================   S E T T I N G S   === "
+
+" ------------------------------------------------------------ color theme --- "
+set background=dark
+colo handmade-hero
 
 " ------------------------------------------------------------- secure vim --- "
 set exrc
@@ -172,15 +146,22 @@ colo jellybeans
 set cursorline
 
 " -------------------------------------------------- highlight whitespaces --- "
+set listchars=tab:>-,eol:$,trail:-,extends:>,precedes:<,space:␣,nbsp:%
 set nolist
-set listchars=tab:>-,trail:·,eol:$,extends:#,nbsp:.
-"autocmd filetype html,xml set listchars-=tab:>.
 
-" ------------------------------------------------- file-type highlighting --- "
+" ----------------------------------------------------- file-type settings --- "
 syntax on
 filetype on
 filetype plugin on
 filetype indent on
+
+autocmd BufRead,BufNewFile *.c,*.h      set ts=8 sts=8 sw=8 noet
+autocmd BufRead,BufNewFile Makefile     set ts=4 sts=4 sw=4 noet
+autocmd BufRead,BufNewFile *.yml,*.yaml set ts=2 sts=2 sw=2 et
+autocmd BufRead,BufNewFile *.html       set ts=2 sts=2 sw=2 et
+autocmd BufRead,BufNewFile *.css,*.scss set ts=2 sts=2 sw=2 et
+autocmd BufRead,BufNewFile *.txt,*.md   set ts=2 sts=2 sw=2 et
+autocmd BufRead,BufNewFile *.py,*.rb    set ts=4 sts=4 sw=4 et
 
 " ------------------------------------------------------- force 256 colors --- "
 set t_Co=256
@@ -218,13 +199,13 @@ set foldmethod=syntax
 set foldnestmax=10
 
 " ------------------------------------------------------- indentation help --- "
-" tabs are eight columns wide, each identation level is one tab (linx kernel):
+" tabs are eight columns wide, each identation level is one tab (linux kernel):
 " vim: set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
 "
 " tabs are four columns wide, each identation level is one tab (visual studio):
 " vim: set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 "
-" each indentation level is four spaces tabs are not used (java)
+" each indentation level is four spaces tabs are not used (java):
 " vim: set softtabstop=4 shiftwidth=4 expandtab
 
 " ------------------------------------------------------------ indentation --- "
@@ -234,7 +215,12 @@ set smarttab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
+
+" spaces
 set expandtab
+
+" tabs
+"set noexpandtab
 
 " -------------------------------------------------------------- searching --- "
 set incsearch
@@ -248,7 +234,6 @@ set wildmenu
 set wildchar=<Tab>
 set wildmode=full
 set wildignore=*.o,*.fasl
-hi WildMenu ctermfg=2 ctermbg=235
 
 " ---------------------------------------------------------- swap & backup --- "
 set noswapfile
@@ -259,6 +244,10 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 
 " ------------------------------------------------------------------- undo --- "
+if !isdirectory($HOME."/.dotfiles/vim/undodir")
+    call mkdir($HOME."/.dotfiles/vim/undodir", "p")
+endif
+
 set undodir=~/.vim/undodir
 set undofile
 set undolevels=10000
@@ -281,12 +270,19 @@ set autoread
 
 " --------------------------------------- turn off expandtab for makefiles --- "
 autocmd FileType make setlocal noexpandtab
-
 autocmd Filetype html setlocal tw=0
 
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
+
+" -------------------------------------------------------------------- gui --- "
+if has('gui_running')
+    set encoding=utf-8
+    set guioptions-=T
+    set guioptions-=m
+end
+
 " ---------------------------------------------------------- fix backspace --- "
 set backspace=indent,eol,start
 
@@ -307,6 +303,7 @@ set sidescrolloff=1
 set noruler
 set noshowcmd
 set noshowmode
+
 " ----------------------------------------------- tab line and status line --- "
 set showtabline=1
 set laststatus=2
@@ -333,8 +330,13 @@ set timeoutlen=500
 set showmatch
 set matchtime=1
 
-" ------------------------------------------------ you gonna love this one --- "
-set relativenumber
+" ------------------------------------------------------- relative numbers --- "
+"set relativenumber
+"
+" ------------------------------------------------------------ local vimrc --- "
+if $PWD != $HOME && filereadable($PWD . "/.vimrc")
+    source $PWD . "/.vimrc"
+endif
 
 " ============================================================================ "
 " ============================================================================ "
@@ -448,6 +450,7 @@ nnoremap Y y$
 " ============================================================================ "
 " ======================================   P L U G I N   S E T T I N G S  ==== "
 
+" ----------------------------------------------------------------- Vundle --- "
 
 " ------------------------------------------------------------ vim-airline --- "
 let g:airline_detect_modified     = 1
@@ -498,7 +501,8 @@ let g:airline#extensions#tabline#fnametruncate   = 0
 
 " --------------------------------------------------------------- NERDtree --- "
 map <F4> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && \
+    exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "✹",
             \ "Staged"    : "✚",
@@ -541,13 +545,10 @@ let g:gitgutter_sign_column_always = 0
 " ------------------------------------------------------------ vim-easygit --- "
 let g:easygit_enable_command = 1
 
-" -------------------------------------------------------- camelcasemotion --- "
+" -------------------------------------------------------- camelCaseMotion --- "
 map <S-W> <Plug>CamelCaseMotion_w
 map <S-B> <Plug>CamelCaseMotion_b
 map <S-E> <Plug>CamelCaseMotion_e
-
-" ------------------------------------------------- vim-operator-highlight --- "
-let g:ophigh_color = 215
 
 " ------------------------------------------------------------------ Gundo --- "
 nnoremap <F3> :GundoToggle<CR>
@@ -556,10 +557,6 @@ let g:gundo_height = 40
 let g:gundo_right = 1
 let g:gundo_close_on_revert = 1
 let g:gundo_help = 0
-
-" ------------------------------------------------------------open-pdf.vim --- "
-let g:pdf_convert_on_edit = 1
-let g:pdf_convert_on_read = 1
 
 " ---------------------------------------------------------- validator.vim --- "
 let g:validator_c_checkers = [ 'clang-tidy' ]
@@ -570,26 +567,10 @@ let g:validator_permament_sign = 0
 
 " ---------------------------------------------------------- completor.vim --- "
 
-" ----------------------------------------------------------- Conque Shell --- "
-"let g:ConqueTerm_PyVersion  = 3
-"let g:ConqueTerm_FastMode   = 0
-"let g:ConqueTerm_Color      = 1
-"let g:ConqueTerm_ReadUnfocused = 1
-"let g:ConqueTerm_InsertOnEnter = 1
-"let g:ConqueTerm_CloseOnEnd = 1
-"let g:ConqueTerm_StartMessages = 1
-"let g:ConqueTerm_ToggleKey = '<NUL>'
-"let g:ConqueTerm_SendVisKey = '<NUL>'
+" ------------------------------------------------------------------ ctrlP --- "
 
-" ------------------------------------------------------------ color theme --- "
-set background=dark
-colo jellybeans
-let g:jellybeans_use_term_italics = 1
-let g:jellybeans_overrides = { 'background': { 'guibg': '000000' } }
-hi CursorLine   ctermbg=235
-hi ColorColumn  ctermbg=235
-hi Folded       ctermbg=233
-hi FoldColumn   ctermbg=233
+" --------------------------------------------------------- VimCompletesMe --- "
+
 
 " ============================================================================ "
 " ============================================================================ "
