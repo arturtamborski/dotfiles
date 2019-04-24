@@ -41,3 +41,20 @@ vim
 :BundleInstall
 ```
 
+
+# testing
+install vagrant, use below commands
+
+```
+# spin up new testing vm
+vagrant up
+
+# apply changes
+vagrant provision
+
+# apply changes when above fails
+vagrant reload --provision
+
+# remove vm
+vagrant destroy
+```
