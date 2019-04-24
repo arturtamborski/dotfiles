@@ -1,0 +1,17 @@
+---
+
+- name: check if sshconfig exists
+  stat:
+    path: "{{ ssh.config_path }}"
+  register: config
+
+- name: backup sshconfig
+  copy:
+    src: "{{ ssh.config_path }}"
+    dest: "{{ ssh.config_path }}.bak"
+  when: config.stat.exists
+
+- name: update sshconfig
+  template:
+    src: "sshconfig"
+    dest: "{{ ssh.config_path }}"

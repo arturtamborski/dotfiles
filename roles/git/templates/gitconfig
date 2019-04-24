@@ -1,0 +1,5 @@
+[user]
+    name = {{ git.name }}
+    email = {{ git.email }}
+[core]
+    excludesfile = {{ git.ignore_path }}
