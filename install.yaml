@@ -1,0 +1,7 @@
+- name: install
+  hosts: local
+  roles:
+    - pre
+    - ssh
+    - git
+    - post
