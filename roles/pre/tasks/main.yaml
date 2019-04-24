@@ -2,4 +2,5 @@
 
 - name: create backup directory
   file:
-    path: "{{ pre.backup_path }}"
+    path: "{{ playbook_dir }}/{{ pre.backup_path }}"
+    state: directory

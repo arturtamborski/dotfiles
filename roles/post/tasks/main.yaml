@@ -2,10 +2,11 @@
 
 - name: clean up after ansible
   file:
-    path: "~/.ansible"
+    path: "~/.ansible/"
     state: absent
 
 - name: archive backup directory
   archive:
     path: "{{ playbook_dir }}/{{ pre.backup_path }}"
+    dest: "{{ playbook_dir }}/{{ pre.backup_path }}.zip"
     format: zip
