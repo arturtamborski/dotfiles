@@ -2,8 +2,8 @@ Vagrant.require_version ">= 2.0.0"
 
 $script = <<-EOF
 sudo su
-    apt install --yes vim python3
-    python3 -m pip install ansible
+    apt  install python3-pip --yes
+    pip3 install ansible
 exit
 EOF
 
