@@ -1,0 +1,45 @@
+---
+
+- name: check if config file exists
+  stat:
+    path: "{{ dst.path }}{{ dst.name }}"
+  register: check_config
+
+
+- name: DEBUG backup config file
+  debug:
+    msg: "{{ src.path }}"
+
+- name: backup config file
+  copy:
+    src: "{{ dst.path }}{{ dst.name }}"
+    dest: "{{ pre.backup_path }}/{{ src.path | regex_search('(^\/[^\/]*)') }}{{ dst.name }}"
+  when: check_config.stat.exists
+
+
+- name: check if role file exists
+  stat:
+    path: "{{ playbook_dir }}/roles/{{ src.path }}{{ src.name | default('.___.') }}"
+  register: check_file
+  when: "'/files/' in src.path"
+
+
+- name: check if role template exists
+  debug:
+    msg: "{{ playbook_dir }}/roles/{{ src.path }}{{ src.name | default('.___.') }}"
+  register: check_template
+  when: "'/templates/' in src.path"
+
+
+- name: update config file from role file
+  copy:
+    src: "{{ src.path }}files/{{ src.name }}"
+    dst: "{{ dst.path }}{{ dst.name }}"
+  when: check_file.stat is defined and check_file.stat.exists
+
+
+- name: update config file from role template
+  template:
+    src: "{{ playbook_dir }}/{{ src.path }}templates/{{ src.name }}"
+    dst: "{{ dst.path }}{{ dst.name }}"
+  when: check_template.stat is defined and check_template.stat.exists

@@ -1,0 +1,3 @@
+
+# force virtualenv for pip
+export PIP_REQUIRE_VIRTUALENV=true

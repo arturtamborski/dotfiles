@@ -1,7 +1,10 @@
+---
+
+
 - name: install
   hosts: local
   roles:
-    - pre
-    - ssh
+#   - pre
+#   - ssh
     - git
-    - post
+#   - post

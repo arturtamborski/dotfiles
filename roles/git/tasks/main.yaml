@@ -1,23 +1,28 @@
 ---
 
-- name: copy gitignore
-  copy:
-    src: "{{ role_path }}/files/gitignore"
-    dest: "{{ git.ignore_path }}"
 
-- name: check if gitconfig exists
-  stat:
-    path: "{{ git.config_path }}"
-  register: config
+- name: update gitconfig file
+  include_role:
+    name: common
+    tasks_from: config
+  vars:
+    src:
+      path: "git/templates/"
+      name: "config"
+    dst:
+      name: "{{ git.config.name }}"
+      path: "{{ git.config.path }}"
 
-- name: backup gitconfig
-  copy:
-    src: "{{ git.config_path }}"
-    dest: "{{ git.config_path }}.bak"
-    backup: yes
-  when: config.stat.exists
 
-- name: update gitconfig
-  template:
-    src: "gitconfig"
-    dest: "{{ git.config_path }}"
+- name: update gitignore file
+  include_role:
+    name: common
+    tasks_from: config
+  vars:
+    src:
+      path: "git/files/"
+      name: "ignore"
+      type: file
+    dst:
+      name: "{{ git.ignore.name }}"
+      path: "{{ git.ignore.path }}"
