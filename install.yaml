@@ -3,7 +3,10 @@
 - name: install
   hosts: local
   roles:
-    - pre
-    - ssh
-    - git
-    - post
+#    - pre
+    - bash
+    - zsh
+#    - ssh
+#    - git
+    - vim
+#    - post
