@@ -9,7 +9,7 @@ Host *
 # -- github ------------------
     Host github.com
     HostName github.com
-    IdentityFile {{ ansible_env.HOME }}/.ssh/keys/github
+    IdentityFile {{ ssh.config.path }}keys/github
     IdentitiesOnly yes
     User git
 # ----------------------------
@@ -18,7 +18,7 @@ Host *
 # -- gitlab ------------------
     Host gitlab.com
     HostName gitlab.com
-    IdentityFile {{ ansible_env.HOME }}/.ssh/keys/gitlab
+    IdentityFile {{ ssh.config.path }}keys/gitlab
     IdentitiesOnly yes
     User git
 # ----------------------------
@@ -28,7 +28,7 @@ Host *
     Host mikrus
     HostName srv02.mikr.us
     Port 10515
-    IdentityFile {{ ansible_env.HOME }}/.ssh/keys/mikrus
+    IdentityFile {{ ssh.config.path }}keys/mikrus
     IdentitiesOnly yes
     User root
 # ----------------------------
@@ -38,7 +38,7 @@ Host *
     Host wmi
     HostName lts.wmi.amu.edu.pl
     Port 22
-    IdentityFile {{ ansible_env.HOME }}/.ssh/keys/wmi
+    IdentityFile {{ ssh.config.path }}keys/wmi
     IdentitiesOnly yes
 # ----------------------------
 
@@ -46,7 +46,7 @@ Host *
 # -- git.wmi -----------------
     Host git.wmi.amu.edu.pl
     HostName git.wmi.amu.edu.pl
-    IdentityFile {{ ansible_env.HOME }}/.ssh/keys/git-wmi
+    IdentityFile {{ ssh.config.path }}keys/git-wmi
     IdentitiesOnly yes
     User git
 # ----------------------------
