@@ -1,3 +1,5 @@
+" Vim color theme based on Handmade Hero by Casey Muratori
+
 set background=dark
 
 hi clear
