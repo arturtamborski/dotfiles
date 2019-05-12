@@ -15,7 +15,7 @@ Host *
 # ----------------------------
 
 
-# -- github ------------------
+# -- gitlab ------------------
     Host gitlab.com
     HostName gitlab.com
     IdentityFile {{ ansible_env.HOME }}/.ssh/keys/gitlab
