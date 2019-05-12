@@ -1,13 +1,13 @@
 ---
 
-- name: archive backup directory
+- name: archive backup path
   archive:
     path: "{{ pre.backup.path }}"
     dest: "{{ pre.backup.path }}{{ pre.backup.name }}"
     format: zip
 
 
-- name: clean up after ansible
+- name: remove ansible path
   file:
     path: "~/.ansible/"
     state: absent

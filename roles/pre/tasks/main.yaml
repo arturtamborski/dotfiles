@@ -1,6 +1,12 @@
 ---
 
-- name: create backup directory
+- name: create ansible config path
   file:
-    path: "{{ playbook_dir }}/{{ pre.backup_path }}"
+    path: "~/.config/"
+    state: directory
+
+
+- name: create backup path
+  file:
+    path: "{{ pre.backup.path }}"
     state: directory
