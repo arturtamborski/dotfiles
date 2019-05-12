@@ -34,3 +34,21 @@
     dst:
       path: "{{ bash.config.path }}"
       name: "{{ bash.config.name }}"
+
+
+- name: remove default logout
+  file:
+    path: "~/.bash_logout"
+    state: absent
+
+
+- name: remove default history
+  file:
+    path: "~/.bash_history"
+    state: absent
+
+
+- name: remove default profile
+  file:
+    path: "~/.profile"
+    state: absent
