@@ -1,5 +1,37 @@
 ---
 
+- name: ssh - ssh_config
+  include_role:
+    public: yes
+    name: common
+    tasks_from: config
+    apply:
+      become: yes
+  vars:
+    src:
+      path: "ssh/templates/"
+      name: "ssh_config"
+    dst:
+      path: "{{ ssh.ssh_config.path }}"
+      name: "{{ ssh.ssh_config.name }}"
+
+
+- name: ssh - sshd_config
+  include_role:
+    public: yes
+    name: common
+    tasks_from: config
+    apply:
+      become: yes
+  vars:
+    src:
+      path: "ssh/templates/"
+      name: "sshd_config"
+    dst:
+      path: "{{ ssh.sshd_config.path }}"
+      name: "{{ ssh.sshd_config.name }}"
+
+
 - name: ssh - config
   include_role:
     public: yes
@@ -12,3 +44,42 @@
     dst:
       path: "{{ ssh.config.path }}"
       name: "{{ ssh.config.name }}"
+
+
+- name: check if known hosts exists
+  stat:
+    path: "~/.ssh/known_hosts"
+  register: check_known_hosts
+
+
+- name: copy known hosts
+  copy:
+    src: "~/.ssh/known_hosts"
+    dest: "{{ ssh.config.path }}known_hosts"
+  when: check_known_hosts.stat.exists
+
+
+- name: check if authorized keys exists
+  stat:
+    path: "~/.ssh/authorized_keys"
+  register: check_authorized_keys
+
+
+- name: copy authorized keys
+  copy:
+    src: "~/.ssh/authorized_keys"
+    dest: "{{ ssh.config.path }}authorized_keys"
+  when: check_authorized_keys.stat.exists
+
+
+- name: remove default ssh path
+  file:
+    path: "~/.ssh/"
+    state: absent
+
+
+- name: reload sshd service
+  become: yes
+  service:
+    name: sshd
+    state: restarted
