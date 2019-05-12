@@ -1,6 +1,6 @@
 ---
 
-- name: git - update config file
+- name: git - config
   include_role:
     public: yes
     name: common
@@ -14,7 +14,7 @@
       name: "{{ git.config.name }}"
 
 
-- name: git - update ignore file
+- name: git - ignore
   include_role:
     public: yes
     name: common
