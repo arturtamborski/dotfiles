@@ -1,1 +1,14 @@
 ---
+
+- name: zsh - config
+  include_role:
+    public: yes
+    name: common
+    tasks_from: config
+  vars:
+    src:
+      path: "zsh/templates/"
+      name: "config"
+    dst:
+      path: "{{ zsh.config.path }}"
+      name: "{{ zsh.config.name }}"
