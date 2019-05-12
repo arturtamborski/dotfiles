@@ -1,45 +1,62 @@
 ---
 
+- name: check if config path exists
+  stat:
+    path: "{{ dst.path }}{{ dst.name }}"
+  register: check_path
+
+
 - name: check if config file exists
   stat:
     path: "{{ dst.path }}{{ dst.name }}"
-  register: check_config
+  register: check_name
+  when: check_path.stat.exists
 
 
-- name: DEBUG backup config file
-  debug:
-    msg: "{{ src.path }}"
+- name: create config path
+  file:
+    path: "{{ dst.path }}"
+    state: directory
+  when: not check_path.stat.exists
+
+
+- name: create backup path
+  file:
+    path: "{{ pre.backup.path }}{{ src.path }}"
+    state: directory
+  when: check_name.stat is defined and check_name.stat.exists
+
 
 - name: backup config file
   copy:
     src: "{{ dst.path }}{{ dst.name }}"
-    dest: "{{ pre.backup_path }}/{{ src.path | regex_search('(^\/[^\/]*)') }}{{ dst.name }}"
-  when: check_config.stat.exists
+    dest: "{{ pre.backup.path }}{{ src.path }}{{ src.name }}"
+  when: check_name.stat is defined and check_name.stat.exists
 
 
 - name: check if role file exists
   stat:
-    path: "{{ playbook_dir }}/roles/{{ src.path }}{{ src.name | default('.___.') }}"
+    path: "{{ playbook_dir }}/roles/{{ src.path }}{{ src.name | default('.nofile') }}"
   register: check_file
-  when: "'/files/' in src.path"
+  when: src.path is search("/files/")
 
 
 - name: check if role template exists
-  debug:
-    msg: "{{ playbook_dir }}/roles/{{ src.path }}{{ src.name | default('.___.') }}"
+  stat:
+    path: "{{ playbook_dir }}/roles/{{ src.path }}{{ src.name | default('.nofile') }}"
   register: check_template
-  when: "'/templates/' in src.path"
+  when: src.path is search("/templates/")
 
 
-- name: update config file from role file
+- name: update config file from roles file
   copy:
-    src: "{{ src.path }}files/{{ src.name }}"
-    dst: "{{ dst.path }}{{ dst.name }}"
+    src: "{{ playbook_dir }}/roles/{{ src.path }}{{ src.name }}"
+    dest: "{{ dst.path }}{{ dst.name }}"
   when: check_file.stat is defined and check_file.stat.exists
 
 
-- name: update config file from role template
+- name: update config file from roles template
   template:
-    src: "{{ playbook_dir }}/{{ src.path }}templates/{{ src.name }}"
-    dst: "{{ dst.path }}{{ dst.name }}"
+    src: "{{ playbook_dir }}/roles/{{ src.path }}{{ src.name }}"
+    dest: "{{ dst.path }}{{ dst.name }}"
   when: check_template.stat is defined and check_template.stat.exists
