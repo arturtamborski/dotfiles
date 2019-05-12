@@ -5,6 +5,8 @@
     public: yes
     name: common
     tasks_from: config
+    apply:
+      become: yes
   vars:
     src:
       path: "bash/templates/"
@@ -12,8 +14,12 @@
     dst:
       path: "{{ bash.global.path }}"
       name: "{{ bash.global.name }}"
-  become: yes
-  become_user: "{{ ansible_env.USER }}"
+
+
+- name: remove default config
+  file:
+    path: "~/.bashrc"
+    state: absent
 
 
 - name: bash - config
