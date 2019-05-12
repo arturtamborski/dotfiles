@@ -17,6 +17,8 @@
   file:
     path: "{{ dst.path }}"
     state: directory
+    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
   when: not check_path.stat.exists
 
 
@@ -24,6 +26,8 @@
   file:
     path: "{{ pre.backup.path }}{{ src.path }}"
     state: directory
+    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
   when: check_name.stat is defined and check_name.stat.exists
 
 
@@ -31,6 +35,8 @@
   copy:
     src: "{{ dst.path }}{{ dst.name }}"
     dest: "{{ pre.backup.path }}{{ src.path }}{{ src.name }}"
+    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
   when: check_name.stat is defined and check_name.stat.exists
 
 
