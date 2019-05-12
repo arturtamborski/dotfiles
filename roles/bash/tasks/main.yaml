@@ -13,7 +13,7 @@
       path: "{{ bash.global.path }}"
       name: "{{ bash.global.name }}"
   become: yes
-  become_user: vagrant
+  become_user: "{{ ansible_env.USER }}"
 
 
 - name: bash - config
