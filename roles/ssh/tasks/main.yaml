@@ -1,6 +1,6 @@
 ---
 
-- name: ssh - update config file
+- name: ssh - config
   include_role:
     public: yes
     name: common
