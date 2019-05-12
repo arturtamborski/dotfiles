@@ -1,8 +1,8 @@
 ---
 
-
-- name: update gitconfig file
+- name: git - update config file
   include_role:
+    public: yes
     name: common
     tasks_from: config
   vars:
@@ -10,19 +10,19 @@
       path: "git/templates/"
       name: "config"
     dst:
-      name: "{{ git.config.name }}"
       path: "{{ git.config.path }}"
+      name: "{{ git.config.name }}"
 
 
-- name: update gitignore file
+- name: git - update ignore file
   include_role:
+    public: yes
     name: common
     tasks_from: config
   vars:
     src:
       path: "git/files/"
       name: "ignore"
-      type: file
     dst:
       name: "{{ git.ignore.name }}"
       path: "{{ git.ignore.path }}"

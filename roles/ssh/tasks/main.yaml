@@ -1,12 +1,14 @@
 ---
 
-- name: "Update {{ ssh.config.name }} file"
+- name: ssh - update config file
   include_role:
+    public: yes
     name: common
     tasks_from: config
   vars:
-    given:
-      from: "{{ role_path }}"
-      name: "{{ ssh.config.name }}"
+    src:
+      path: "ssh/templates/"
+      name: "config"
+    dst:
       path: "{{ ssh.config.path }}"
-      file: "{{ ssh.config.file }}"
+      name: "{{ ssh.config.name }}"
