@@ -1,0 +1,6 @@
+---
+
+- name: update system
+  apt:
+    upgrade: dist
+    update_cache: yes
