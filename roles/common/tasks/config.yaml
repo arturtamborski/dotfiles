@@ -34,7 +34,7 @@
 - name: backup config file
   copy:
     src: "{{ dst.path }}{{ dst.name }}"
-    dest: "{{ pre.backup.path }}{{ src.path }}{{ src.name }}"
+    dest: "{{ pre.backup.path }}{{ src.path.split('/')[0] }}/{{ dst.name }}"
     group: "{{ ansible_user }}"
     owner: "{{ ansible_user }}"
   when: check_name.stat is defined and check_name.stat.exists
