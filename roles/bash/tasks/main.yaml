@@ -1,0 +1,30 @@
+---
+
+- name: bash - global
+  include_role:
+    public: yes
+    name: common
+    tasks_from: config
+  vars:
+    src:
+      path: "bash/templates/"
+      name: "global"
+    dst:
+      path: "{{ bash.global.path }}"
+      name: "{{ bash.global.name }}"
+  become: yes
+  become_user: vagrant
+
+
+- name: bash - config
+  include_role:
+    public: yes
+    name: common
+    tasks_from: config
+  vars:
+    src:
+      path: "bash/templates/"
+      name: "config"
+    dst:
+      path: "{{ bash.config.path }}"
+      name: "{{ bash.config.name }}"
