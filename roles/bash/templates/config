@@ -131,4 +131,4 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-export HISTFILE="{{ bash.history.path }}{{ bash.history.name }}"
+export HISTFILE="{{ bash.histfile }}"
