@@ -1,0 +1,42 @@
+---
+
+- name: install www keys
+  become: yes
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items: "{{ given.gpgkeys }}"
+  when: given.gpgkeys is defined and (item.startswith('http://') or item.startswith('https://'))
+
+
+- name: install keyserver keys
+  become: yes
+  apt_key:
+    keyring:
+    keyserver: "{{ item.split('/')[0] }}"
+    id: "{{ item.split('/')[1] }}"
+  with_items: "{{ given.gpgkeys }}"
+  when: given.gpgkeys is defined and (not item.startswith('http://') and not item.startswith('https://'))
+
+
+- name: install lists
+  become: yes
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items: "{{ given.lists }}"
+  when: given.lists is defined
+
+
+- name: update cache
+  become: yes
+  apt:
+    update_cache: yes
+
+
+- name: install packages
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ given.packages }}"
