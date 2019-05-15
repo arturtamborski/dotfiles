@@ -1,6 +1,24 @@
 ---
 
-- name: ssh - ssh_config
+- name: ssh - install.self
+  include_role:
+    public: yes
+    name: common
+    tasks_from: install
+  vars:
+    given: "{{ git.install.self }}"
+
+
+- name: ssh - install.daemon
+  include_role:
+    public: yes
+    name: common
+    tasks_from: install
+  vars:
+    given: "{{ git.install.daemon }}"
+
+
+- name: ssh - config.ssh
   include_role:
     public: yes
     name: common
@@ -8,15 +26,14 @@
     apply:
       become: yes
   vars:
-    src:
-      path: "ssh/templates/"
-      name: "ssh_config"
-    dst:
-      path: "{{ ssh.ssh_config.path }}"
-      name: "{{ ssh.ssh_config.name }}"
+    given:
+      src:
+        path: "ssh/templates/"
+        name: "ssh_config"
+      dst: "{{ ssh.config.ssh }}"
 
 
-- name: ssh - sshd_config
+- name: ssh - config.sshd
   include_role:
     public: yes
     name: common
@@ -24,26 +41,24 @@
     apply:
       become: yes
   vars:
-    src:
-      path: "ssh/templates/"
-      name: "sshd_config"
-    dst:
-      path: "{{ ssh.sshd_config.path }}"
-      name: "{{ ssh.sshd_config.name }}"
+    given:
+      src:
+        path: "ssh/templates/"
+        name: "sshd_config"
+      dst: "{{ ssh.config.sshd }}"
 
 
-- name: ssh - config
+- name: ssh - config.self
   include_role:
     public: yes
     name: common
     tasks_from: config
   vars:
-    src:
-      path: "ssh/templates/"
-      name: "config"
-    dst:
-      path: "{{ ssh.config.path }}"
-      name: "{{ ssh.config.name }}"
+    given:
+      src:
+        path: "ssh/templates/"
+        name: "config"
+      dst: "{{ ssh.config.self }}"
 
 
 - name: check if known hosts exists
@@ -78,7 +93,7 @@
     state: absent
 
 
-- name: reload sshd service
+- name: restart sshd
   become: yes
   service:
     name: sshd
