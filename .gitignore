@@ -1,5 +1,8 @@
-*.vagrant
+# macos shit
 .DS_Store
-*.retry
 
-group_vars/all
+# vagrant
+.vagrant/
+
+# ansible
+*.retry
