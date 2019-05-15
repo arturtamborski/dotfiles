@@ -1,28 +1,35 @@
 ---
 
-- name: git - config
+- name: git - install.self
+  include_role:
+    public: yes
+    name: common
+    tasks_from: install
+  vars:
+    given: "{{ git.install.self }}"
+
+
+- name: git - config.self
   include_role:
     public: yes
     name: common
     tasks_from: config
   vars:
-    src:
-      path: "git/templates/"
-      name: "config"
-    dst:
-      path: "{{ git.config.path }}"
-      name: "{{ git.config.name }}"
+    given:
+      src:
+        path: "git/templates/"
+        name: "config"
+      dst: "{{ git.config.self }}"
 
 
-- name: git - ignore
+- name: git - config.ignore
   include_role:
     public: yes
     name: common
     tasks_from: config
   vars:
-    src:
-      path: "git/files/"
-      name: "ignore"
-    dst:
-      name: "{{ git.ignore.name }}"
-      path: "{{ git.ignore.path }}"
+    given:
+      src:
+        path: "git/files/"
+        name: "ignore"
+      dst: "{{ git.config.ignore }}"
