@@ -1,39 +1,24 @@
 ---
 
-- name: bash - global
+- name: bash - install.self
   include_role:
     public: yes
     name: common
-    tasks_from: config
-    apply:
-      become: yes
+    tasks_from: install
   vars:
-    src:
-      path: "bash/templates/"
-      name: "global"
-    dst:
-      path: "{{ bash.global.path }}"
-      name: "{{ bash.global.name }}"
+    given: "{{ bash.install.self }}"
+
+
+- name: remove default profile
+  file:
+    path: "~/.profile"
+    state: absent
 
 
 - name: remove default config
   file:
     path: "~/.bashrc"
     state: absent
-
-
-- name: bash - config
-  include_role:
-    public: yes
-    name: common
-    tasks_from: config
-  vars:
-    src:
-      path: "bash/templates/"
-      name: "config"
-    dst:
-      path: "{{ bash.config.path }}"
-      name: "{{ bash.config.name }}"
 
 
 - name: remove default logout
@@ -48,7 +33,29 @@
     state: absent
 
 
-- name: remove default profile
-  file:
-    path: "~/.profile"
-    state: absent
+- name: bash - config.global
+  include_role:
+    public: yes
+    name: common
+    tasks_from: config
+    apply:
+      become: yes
+  vars:
+    given:
+      src:
+        path: "bash/templates/"
+        name: "global"
+      dst: "{{ bash.config.global }}"
+
+
+- name: bash - config.self
+  include_role:
+    public: yes
+    name: common
+    tasks_from: config
+  vars:
+    given:
+      src:
+        path: "bash/templates/"
+        name: "config"
+      dst: "{{ bash.config.self }}"
