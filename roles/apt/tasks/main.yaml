@@ -12,8 +12,4 @@
   package:
     name: "{{ item }}"
     state: present
-  with_items:
-    - "curl"
-    - "wget"
-    - "dirmngr"
-    - "apt-transport-https"
+  with_items: "{{ apt.deps }}"
