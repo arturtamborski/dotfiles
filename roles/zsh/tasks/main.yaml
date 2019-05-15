@@ -1,14 +1,22 @@
 ---
 
-- name: zsh - config
+- name: zsh - install.self
+  include_role:
+    public: yes
+    name: common
+    tasks_from: install
+  vars:
+    given: "{{ zsh.install.self }}"
+
+
+- name: zsh - config.self
   include_role:
     public: yes
     name: common
     tasks_from: config
   vars:
-    src:
-      path: "zsh/templates/"
-      name: "config"
-    dst:
-      path: "{{ zsh.config.path }}"
-      name: "{{ zsh.config.name }}"
+    given:
+      src:
+        path: "zsh/templates/"
+        name: "config"
+      dst: "{{ zsh.config.self }}"
