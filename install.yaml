@@ -4,9 +4,11 @@
   hosts: local
   roles:
     - pre
+    - apt
     - bash
     - zsh
     - ssh
     - git
     - vim
+    - virtualbox
     - post
