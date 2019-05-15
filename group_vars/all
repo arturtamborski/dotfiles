@@ -1,0 +1,123 @@
+---
+
+pre:
+  backup:
+    path: "dotfiles-backup/"
+    name: "{{ ansible_date_time.date }}.zip"
+
+
+apt:
+  deps:
+    - "curl"
+    - "wget"
+    - "dirmngr"
+    - "apt-transport-https"
+
+
+bash:
+  histfile: "~/.config/bash/history"
+
+  install:
+    self:
+      packages:
+        - "bash"
+
+  config:
+    global:
+      path: "/etc/"
+      name: "bash.bashrc"
+    self:
+      path: "~/.config/bash/"
+      name: "config"
+
+
+zsh:
+  install:
+    self:
+      packages:
+        - "zsh"
+
+  config:
+    self:
+      path: "~/.config/zsh/"
+      name: "config"
+
+
+ssh:
+  user: "artur"
+
+  install:
+    self:
+      packages:
+        - "ssh"
+    daemon:
+      packages:
+        - "sshd"
+
+  config:
+    ssh:
+      path: "/etc/ssh/"
+      name: "ssh_config"
+    sshd:
+      path: "/etc/ssh/"
+      name: "sshd_config"
+    self:
+      path: "~/.config/ssh/"
+      name: "config"
+
+
+git:
+  name: "Artur Tamborski"
+  email: "tamborskiartur@gmail.com"
+
+  install:
+    self:
+      packages:
+        - "git"
+
+  config:
+    self:
+      path: "~/.config/git/"
+      name: "config"
+    ignore:
+      path: "~/.config/git/"
+      name: "ignore"
+
+
+fzf:
+
+
+vim:
+  install:
+    self:
+      packages:
+        - "vim"
+
+  config:
+    self:
+      path: "~/.config/vim/"
+      name: "config"
+    theme:
+      path: "~/.config/vim/colors/"
+      name: "hero.vim"
+
+
+tmux:
+
+
+python:
+
+
+virtualbox:
+  install:
+    self:
+      gpgkeys:
+        - "https://www.virtualbox.org/download/oracle_vbox.asc"
+        - "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
+      lists:
+        - "deb [arch=i386,amd64] http://download.virtualbox.org/virtualbox/debian stretch contrib"
+      packages:
+        - "virtualbox-6.1"
+
+
+post:
