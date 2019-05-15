@@ -9,6 +9,9 @@
     - zsh
     - ssh
     - git
+    - fzf
     - vim
+    - tmux
+    - python
     - virtualbox
     - post
