@@ -1,28 +1,35 @@
 ---
 
-- name: vim - theme
+- name: vim - install.self
+  include_role:
+    public: yes
+    name: common
+    tasks_from: install
+  vars:
+    given: "{{ vim.install.self }}"
+
+
+- name: vim - config.theme
   include_role:
     public: yes
     name: common
     tasks_from: config
   vars:
-    src:
-      path: "vim/files/"
-      name: "hero.vim"
-    dst:
-      path: "{{ vim.theme.path }}"
-      name: "{{ vim.theme.name }}"
+    given:
+      src:
+        path: "vim/files/"
+        name: "hero.vim"
+      dst: "{{ vim.config.theme }}"
 
 
-- name: vim - config
+- name: vim - config.self
   include_role:
     public: yes
     name: common
     tasks_from: config
   vars:
-    src:
-      path: "vim/files/"
-      name: "config"
-    dst:
-      path: "{{ vim.config.path }}"
-      name: "{{ vim.config.name }}"
+    given:
+      src:
+        path: "vim/files/"
+        name: "config"
+      dst: "{{ vim.config.self }}"
