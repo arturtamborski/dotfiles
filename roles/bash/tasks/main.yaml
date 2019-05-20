@@ -6,7 +6,8 @@
     name: common
     tasks_from: install
   vars:
-    given: "{{ bash.install.self }}"
+    given:
+      packages: "{{ bash.install.self.packages }}"
 
 
 - name: remove default profile
@@ -58,4 +59,6 @@
       src:
         path: "bash/templates/"
         name: "config"
-      dst: "{{ bash.config.self }}"
+      dst:
+        path: "{{ bash.config.self.path }}"
+        name: "{{ bash.config.self.name }}"
