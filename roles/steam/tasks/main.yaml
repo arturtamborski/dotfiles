@@ -1,0 +1,9 @@
+---
+
+- name: steam - install.self
+  include_role:
+    public: yes
+    name: common
+    tasks_from: install
+  vars:
+    given: "{{ steam.install.self }}"
