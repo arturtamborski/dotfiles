@@ -131,4 +131,6 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-export HISTFILE="{{ bash.histfile }}"
+export HISTFILE={{ bash.histfile }}
+
+export MYVIMRC={{ vim.config.self.path }}
