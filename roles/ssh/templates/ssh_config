@@ -53,4 +53,4 @@ Host *
     GSSAPIAuthentication yes
 
 StrictHostKeyChecking no
-UserKnownHostsFile .ssh/known_hosts {{ ssh.config.path.split('/')[1:] | join('/') }}known_hosts
+UserKnownHostsFile .ssh/known_hosts {{ ssh.config.self.path.split('/')[1:] | join('/') }}known_hosts
