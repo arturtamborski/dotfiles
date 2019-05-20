@@ -5,13 +5,36 @@
   roles:
     - pre
     - apt
+
+    # terminal
     - bash
     - zsh
+    - fzf
     - ssh
     - git
-    - fzf
-    - vim
     - tmux
+
+    # editors
+    - vim
+    - ghostwriter
+
+    # browsers
+    - firefox
+
+    # languages
     - python
+
+    # messaging
+    - signal
+    - telegram
+
+    # gaming
+    - steam
+    - wine
+
+    # development
     - virtualbox
+    - vagrant
+    - docker
+
     - post
