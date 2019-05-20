@@ -2,7 +2,7 @@
 
 - name: check if config path exists
   stat:
-    path: "{{ given.dst.path }}{{ given.dst.name }}"
+    path: "{{ given.dst.path }}"
   register: check_path
 
 
@@ -24,7 +24,7 @@
 
 - name: create backup path
   file:
-    path: "{{ pre.backup.path }}{{ given.src.path }}"
+    path: "{{ pre.backup.path }}{{ given.src.path.split('/')[0] }}"
     state: directory
     group: "{{ ansible_user }}"
     owner: "{{ ansible_user }}"
