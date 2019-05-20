@@ -12,6 +12,7 @@ apt:
     - "wget"
     - "dirmngr"
     - "apt-transport-https"
+    - "aptitude"
 
 
 bash:
