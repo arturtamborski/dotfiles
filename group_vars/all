@@ -2,7 +2,7 @@
 
 pre:
   backup:
-    path: "dotfiles-backup/"
+    path: "backup/"
     name: "{{ ansible_date_time.date }}.zip"
 
 
@@ -52,7 +52,8 @@ ssh:
         - "ssh"
     daemon:
       packages:
-        - "sshd"
+        - "openssh-client"
+        - "openssh-server"
 
   config:
     ssh:
@@ -103,9 +104,18 @@ vim:
 
 
 tmux:
+  install:
+    self:
+      packages:
+        - "tmux"
 
 
 python:
+  install:
+    self:
+      packages:
+        - "python3"
+        - "python3-pip"
 
 
 virtualbox:
@@ -117,7 +127,91 @@ virtualbox:
       lists:
         - "deb [arch=i386,amd64] http://download.virtualbox.org/virtualbox/debian stretch contrib"
       packages:
-        - "virtualbox-6.1"
+        - "virtualbox-6.0"
+
+
+vagrant:
+  install:
+    self:
+      gpgkeys:
+        - "keyserver.ubuntu.com/AD319E0F7CFFA38B4D9F6E55CE3F3DE92099F7A4"
+      sources:
+        - "deb https://vagrant-deb.linestarve.com/ any main"
+      packages:
+        - "vagrant"
+
+
+steam:
+  install:
+    self:
+      packages:
+        - "steam"
+
+
+spotify:
+  install:
+    self:
+      gpgkeys:
+        - "keyserver.ubuntu.com/EFDC8610341D9410"
+      sources:
+        - "deb http://repository.spotify.com stable non-free"
+      packages:
+        - "spotify-client"
+
+
+signal:
+  install:
+    self:
+      gpgkeys:
+        - "https://updates.signal.org/desktop/apt/keys.asc"
+      sources:
+        - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
+      packages:
+        - "signal"
+
+
+ghostwriter:
+  install:
+    self:
+      gpgkeys:
+        - "ha.pool.sks-keyservers.net/EF3F38C8FD5E1EE2E7B3B657653124679B3CCB19"
+      sources:
+        - "deb http://ppa.launchpad.net/wereturtle/ppa/ubuntu bionic main"
+      packages:
+        - "ghostwriter"
+
+
+docker:
+  install:
+    self:
+      gpgkeys:
+        - "https://download.docker.com/linux/debian/gpg"
+      sources:
+        - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
+      packages:
+        - "docker-ce"
+
+
+firefox:
+  install:
+    self:
+      gpgkeys:
+        - "keyserver.ubuntu.com/2667CA5C"
+      sources:
+        - "deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main"
+      packages:
+        - "firefox"
+
+
+wine:
+  install:
+    self:
+      gpgkeys:
+        - "ha.pool.sks-keyservers.net/818A435C5FCBF54A"
+      sources:
+        - "deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ stretch main"
+      packages:
+        - "wine"
 
 
 post:
