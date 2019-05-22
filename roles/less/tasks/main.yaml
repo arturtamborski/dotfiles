@@ -6,5 +6,4 @@
     name: common
     tasks_from: main
   vars:
-    install: "{{ less.install }}"
-    configure: "{{ less.configure }}"
+    given: "{{ less }}"
