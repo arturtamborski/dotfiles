@@ -1,0 +1,15 @@
+---
+
+- name: docker - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ docker }}"
+
+
+- name: start docker
+  service:
+    name: docker
+    state: started
