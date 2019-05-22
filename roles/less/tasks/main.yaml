@@ -1,0 +1,10 @@
+---
+
+- name: less - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    install: "{{ less.install }}"
+    configure: "{{ less.configure }}"
