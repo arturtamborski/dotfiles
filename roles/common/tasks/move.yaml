@@ -1,0 +1,23 @@
+---
+
+- name: check if mandatory variables are defined
+  assert:
+    that:
+      - _given is defined
+      - _given.src is defined
+      - _given.dst is defined
+
+
+- stat:
+    path: "{{ _given.src }}"
+  register: check_type
+
+
+- name: move
+  become: yes
+  synchronize:
+    perms: yes
+    src: "{{ _given.src }}"
+    dest: "{{ _given.dst }}"
+    delete: check_type.stat.isdir
+    recursive: check_type.stat.isdir
