@@ -132,5 +132,14 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 export HISTFILE={{ bash.histfile }}
+export HISTFILESIZE=100000
+export HISTSIZE=10000
+export HISTTIMEFORMAT="%F %T "
+export HISTCONTROL=ignoredups
+export PROMPT_COMMAND="history -a"
 
-export MYVIMRC={{ vim.config.self.path }}
+shopt -s histappend
+
+export LESSHISTFILE={{ less.configure.self.dst }}
+
+export VIM={{ vim.configure.self.dst | dirname }}
