@@ -1,5 +1,14 @@
 ---
 
+- name: post - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ post }}"
+
+
 - name: archive backup path
   archive:
     path: "{{ pre.backup | dirname }}"
