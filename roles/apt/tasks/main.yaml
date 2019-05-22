@@ -7,9 +7,9 @@
     update_cache: yes
 
 
-- name: install deps
+- name: install dependencies
   become: yes
   package:
     name: "{{ item }}"
     state: present
-  with_items: "{{ apt.deps }}"
+  with_items: "{{ apt.dependencies }}"
