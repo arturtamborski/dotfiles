@@ -1,64 +1,21 @@
 ---
 
-- name: bash - install.self
+- name: bash - main
   include_role:
     public: yes
     name: common
-    tasks_from: install
+    tasks_from: main
   vars:
-    given:
-      packages: "{{ bash.install.self.packages }}"
+    install: "{{ bash.install }}"
+    configure: "{{ bash.configure }}"
 
 
-- name: remove default profile
+- name: remove default files
   file:
-    path: "~/.profile"
+    path: "{{ item }}"
     state: absent
-
-
-- name: remove default config
-  file:
-    path: "~/.bashrc"
-    state: absent
-
-
-- name: remove default logout
-  file:
-    path: "~/.bash_logout"
-    state: absent
-
-
-- name: remove default history
-  file:
-    path: "~/.bash_history"
-    state: absent
-
-
-- name: bash - config.global
-  include_role:
-    public: yes
-    name: common
-    tasks_from: config
-    apply:
-      become: yes
-  vars:
-    given:
-      src:
-        path: "bash/templates/"
-        name: "global"
-      dst: "{{ bash.config.global }}"
-
-
-- name: bash - config.self
-  include_role:
-    public: yes
-    name: common
-    tasks_from: config
-  vars:
-    given:
-      src:
-        path: "bash/templates/"
-        name: "config"
-      dst:
-        path: "{{ bash.config.self.path }}"
-        name: "{{ bash.config.self.name }}"
+  with_items:
+    - "~/.bash_history"
+    - "~/.bash_logout"
+    - "~/.profile"
+    - "~/.bashrc"
