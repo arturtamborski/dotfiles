@@ -3,38 +3,41 @@
 - name: install
   hosts: local
   roles:
+############ preliminary
     - pre
     - apt
 
-    # terminal
+############ terminal
     - bash
-    - zsh
-    - fzf
-    - ssh
+#   - zsh
+#   - fzf
+#   - ssh
     - git
-    - tmux
+    - less
+#   - tmux
 
-    # editors
+############ editors
     - vim
-    - ghostwriter
+#   - ghostwriter
 
-    # browsers
-    - firefox
+############ browsers
+#   - firefox
 
-    # languages
-    - python
+############ languages
+#   - python
 
-    # messaging
-    - signal
-    - telegram
+############ messaging
+#   - signal
+#   - telegram
 
-    # gaming
-    - steam
-    - wine
+############ gaming
+#   - steam
+#   - wine
 
-    # development
-    - virtualbox
-    - vagrant
-    - docker
+############ development
+#   - virtualbox
+#   - vagrant
+#   - docker
 
+############ postliminary
     - post
