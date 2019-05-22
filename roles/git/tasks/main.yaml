@@ -6,6 +6,4 @@
     name: common
     tasks_from: main
   vars:
-    install: "{{ git.install }}"
-    configure: "{{ git.configure }}"
-
+    given: "{{ git }}"
