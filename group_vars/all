@@ -1,18 +1,35 @@
 ---
 
 pre:
-  backup:
-    path: "backup/"
-    name: "{{ ansible_date_time.date }}.zip"
+  config: "~/.config"
+
+  backup: "backup/{{ ansible_date_time.date }}.zip"
+
+
+
+less:
+  install:
+    self:
+      packages:
+        - "less"
+
+  configure:
+    self:
+      src: "less/files/history"
+      dst: "~/.config/less/history"
+
+
 
 
 apt:
-  deps:
+  dependencies:
     - "curl"
     - "wget"
     - "dirmngr"
     - "apt-transport-https"
     - "aptitude"
+
+
 
 
 bash:
@@ -23,13 +40,16 @@ bash:
       packages:
         - "bash"
 
-  config:
+  configure:
     global:
-      path: "/etc/"
-      name: "bash.bashrc"
+      src: "bash/templates/global"
+      dst: "/etc/bash.bashrc"
+      become: yes
     self:
-      path: "~/.config/bash/"
-      name: "config"
+      src: "bash/templates/config"
+      dst: "~/.config/bash/config"
+
+
 
 
 zsh:
@@ -38,10 +58,12 @@ zsh:
       packages:
         - "zsh"
 
-  config:
+  configure:
     self:
-      path: "~/.config/zsh/"
-      name: "config"
+      src: "zsh/templates/config"
+      dst: "~/.config/zsh/config"
+
+
 
 
 ssh:
@@ -50,22 +72,21 @@ ssh:
   install:
     self:
       packages:
-        - "ssh"
-    daemon:
-      packages:
         - "openssh-client"
         - "openssh-server"
 
-  config:
+  configure:
     ssh:
-      path: "/etc/ssh/"
-      name: "ssh_config"
+      src: "/ssh/templates/ssh_config"
+      dst: "/etc/ssh/ssh_config"
     sshd:
-      path: "/etc/ssh/"
-      name: "sshd_config"
+      src: "/ssh/templates/sshd_config"
+      dst: "/etc/ssh/sshd_config"
     self:
-      path: "~/.config/ssh/"
-      name: "config"
+      src: "/ssh/templates/config"
+      dst: "~/.config/ssh/config"
+
+
 
 
 git:
@@ -77,16 +98,20 @@ git:
       packages:
         - "git"
 
-  config:
+  configure:
     self:
-      path: "~/.config/git/"
-      name: "config"
+      src: "git/templates/config"
+      dst: "~/.config/git/config"
     ignore:
-      path: "~/.config/git/"
-      name: "ignore"
+      src: "git/files/ignore"
+      dst: "~/.config/git/ignore"
+
+
 
 
 fzf:
+
+
 
 
 vim:
@@ -95,13 +120,15 @@ vim:
       packages:
         - "vim"
 
-  config:
+  configure:
     self:
-      path: "~/.config/vim/"
-      name: "config"
+      src: "vim/templates/config"
+      dst: "~/.config/vim/vimrc"
     theme:
-      path: "~/.config/vim/colors/"
-      name: "hero.vim"
+      src: "vim/templates/hero.vim"
+      dst: "~/.config/vim/colors/hero.vim"
+
+
 
 
 tmux:
@@ -111,12 +138,16 @@ tmux:
         - "tmux"
 
 
+
+
 python:
   install:
     self:
       packages:
         - "python3"
         - "python3-pip"
+
+
 
 
 virtualbox:
@@ -131,15 +162,19 @@ virtualbox:
         - "virtualbox-6.0"
 
 
+
+
 vagrant:
   install:
     self:
       gpgkeys:
         - "keyserver.ubuntu.com/AD319E0F7CFFA38B4D9F6E55CE3F3DE92099F7A4"
-      sources:
+      lists:
         - "deb https://vagrant-deb.linestarve.com/ any main"
       packages:
         - "vagrant"
+
+
 
 
 steam:
@@ -149,15 +184,19 @@ steam:
         - "steam"
 
 
+
+
 spotify:
   install:
     self:
       gpgkeys:
         - "keyserver.ubuntu.com/EFDC8610341D9410"
-      sources:
+      lists:
         - "deb http://repository.spotify.com stable non-free"
       packages:
         - "spotify-client"
+
+
 
 
 signal:
@@ -165,10 +204,12 @@ signal:
     self:
       gpgkeys:
         - "https://updates.signal.org/desktop/apt/keys.asc"
-      sources:
+      lists:
         - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
       packages:
         - "signal"
+
+
 
 
 ghostwriter:
@@ -176,10 +217,12 @@ ghostwriter:
     self:
       gpgkeys:
         - "ha.pool.sks-keyservers.net/EF3F38C8FD5E1EE2E7B3B657653124679B3CCB19"
-      sources:
-        - "deb http://ppa.launchpad.net/wereturtle/ppa/ubuntu bionic main"
+      lists:
+        - "deb http://ppa.launchpad.net/wereturtle/ppa/ubuntu stretch main"
       packages:
         - "ghostwriter"
+
+
 
 
 docker:
@@ -187,10 +230,12 @@ docker:
     self:
       gpgkeys:
         - "https://download.docker.com/linux/debian/gpg"
-      sources:
-        - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
+      lists:
+        - "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
       packages:
         - "docker-ce"
+
+
 
 
 firefox:
@@ -198,10 +243,12 @@ firefox:
     self:
       gpgkeys:
         - "keyserver.ubuntu.com/2667CA5C"
-      sources:
+      lists:
         - "deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main"
       packages:
         - "firefox"
+
+
 
 
 wine:
@@ -209,10 +256,12 @@ wine:
     self:
       gpgkeys:
         - "ha.pool.sks-keyservers.net/818A435C5FCBF54A"
-      sources:
+      lists:
         - "deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ stretch main"
       packages:
         - "wine"
+
+
 
 
 post:
