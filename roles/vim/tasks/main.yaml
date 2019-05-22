@@ -6,8 +6,7 @@
     name: common
     tasks_from: main
   vars:
-    install: "{{ vim.install }}"
-    configure: "{{ vim.configure }}"
+    given: "{{ vim }}"
 
 
 - name: install plugin manager
