@@ -1,9 +1,9 @@
 ---
 
-- name: virtualbox - install
+- name: virtualbox - main
   include_role:
     public: yes
     name: common
-    tasks_from: install
+    tasks_from: main
   vars:
-    given: "{{ virtualbox.install.self }}"
+    given: "{{ virtualbox }}"
