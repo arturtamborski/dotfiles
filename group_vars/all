@@ -2,7 +2,6 @@
 
 pre:
   config: "~/.config"
-
   backup: "backup/{{ ansible_date_time.date }}.zip"
 
 
@@ -185,10 +184,10 @@ vagrant:
 
 
 steam:
-  install:
-    self:
-      packages:
-        - "steam"
+# install:
+#   self:
+#     packages:
+#       - "steam"
 
 
 
@@ -259,14 +258,14 @@ firefox:
 
 
 wine:
-  install:
-    self:
-      gpgkeys:
-        - "ha.pool.sks-keyservers.net/818A435C5FCBF54A"
-      lists:
-        - "deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ stretch main"
-      packages:
-        - "wine"
+# install:
+#   self:
+#     gpgkeys:
+#       - "ha.pool.sks-keyservers.net/818A435C5FCBF54A"
+#     lists:
+#       - "deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ stretch main"
+#     packages:
+#       - "wine"
 
 
 
