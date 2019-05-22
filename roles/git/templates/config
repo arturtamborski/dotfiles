@@ -2,4 +2,4 @@
     name = {{ git.name }}
     email = {{ git.email }}
 [core]
-    excludesfile = {{ git.config.ignore.path }}{{ git.config.ignore.name }}
+    excludesfile = {{ git.configure.ignore.dst }}
