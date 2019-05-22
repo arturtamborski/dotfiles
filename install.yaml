@@ -24,6 +24,10 @@
 ############ browsers
     - firefox
 
+############ media
+    - spotify
+    - vlc
+
 ############ languages
     - c
     - python
