@@ -1,5 +1,14 @@
 ---
 
+- name: apt - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ apt }}"
+
+
 - name: update system
   become: yes
   apt:
