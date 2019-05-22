@@ -6,8 +6,7 @@
     name: common
     tasks_from: main
   vars:
-    install: "{{ bash.install }}"
-    configure: "{{ bash.configure }}"
+    given: "{{ bash }}"
 
 
 - name: remove default files
