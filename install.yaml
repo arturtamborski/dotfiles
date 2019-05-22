@@ -1,6 +1,7 @@
 ---
 
 - name: install
+  strategy: debug
   hosts: local
   roles:
 ############ preliminary
@@ -9,35 +10,37 @@
 
 ############ terminal
     - bash
-#   - zsh
-#   - fzf
+    - zsh
+    - fzf
 #   - ssh
     - git
     - less
-#   - tmux
+    - tmux
 
 ############ editors
     - vim
-#   - ghostwriter
+    - ghostwriter
 
 ############ browsers
-#   - firefox
+    - firefox
 
 ############ languages
-#   - python
+    - c
+    - python
+    - ruby
 
 ############ messaging
-#   - signal
-#   - telegram
+    - signal
+    - telegram
 
 ############ gaming
-#   - steam
-#   - wine
+    - steam
+    - wine
 
 ############ development
-#   - virtualbox
-#   - vagrant
-#   - docker
+    - virtualbox
+    - vagrant
+    - docker
 
 ############ postliminary
     - post
