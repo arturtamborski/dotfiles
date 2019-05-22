@@ -1,1 +1,9 @@
 ---
+
+- name: python - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ python }}"
