@@ -2,8 +2,8 @@
 
 - name: archive backup path
   archive:
-    path: "{{ pre.backup.path }}"
-    dest: "{{ pre.backup.path }}{{ pre.backup.name }}"
+    path: "{{ pre.backup | dirname }}"
+    dest: "{{ pre.backup }}"
     format: zip
 
 
