@@ -1,9 +1,11 @@
 ---
 
-- name: steam - install.self
+- name: steam - main
   include_role:
     public: yes
     name: common
-    tasks_from: install
+    tasks_from: main
   vars:
-    given: "{{ steam.install.self }}"
+    given: "{{ steam }}"
+
+#https://github.com/ValveSoftware/steam-for-linux/issues/3474
