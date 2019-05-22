@@ -1,90 +1,12 @@
 ---
 
-- name: ssh - install.self
+- name: ssh - main
   include_role:
     public: yes
     name: common
-    tasks_from: install
+    tasks_from: main
   vars:
-    given: "{{ git.install.self }}"
-
-
-- name: ssh - install.daemon
-  include_role:
-    public: yes
-    name: common
-    tasks_from: install
-  vars:
-    given: "{{ git.install.daemon }}"
-
-
-- name: ssh - config.ssh
-  include_role:
-    public: yes
-    name: common
-    tasks_from: config
-    apply:
-      become: yes
-  vars:
-    given:
-      src:
-        path: "ssh/templates/"
-        name: "ssh_config"
-      dst: "{{ ssh.config.ssh }}"
-
-
-- name: ssh - config.sshd
-  include_role:
-    public: yes
-    name: common
-    tasks_from: config
-    apply:
-      become: yes
-  vars:
-    given:
-      src:
-        path: "ssh/templates/"
-        name: "sshd_config"
-      dst: "{{ ssh.config.sshd }}"
-
-
-- name: ssh - config.self
-  include_role:
-    public: yes
-    name: common
-    tasks_from: config
-  vars:
-    given:
-      src:
-        path: "ssh/templates/"
-        name: "config"
-      dst: "{{ ssh.config.self }}"
-
-
-- name: check if known hosts exists
-  stat:
-    path: "~/.ssh/known_hosts"
-  register: check_known_hosts
-
-
-- name: copy known hosts
-  copy:
-    src: "~/.ssh/known_hosts"
-    dest: "{{ ssh.config.path }}known_hosts"
-  when: check_known_hosts.stat.exists
-
-
-- name: check if authorized keys exists
-  stat:
-    path: "~/.ssh/authorized_keys"
-  register: check_authorized_keys
-
-
-- name: copy authorized keys
-  copy:
-    src: "~/.ssh/authorized_keys"
-    dest: "{{ ssh.config.path }}authorized_keys"
-  when: check_authorized_keys.stat.exists
+    given: "{{ ssh }}"
 
 
 - name: remove default ssh path
