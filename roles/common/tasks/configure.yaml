@@ -3,28 +3,28 @@
 - name: check if mandatory variables are defined
   assert:
     that:
-      - given is defined
-      - given.dst is defined
-      - given.src is defined
+      - _given is defined
+      - _given.dst is defined
+      - _given.src is defined
       - pre.backup is defined
 
 
 - name: check if configuration path exists
   stat:
-    path: "{{ given.dst | dirname }}"
+    path: "{{ _given.dst | dirname }}"
   register: check_path
 
 
 - name: check if configuration file exists
   stat:
-    path: "{{ given.dst }}"
+    path: "{{ _given.dst }}"
   register: check_name
   when: check_path.stat.exists
 
 
 - name: create configuration path
   file:
-    path: "{{ given.dst | dirname }}"
+    path: "{{ _given.dst | dirname }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -33,7 +33,7 @@
 
 - name: create backup path
   file:
-    path: "{{ pre.backup | dirname }}/{{ given.src.split('/')[0] }}"
+    path: "{{ pre.backup | dirname }}/{{ _given.src.split('/')[0] }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -42,8 +42,8 @@
 
 - name: backup configuration file
   copy:
-    src: "{{ given.dst }}"
-    dest: "{{ pre.backup | dirname }}/{{ given.src.split('/')[0] }}/"
+    src: "{{ _given.dst }}"
+    dest: "{{ pre.backup | dirname }}/{{ _given.src.split('/')[0] }}/"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
   when: check_name.stat is defined and check_name.stat.exists
@@ -51,29 +51,29 @@
 
 - name: check if role file exists
   stat:
-    path: "{{ playbook_dir }}/roles/{{ given.src | default('.nofile') }}"
+    path: "{{ playbook_dir }}/roles/{{ _given.src | default('.nofile') }}"
   register: check_file
-  when: given.src is search("/files/")
+  when: _given.src is search("/files/")
 
 
 - name: check if role template exists
   stat:
-    path: "{{ playbook_dir }}/roles/{{ given.src | default('.nofile') }}"
+    path: "{{ playbook_dir }}/roles/{{ _given.src | default('.nofile') }}"
   register: check_template
-  when: given.src is search("/templates/")
+  when: _given.src is search("/templates/")
 
 
 - name: update configuration file from roles file
-  become: "{{ given.become | default('no') }}"
+  become: "{{ _given.become | default('no') }}"
   copy:
-    src: "{{ playbook_dir }}/roles/{{ given.src }}"
-    dest: "{{ given.dst }}"
+    src: "{{ playbook_dir }}/roles/{{ _given.src }}"
+    dest: "{{ _given.dst }}"
   when: check_file.stat is defined and check_file.stat.exists
 
 
 - name: update configuration file from roles template
-  become: "{{ given.become | default('no') }}"
+  become: "{{ _given.become | default('no') }}"
   template:
-    src: "{{ playbook_dir }}/roles/{{ given.src }}"
-    dest: "{{ given.dst }}"
+    src: "{{ playbook_dir }}/roles/{{ _given.src }}"
+    dest: "{{ _given.dst }}"
   when: check_template.stat is defined and check_template.stat.exists

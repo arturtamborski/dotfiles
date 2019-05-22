@@ -3,16 +3,16 @@
 - name: check if mandatory variables are defined
   assert:
     that:
-      - given is defined
-      - given.packages is defined
+      - _given is defined
+      - _given.packages is defined
 
 
 - name: install www keys
   apt_key:
     url: "{{ item }}"
     state: present
-  with_items: "{{ given.gpgkeys }}"
-  when: given.gpgkeys is defined and (item.startswith('http://') or item.startswith('https://'))
+  with_items: "{{ _given.gpgkeys }}"
+  when: _given.gpgkeys is defined and (item.startswith('http://') or item.startswith('https://'))
 
 
 - name: install gpg keys
@@ -20,26 +20,26 @@
     keyring:
     keyserver: "{{ item.split('/')[0] }}"
     id: "{{ item.split('/')[1] }}"
-  with_items: "{{ given.gpgkeys }}"
-  when: given.gpgkeys is defined and (not item.startswith('http://') and not item.startswith('https://'))
+  with_items: "{{ _given.gpgkeys }}"
+  when: _given.gpgkeys is defined and (not item.startswith('http://') and not item.startswith('https://'))
 
 
 - name: install lists
   apt_repository:
     repo: "{{ item }}"
     state: present
-  with_items: "{{ given.lists }}"
-  when: given.lists is defined
+  with_items: "{{ _given.lists }}"
+  when: _given.lists is defined
 
 
 - name: update cache
   apt:
     update_cache: yes
-  when: given.lists is defined
+  when: _given.lists is defined
 
 
 - name: install packages
   package:
     name: "{{ item }}"
     state: present
-  with_items: "{{ given.packages }}"
+  with_items: "{{ _given.packages }}"

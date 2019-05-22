@@ -1,5 +1,11 @@
 ---
 
+- name: check if mandatory variables are defined
+  assert:
+    that:
+      - given is defined
+
+
 - name: install
   include_role:
     public: no
@@ -8,11 +14,11 @@
     apply:
       become: yes
   vars:
-    given: "{{ _dict_item.value }}"
-  with_dict: "{{ install }}"
+    _given: "{{ _dict_item.value }}"
+  with_dict: "{{ given.install }}"
   loop_control:
     loop_var: _dict_item
-  when: install is defined
+  when: given.install is defined
 
 
 - name: configure
@@ -21,8 +27,21 @@
     name: common
     tasks_from: configure
   vars:
-    given: "{{ _dict_item.value }}"
-  with_dict: "{{ configure }}"
+    _given: "{{ _dict_item.value }}"
+  with_dict: "{{ given.configure }}"
   loop_control:
     loop_var: _dict_item
-  when: configure is defined
+  when: given.configure is defined
+
+
+- name: move
+  include_role:
+    public: no
+    name: common
+    tasks_from: move
+  vars:
+    _given: "{{ _dict_item.value }}"
+  with_dict: "{{ given.move }}"
+  loop_control:
+    loop_var: _dict_item
+  when: given.move is defined
