@@ -9,12 +9,11 @@
 " ======================================================   P L U G I N S   === "
 filetype off
 set nocompatible
-set runtimepath+=~/.vim/bundle/Vundle.vim
+set runtimepath+={{ vim.configure.self.dst | dirname }}/bundle/Vundle.vim
 call vundle#begin()
 " ---------------------------------------------------------------------------- "
 
 " ----------------------------------------------------------------- Vundle --- "
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'VundleVim/Vundle.vim'
 
 " --------------------------------------------------------------- NERDtree --- "
@@ -115,6 +114,9 @@ cnoremap w!! execute 'silent! write !sudo tee > /dev/null %' <bar> edit!<enter>
 
 " ============================================================================ "
 " ====================================================   S E T T I N G S   === "
+
+" ------------------------------------------------------------ set runtime --- "
+let $VIMRUNTIME="/usr/share/vim/vim" . v:version / 10
 
 " ------------------------------------------------------------ color theme --- "
 set background=dark
@@ -229,28 +231,35 @@ set wildmode=full
 set wildignore=*.o,*.fasl
 
 " ---------------------------------------------------------- swap & backup --- "
-set noswapfile
 set backup
+set noswapfile
 set writebackup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+let &backupdir = "{{ vim.configure.self.dst | dirname }}/backup"
+let &backupdir = substitute(&backupdir, "\\~", $HOME, "")
+let &directory = &backupdir
 
-" ------------------------------------------------------------------- undo --- "
-if !isdirectory($HOME."/.dotfiles/vim/undodir")
-    call mkdir($HOME."/.dotfiles/vim/undodir", "p")
+if !isdirectory(&backupdir)
+    call mkdir(&backupdir)
 endif
 
-set undodir=~/.vim/undodir
+" ------------------------------------------------------------------- undo --- "
 set undofile
 set undolevels=10000
 set undoreload=10000
+
+let &undodir = "{{ vim.configure.self.dst | dirname }}/undo"
+let &undodir = substitute(&undodir, "\\~", $HOME, "")
+
+if !isdirectory(&undodir)
+    call mkdir(&undodir)
+endif
 
 " --------------------------------------------------------- longer history --- "
 set history=1000
 
 " ------------------------------------------------ store last session info --- "
-set viminfo='10,\"100,:20,%,n~/.viminfo
+" set viminfo='10,\"100,:20,%,n{{ vim.configure.self.dst | dirname }}
 
 " -------------------------------------------- jump to last modified place --- "
 autocmd BufWinEnter * call RestoreCursorPosition()
@@ -512,6 +521,3 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " ============================================================================ "
 " ============================================================================ "
-
-# edit this later to ~/.config/vim
-set viminfo=""
