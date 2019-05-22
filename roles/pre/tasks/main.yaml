@@ -1,5 +1,14 @@
 ---
 
+- name: pre - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ pre }}"
+
+
 - name: create config path
   file:
     path: "{{ pre.config }}"
