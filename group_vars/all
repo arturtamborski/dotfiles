@@ -86,6 +86,13 @@ ssh:
       src: "/ssh/templates/config"
       dst: "~/.config/ssh/config"
 
+  move:
+    known_hosts:
+      src: "~/.ssh/known_hosts"
+      dst: "{{ ssh.configure.self.dst | dirname }}/known_hosts"
+    authorized_keys:
+      src: "~/.ssh/authorized_keys"
+      dst: "{{ ssh.configure.self.dst | dirname }}/authorized_keys"
 
 
 
