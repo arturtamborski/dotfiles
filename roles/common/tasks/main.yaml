@@ -1,1 +1,28 @@
 ---
+
+- name: install
+  include_role:
+    public: no
+    name: common
+    tasks_from: install
+    apply:
+      become: yes
+  vars:
+    given: "{{ _dict_item.value }}"
+  with_dict: "{{ install }}"
+  loop_control:
+    loop_var: _dict_item
+  when: install is defined
+
+
+- name: configure
+  include_role:
+    public: no
+    name: common
+    tasks_from: configure
+  vars:
+    given: "{{ _dict_item.value }}"
+  with_dict: "{{ configure }}"
+  loop_control:
+    loop_var: _dict_item
+  when: configure is defined
