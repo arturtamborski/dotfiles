@@ -1,0 +1,14 @@
+---
+
+- name: kernel - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ kernel }}"
+
+
+- name: install headers
+  become: yes
+  command: "apt install linux-headers-$(uname -r)"
