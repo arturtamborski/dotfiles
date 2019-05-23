@@ -41,5 +41,5 @@
 - name: install packages
   package:
     name: "{{ item }}"
-    state: present
+    state: latest
   with_items: "{{ _given.packages }}"
