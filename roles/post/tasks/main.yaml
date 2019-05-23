@@ -20,3 +20,15 @@
   file:
     path: "~/.ansible/"
     state: absent
+
+
+- name: clean cache
+  become: yes
+  apt:
+    autoclean: yes
+
+
+- name: clean dependencies
+  become: yes
+  apt:
+    autoremove: yes
