@@ -1,0 +1,53 @@
+---
+
+- name: tarsnap - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ tarsnap }}"
+
+
+- name: download source
+  get_url:
+    url: "{{ tarsnap.url }}"
+    dest: "/tmp/{{ tarsnap.url.split('/')[-1] }}"
+
+
+- name: extract archive
+  unarchive:
+    src: "/tmp/{{ tarsnap.url.split('/')[-1] }}"
+    dest: "/tmp/"
+
+
+- name: rename directory
+  command: "mv /tmp/{{ tarsnap.url.split('/')[-1] }} /tmp/tarsnap"
+
+
+- name: configure
+  command: "./configure"
+  args:
+    chdir: "/tmp/tarsnap/"
+
+
+- name: build
+  command: "make all"
+  args:
+    chdir: "/tmp/tarsnap/"
+
+
+- name: install
+  become: yes
+  command: "make install"
+  args:
+    chdir: "/tmp/tarsnap/"
+
+
+- name: clean up
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "/tmp/tarsnap"
+    - "/tmp/tarsnap.tar.gz"
