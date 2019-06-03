@@ -1,0 +1,28 @@
+---
+
+- name: go - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ go }}"
+
+
+- name: download
+  get_url:
+    url: "{{ go.url }}"
+    dest: "/tmp/go.tar.gz"
+
+
+- name: install
+  become: yes
+  unarchive:
+    src: "/tmp/go.tar.gz"
+    dest: "/usr/local"
+
+
+- name: clean up
+  file:
+    path: "/tmp/go.tar.gz"
+    state: absent
