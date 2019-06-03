@@ -1,6 +1,6 @@
 # -- global ------------------
 Host *
-    User {{ ssh.user }}
+    User {{ ansible_user }}
     Forwardagent yes
     StrictHostKeyChecking no
 # ----------------------------
@@ -9,7 +9,7 @@ Host *
 # -- github ------------------
     Host github.com
     HostName github.com
-    IdentityFile {{ ssh.config.self.path }}keys/github
+    IdentityFile {{ ssh.configure.self.dst }}keys/github
     IdentitiesOnly yes
     User git
 # ----------------------------
@@ -18,7 +18,7 @@ Host *
 # -- gitlab ------------------
     Host gitlab.com
     HostName gitlab.com
-    IdentityFile {{ ssh.config.self.path }}keys/gitlab
+    IdentityFile {{ ssh.configure.self.dst }}keys/gitlab
     IdentitiesOnly yes
     User git
 # ----------------------------
@@ -28,7 +28,7 @@ Host *
     Host mikrus
     HostName srv02.mikr.us
     Port 10515
-    IdentityFile {{ ssh.config.self.path }}keys/mikrus
+    IdentityFile {{ ssh.configure.self.dst }}keys/mikrus
     IdentitiesOnly yes
     User root
 # ----------------------------
@@ -38,7 +38,7 @@ Host *
     Host wmi
     HostName lts.wmi.amu.edu.pl
     Port 22
-    IdentityFile {{ ssh.config.self.path }}keys/wmi
+    IdentityFile {{ ssh.configure.self.dst }}keys/wmi
     IdentitiesOnly yes
 # ----------------------------
 
@@ -46,7 +46,7 @@ Host *
 # -- git.wmi -----------------
     Host git.wmi.amu.edu.pl
     HostName git.wmi.amu.edu.pl
-    IdentityFile {{ ssh.config.self.path }}keys/git-wmi
+    IdentityFile {{ ssh.configure.self.dst }}keys/git-wmi
     IdentitiesOnly yes
     User git
 # ----------------------------
