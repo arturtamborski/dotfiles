@@ -4,50 +4,64 @@
   strategy: debug
   hosts: local
   roles:
-#   ########### preliminary
+    ########### preliminary
     - pre
     - apt
     - snap
     - flatpak
     - kernel
+    - tlp
 
-#   ########### terminal
+    ########### terminal
     - bash
-#   - zsh
-#   - fzf
-#   - ssh
-#   - git
-#   - less
-#   - tmux
+    - zsh
+    - fzf
+    - ssh
+    - git
+    - less
+    - tmux
+    - gpg
+    - jq
 
-#   ########### editors
-#   - vim
-#   - ghostwriter
+    ########### backup
+    - unar
+    - unzip
+    #- tarsnap
+    #- syncthing
 
-#   ########### browsers
-#   - firefox
+    ########### editors
+    - vim
+    - ghostwriter
 
-#   ########### media
-#   - spotify
-#   - vlc
+    ########### browsers
+    - firefox
 
-#   ########### languages
+    ########### media
+    #- spotify
+    - vlc
+
+    ########### languages
     - c
-#   - python
-#   - ruby
+    - go
+    - python
+    - ruby
 
-#   ########### messaging
-#   - signal
-#   - telegram
+    ########### messaging
+    - signal
+    - telegram
 
-#   ########### gaming
-#   - steam
-#   - wine
+    ########### gaming
+    - steam
+    - wine
 
-#   ########### development
+    ########### development
     - virtualbox
     - vagrant
     - docker
+    - terraform
+    - kubernetes
+    - awscli
+    - httpie
 
-#   ########### postliminary
+    ########### postliminary
     - post
