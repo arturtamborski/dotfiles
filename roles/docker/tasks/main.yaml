@@ -24,14 +24,14 @@
     append: yes
 
 
-- name: enable docker
+- name: enable service
   become: yes
   service:
     name: docker
     enabled: yes
 
 
-- name: start docker
+- name: start service
   become: yes
   service:
     name: docker
