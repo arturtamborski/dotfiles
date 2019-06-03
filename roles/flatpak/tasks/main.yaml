@@ -7,3 +7,13 @@
     tasks_from: main
   vars:
     given: "{{ flatpak }}"
+
+
+- debug:
+    msg: turbug
+
+
+- name: add remotes
+  become: yes
+  command: "flatpak remote-add --if-not-exists {{ item }}"
+  with_items: "{{ flatpak.remotes }}"
