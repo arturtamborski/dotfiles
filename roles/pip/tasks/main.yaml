@@ -1,0 +1,16 @@
+---
+
+- name: pip - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ pip }}"
+
+
+- name: update
+  command: "{{ item }} -m pip install --upgrade pip"
+  with_items:
+    - "python2"
+    - "python3"
