@@ -1,0 +1,23 @@
+---
+
+- name: syncthing - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ syncthing }}"
+
+
+- name: enable service
+  become: yes
+  service:
+    name: syncthing
+    enabled: yes
+
+
+- name: start service
+  become: yes
+  service:
+    name: "syncthing@{{ ansible_user }}"
+    state: started
