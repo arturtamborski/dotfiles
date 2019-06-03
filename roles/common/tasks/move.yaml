@@ -14,10 +14,6 @@
 
 
 - name: move
-  become: yes
-  synchronize:
-    perms: yes
-    src: "{{ _given.src }}"
-    dest: "{{ _given.dst }}"
-    delete: check_type.stat.isdir
-    recursive: check_type.stat.isdir
+  become: "{{ _given.become | default('no') }}"
+  command: "mv {{ _given.src | quote }} {{ _given.dst | quote }}"
+  when: check_type.stat is defined and check_type.stat.exists
