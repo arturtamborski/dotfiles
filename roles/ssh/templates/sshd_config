@@ -123,4 +123,4 @@ UseDNS no
 PasswordAuthentication yes
 
 
-AuthorizedKeysFile .ssh/authorized_keys {{ ssh.config.self.path.split('/')[1:] | join('/') }}authorized_keys
+AuthorizedKeysFile .ssh/authorized_keys {{ ssh.move.authorized_keys.dst.split('/')[1:] | join('/') }}
