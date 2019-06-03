@@ -5,6 +5,9 @@
     that:
       - _given is defined
       - _given.packages is defined
+        or _given.snaps is defined
+        or _given.flatpaks is defined
+        or _given.pips is defined
 
 
 - name: install www keys
@@ -43,3 +46,24 @@
     name: "{{ item }}"
     state: latest
   with_items: "{{ _given.packages }}"
+  when: _given.packages is defined
+
+
+- name: install snaps
+  snap:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ _given.snaps }}"
+  when: _given.snaps is defined
+
+
+- name: install flatpaks
+  command: "flatpak install {{ item }}"
+  with_items: "{{ _given.flatpaks }}"
+  when: _given.flatpaks is defined
+
+
+- name: install pips
+  command: "python -m pip install {{ item }}"
+  with_items: "{{ _given.pips }}"
+  when: _given.pips is defined
