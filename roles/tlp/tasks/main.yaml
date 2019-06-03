@@ -1,0 +1,40 @@
+---
+
+- name: tlp - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ tlp }}"
+
+
+- name: enable service
+  become: yes
+  service:
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+    - tlp
+    - tlp-sleep
+
+
+- name: start service
+  become: yes
+  service:
+    name: "{{ item }}"
+    state: started
+  with_items:
+    - tlp
+    - tlp-sleep
+
+
+- name: mask systemd-rfkill
+  become: yes
+  systemd:
+    name: "{{ item }}"
+    enabled: no
+    masked: yes
+  with_items:
+    - systemd-rfkill.socket
+    - systemd-rfkill.service
