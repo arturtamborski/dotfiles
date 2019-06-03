@@ -7,6 +7,29 @@ pre:
 
 
 
+apt:
+  dependencies:
+    - "curl"
+    - "wget"
+    - "dirmngr"
+    - "aptitude"
+    - "ca-certificates"
+    - "apt-transport-https"
+    - "software-properties-common"
+
+
+
+
+pip:
+  install:
+    self:
+      packages:
+        - "python-pip"
+        - "python3-pip"
+
+
+
+
 snap:
   install:
     self:
@@ -17,12 +40,15 @@ snap:
 
 
 flatpak:
-# install:
-#   self:
-#     lists:
-#       - "deb http://deb.debian.org/debian stretch-backports main"
-#     packages:
-#       - "flatpak"
+  remotes:
+    - "flathub https://flathub.org/repo/flathub.flatpakrepo"
+
+  install:
+    self:
+      lists:
+        - "deb http://deb.debian.org/debian stretch-backports main"
+      packages:
+        - "flatpak"
 
 
 
@@ -36,14 +62,17 @@ kernel:
 
 
 
-apt:
-  dependencies:
-    - "curl"
-    - "wget"
-    - "dirmngr"
-    - "aptitude"
-    - "apt-transport-https"
-    - "software-properties-common"
+tlp:
+  install:
+    self:
+      packages:
+        - "tlp"
+
+  configure:
+    global:
+      src: "tlp/templates/config"
+      dst: "/etc/default/tlp"
+      become: yes
 
 
 
@@ -88,8 +117,6 @@ fzf:
 
 
 ssh:
-  user: "artur"
-
   install:
     self:
       packages:
@@ -98,22 +125,24 @@ ssh:
 
   configure:
     ssh:
-      src: "/ssh/templates/ssh_config"
+      src: "ssh/templates/ssh_config"
       dst: "/etc/ssh/ssh_config"
+      become: yes
     sshd:
-      src: "/ssh/templates/sshd_config"
+      src: "ssh/templates/sshd_config"
       dst: "/etc/ssh/sshd_config"
+      become: yes
     self:
-      src: "/ssh/templates/config"
+      src: "ssh/templates/config"
       dst: "~/.config/ssh/config"
 
   move:
     known_hosts:
       src: "~/.ssh/known_hosts"
-      dst: "{{ ssh.configure.self.dst | dirname }}/known_hosts"
+      dst: "~/.config/ssh/known_hosts"
     authorized_keys:
       src: "~/.ssh/authorized_keys"
-      dst: "{{ ssh.configure.self.dst | dirname }}/authorized_keys"
+      dst: "~/.config/ssh/authorized_keys"
 
 
 
@@ -157,6 +186,57 @@ tmux:
     self:
       packages:
         - "tmux"
+
+
+
+
+gpg:
+  install:
+    self:
+      packages:
+        - "gpg"
+
+
+
+
+jq:
+  install:
+    self:
+      packages:
+        - "jq"
+
+
+
+
+unar:
+  install:
+    self:
+      packages:
+        - "unar"
+
+
+
+
+unzip:
+  install:
+    self:
+      packages:
+        - "unzip"
+
+
+
+
+tarsnap:
+  url: "https://www.tarsnap.com/download/tarsnap-autoconf-1.0.39.tgz"
+
+
+
+
+syncthing:
+  install:
+    self:
+      packages:
+        - "syncthing"
 
 
 
@@ -205,14 +285,10 @@ firefox:
 
 
 spotify:
-# install:
-#   self:
-#     gpgkeys:
-#       - "keyserver.ubuntu.com/EFDC8610341D9410"
-#     lists:
-#       - "deb http://repository.spotify.com stable non-free"
-#     packages:
-#       - "spotify-client"
+  install:
+    self:
+      flatpaks:
+        - "flathub com.spotify.Client"
 
 
 
@@ -232,6 +308,12 @@ c:
       packages:
         - "gcc"
         - "build-essential"
+
+
+
+
+go:
+  url: "https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz"
 
 
 
@@ -328,6 +410,44 @@ docker:
         - "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
       packages:
         - "docker-ce"
+
+
+
+
+terraform:
+  url: "https://releases.hashicorp.com/terraform/0.12.0/terraform_0.12.0_linux_amd64.zip"
+
+
+
+
+kubernetes:
+  install:
+    self:
+      gpgkeys:
+        - "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+      lists:
+        - "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+      packages:
+        - "kubectl"
+#       - "kubelet"
+#       - "kubeadm"
+
+
+
+
+awscli:
+  install:
+    self:
+      pips:
+        - "awscli"
+
+
+
+httpie:
+  install:
+    self:
+      packages:
+        - "httpie"
 
 
 
