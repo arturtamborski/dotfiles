@@ -1,0 +1,9 @@
+---
+
+- name: gpg - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ gpg }}"
