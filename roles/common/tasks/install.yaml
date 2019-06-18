@@ -64,6 +64,6 @@
 
 
 - name: install pips
-  command: "python -m pip install {{ item }}"
+  command: "python3 -m pip install {{ item }}"
   with_items: "{{ _given.pips }}"
   when: _given.pips is defined
