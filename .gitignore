@@ -6,3 +6,6 @@
 
 # ansible
 *.retry
+
+# intelij
+.idea/
