@@ -381,9 +381,7 @@ virtualbox:
       lists:
         - "deb [arch=i386,amd64] http://download.virtualbox.org/virtualbox/debian stretch contrib"
       packages:
-        - "build-essential"
         - "virtualbox-6.0"
-        - linux-headers-`uname -r` dkms
 
 
 
