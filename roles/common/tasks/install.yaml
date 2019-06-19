@@ -58,12 +58,12 @@
 
 
 - name: install flatpaks
-  command: "flatpak install {{ item }}"
+  command: "flatpak info {{ item.split(' ')[1] }} || flatpak -y install {{ item }}"
   with_items: "{{ _given.flatpaks }}"
   when: _given.flatpaks is defined
 
 
 - name: install pips
-  command: "python3 -m pip install {{ item }}"
+  command: "python3 -m pip install --no-cache-dir {{ item }}"
   with_items: "{{ _given.pips }}"
   when: _given.pips is defined
