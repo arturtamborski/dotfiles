@@ -20,21 +20,11 @@ apt:
 
 
 
-pip:
+kernel:
   install:
     self:
       packages:
-        - "python-pip"
-        - "python3-pip"
-
-
-
-
-snap:
-  install:
-    self:
-      packages:
-        - "snapd"
+        - "dkms"
 
 
 
@@ -53,11 +43,22 @@ flatpak:
 
 
 
-kernel:
+snap:
   install:
     self:
       packages:
-        - "dkms"
+        - "snapd"
+
+
+
+
+pip:
+  install:
+    self:
+      packages:
+        - "python-apt"
+        - "python-pip"
+        - "python3-pip"
 
 
 
@@ -208,6 +209,15 @@ jq:
 
 
 
+mutt:
+  install:
+    self:
+      packages:
+        - "mutt"
+
+
+
+
 unar:
   install:
     self:
@@ -241,6 +251,16 @@ syncthing:
 
 
 
+gopass:
+
+
+
+
+keepassxc:
+
+
+
+
 vim:
   install:
     self:
@@ -259,27 +279,32 @@ vim:
 
 
 ghostwriter:
-# install:
-#   self:
-#     gpgkeys:
-#       - "ha.pool.sks-keyservers.net/EF3F38C8FD5E1EE2E7B3B657653124679B3CCB19"
-#     lists:
-#       - "deb http://ppa.launchpad.net/wereturtle/ppa/ubuntu stretch main"
-#     packages:
-#       - "ghostwriter"
+  install:
+    self:
+      gpgkeys:
+        - "ha.pool.sks-keyservers.net/EF3F38C8FD5E1EE2E7B3B657653124679B3CCB19"
+      lists:
+        - "deb http://ppa.launchpad.net/wereturtle/ppa/ubuntu stretch main"
+      packages:
+        - "ghostwriter"
 
 
 
 
 firefox:
-# install:
-#   self:
-#     gpgkeys:
-#       - "keyserver.ubuntu.com/2667CA5C"
-#     lists:
-#       - "deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main"
-#     packages:
-#       - "firefox"
+  install:
+    self:
+      gpgkeys:
+        - "keyserver.ubuntu.com/2667CA5C"
+      lists:
+        - "deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main"
+      packages:
+        - "firefox"
+
+
+
+
+qbittorrent:
 
 
 
@@ -298,6 +323,25 @@ vlc:
     self:
       packages:
         "vlc"
+
+
+
+
+audacity:
+  install:
+    self:
+      packages:
+        - "audacity"
+
+
+
+
+gimp:
+
+
+
+
+imagemagick:
 
 
 
@@ -334,14 +378,14 @@ ruby:
 
 
 signal:
-# install:
-#   self:
-#     gpgkeys:
-#       - "https://updates.signal.org/desktop/apt/keys.asc"
-#     lists:
-#       - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
-#     packages:
-#       - "signal"
+  install:
+    self:
+      gpgkeys:
+        - "https://updates.signal.org/desktop/apt/keys.asc"
+      lists:
+        - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
+      packages:
+        - "signal"
 
 
 
@@ -352,22 +396,23 @@ telegram:
 
 
 steam:
-# install:
-#   self:
-#     packages:
-#       - "steam"
+  install:
+    self:
+      packages:
+        - "steam"
+
 
 
 
 wine:
-# install:
-#   self:
-#     gpgkeys:
-#       - "ha.pool.sks-keyservers.net/818A435C5FCBF54A"
-#     lists:
-#       - "deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ stretch main"
-#     packages:
-#       - "wine"
+  install:
+    self:
+      gpgkeys:
+        - "ha.pool.sks-keyservers.net/818A435C5FCBF54A"
+      lists:
+        - "deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ stretch main"
+      packages:
+        - "wine"
 
 
 
@@ -427,8 +472,8 @@ kubernetes:
         - "deb https://apt.kubernetes.io/ kubernetes-xenial main"
       packages:
         - "kubectl"
-#       - "kubelet"
-#       - "kubeadm"
+        - "kubelet"
+        - "kubeadm"
 
 
 
@@ -446,6 +491,27 @@ httpie:
     self:
       packages:
         - "httpie"
+
+
+
+
+x2go:
+
+
+
+
+toolbox:
+
+
+
+
+dbeaver:
+
+
+
+
+defold:
+    url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
 
 
 
