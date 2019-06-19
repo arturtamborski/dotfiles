@@ -16,12 +16,6 @@
     format: zip
 
 
-- name: remove ansible path
-  file:
-    path: "~/.ansible/"
-    state: absent
-
-
 - name: clean cache
   become: yes
   apt:
@@ -32,3 +26,9 @@
   become: yes
   apt:
     autoremove: yes
+
+
+- name: remove ansible path
+  file:
+    path: "~/.ansible/"
+    state: absent
