@@ -15,14 +15,14 @@
     dest: "/tmp/{{ tarsnap.url.split('/')[-1] }}"
 
 
+- name: rename file
+  command: "mv /tmp/{{ tarsnap.url.split('/')[-1] }} /tmp/tarsnap.tar.gz"
+
+
 - name: extract archive
   unarchive:
-    src: "/tmp/{{ tarsnap.url.split('/')[-1] }}"
+    src: "/tmp/tarsnap.tar.gz"
     dest: "/tmp/"
-
-
-- name: rename directory
-  command: "mv /tmp/{{ tarsnap.url.split('/')[-1] }} /tmp/tarsnap"
 
 
 - name: configure
