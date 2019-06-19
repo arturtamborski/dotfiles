@@ -1,67 +1,87 @@
 ---
 
 - name: install
-  strategy: debug
   hosts: local
+  strategy: debug
   roles:
     ########### preliminary
-    - pre
-    - apt
-    - snap
-    - flatpak
-    - kernel
-    - tlp
+    - { role: pre,            tags: pre }
+    - { role: apt,            tags: apt }
+    - { role: kernel,         tags: kernel }
+    - { role: flatpak,        tags: flatpak }
+    - { role: snap,           tags: snap }
+    - { role: pip,            tags: pip }
 
     ########### terminal
-    - bash
-    - zsh
-    - fzf
-    - ssh
-    - git
-    - less
-    - tmux
-    - gpg
-    - jq
+    - { role: tlp,            tags: tlp }
+    - { role: bash,           tags: bash }
+    - { role: zsh,            tags: zsh }
+    - { role: fzf,            tags: fzf }
+    - { role: ssh,            tags: ssh }
+    - { role: git,            tags: git }
+    - { role: less,           tags: less }
+    - { role: tmux,           tags: tmux }
+#   - { role: gpg,            tags: gpg }
+    - { role: jq,             tags: jq }
+    - { role: mutt,           tags: mutt }
 
     ########### backup
-    - unar
-    - unzip
-    #- tarsnap
-    #- syncthing
+    - { role: unar,           tags: unar }
+    - { role: unzip,          tags: unzip }
+#   - { role: tarsnap,        tags: tarsnap }
+    - { role: syncthing,      tags: syncthing }
+
+    ########### keys
+    - { role: gopass,         tags: gopass }
+    - { role: keepassxc,      tags: keepassxc }
 
     ########### editors
-    - vim
-    - ghostwriter
+    - { role: vim,            tags: vim }
+#   - { role: ghostwriter,    tags: ghostwriter }
 
     ########### browsers
-    - firefox
+#   - { role: firefox,        tags: firefox }
 
     ########### media
-    #- spotify
-    - vlc
+    - { role: qbittorrent,    tags: qbittorrent }
+    - { role: spotify,        tags: spotify }
+    - { role: vlc,            tags: vlc }
+    - { role: audacity,       tags: audacity }
+
+    ########### media
+    - { role: gimp,           tags: gimp }
+    - { role: imagemagick,    tags: imagemagick }
+
 
     ########### languages
-    - c
-    - go
-    - python
-    - ruby
+    - { role: c,              tags: c }
+    - { role: go,             tags: go }
+    - { role: python,         tags: python }
+    - { role: ruby,           tags: ruby }
 
     ########### messaging
-    - signal
-    - telegram
+    - { role: slack,          tags: slack }
+#   - { role: signal,         tags: signal }
+    - { role: telegram,       tags: telegram }
+    - { role: discord,        tags: discord }
 
     ########### gaming
-    - steam
-    - wine
+#   - { role: steam,          tags: steam }
+#   - { role: wine,           tags: wine }
 
     ########### development
-    - virtualbox
-    - vagrant
-    - docker
-    - terraform
-    - kubernetes
-    - awscli
-    - httpie
+    - { role: virtualbox,     tags: virtualbox }
+    - { role: vagrant,        tags: vagrant }
+    - { role: docker,         tags: docker }
+    - { role: terraform,      tags: terraform }
+    - { role: kubernetes,     tags: kubernetes }
+    - { role: awscli,         tags: awscli }
+    - { role: httpie,         tags: httpie }
+    - { role: x2go,           tags: x2go }
+    - { role: toolbox,        tags: toolbox }
+    - { role: dbeaver,        tags: dbeaver }
+    - { role: defold,         tags: defold }
+
 
     ########### postliminary
-    - post
+    - { role: post,           tags: post }
