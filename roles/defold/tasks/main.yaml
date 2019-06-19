@@ -1,0 +1,9 @@
+---
+
+- name: defold - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ defold }}"
