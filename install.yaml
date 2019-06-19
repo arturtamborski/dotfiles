@@ -44,7 +44,7 @@
 
     ########### media
     - { role: qbittorrent,    tags: qbittorrent }
-    - { role: spotify,        tags: spotify }
+#   - { role: spotify,        tags: spotify }
     - { role: vlc,            tags: vlc }
     - { role: audacity,       tags: audacity }
 
