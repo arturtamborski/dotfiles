@@ -9,7 +9,6 @@
     - { role: apt,            tags: apt }
     - { role: kernel,         tags: kernel }
     - { role: flatpak,        tags: flatpak }
-    - { role: snap,           tags: snap }
     - { role: pip,            tags: pip }
 
     ########### terminal

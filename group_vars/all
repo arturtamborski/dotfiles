@@ -43,15 +43,6 @@ flatpak:
 
 
 
-snap:
-  install:
-    self:
-      packages:
-        - "snapd"
-
-
-
-
 pip:
   install:
     self:
@@ -203,6 +194,11 @@ gpg:
     self:
       packages:
         - "gpg"
+  
+  configure:
+    self:
+      src: "gpg/files/config"
+      dst: "~/.config/gpg/config"
 
 
 
@@ -422,7 +418,7 @@ wine:
       gpgkeys:
         - "ha.pool.sks-keyservers.net/818A435C5FCBF54A"
       lists:
-        - "deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ stretch main"
+        - "deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ buster main"
       packages:
         - "wine"
 
@@ -436,7 +432,7 @@ virtualbox:
         - "https://www.virtualbox.org/download/oracle_vbox.asc"
         - "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
       lists:
-        - "deb [arch=i386,amd64] http://download.virtualbox.org/virtualbox/debian stretch contrib"
+        - "deb [arch=i386,amd64] http://download.virtualbox.org/virtualbox/debian buster contrib"
       packages:
         - "virtualbox-6.0"
 
@@ -462,7 +458,7 @@ docker:
       gpgkeys:
         - "https://download.docker.com/linux/debian/gpg"
       lists:
-        - "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
+        - "deb [arch=amd64] https://download.docker.com/linux/debian buster stable"
       packages:
         - "docker-ce"
 

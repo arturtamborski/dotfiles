@@ -5,7 +5,6 @@
     that:
       - _given is defined
       - _given.packages is defined
-        or _given.snaps is defined
         or _given.flatpaks is defined
         or _given.pips is defined
 
@@ -49,14 +48,6 @@
   when: _given.packages is defined
 
 
-- name: install snaps
-  snap:
-    name: "{{ item }}"
-    state: latest
-  with_items: "{{ _given.snaps }}"
-  when: _given.snaps is defined
-
-
 - name: install flatpaks
   command: "flatpak info {{ item.split(' ')[1] }} || flatpak -y install {{ item }}"
   with_items: "{{ _given.flatpaks }}"
@@ -64,6 +55,6 @@
 
 
 - name: install pips
-  command: "python3 -m pip install --no-cache-dir {{ item }}"
+  command: "python3 -m pip --no-cache-dir install {{ item }}"
   with_items: "{{ _given.pips }}"
   when: _given.pips is defined
