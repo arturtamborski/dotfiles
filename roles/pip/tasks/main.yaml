@@ -10,7 +10,7 @@
 
 
 - name: update
-  command: "{{ item }} -m pip install --upgrade pip"
+  command: "{{ item }} -m pip --no-cache-dir install --upgrade pip"
   with_items:
     - "python2"
     - "python3"
