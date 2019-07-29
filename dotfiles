@@ -1,10 +1,8 @@
-.fzf
 .gem/
 .gnupg/
 .gradle/
 .ipython/
 .lein/
-.lesshst
 .local/
 .m2/
 .mume/
