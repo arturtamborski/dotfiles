@@ -8,16 +8,6 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -131,6 +121,8 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
+
+# bash history
 export HISTFILE={{ bash.histfile }}
 export HISTFILESIZE=100000
 export HISTSIZE=10000
@@ -140,10 +132,15 @@ export PROMPT_COMMAND="history -a"
 
 shopt -s histappend
 
-export LESSHISTFILE={{ less.configure.self.dst }}
+# less
+export LESSHISTFILE="{{ less.configure.self.dst }}"
 
-export VIM={{ vim.configure.self.dst | dirname }}
-
+# vim
+export VIM="{{ vim.configure.self.dst | dirname }}"
 
 # go
 export PATH=$PATH:/usr/local/go/bin
+
+# terraform
+export TF_CLI_CONFIG_FILE="{{ terraform.configure.self.dst }}"
+export TF_PLUGIN_CACHE_DIR="~/.cache/terraform/plugin-cache"
