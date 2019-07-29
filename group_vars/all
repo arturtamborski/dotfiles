@@ -113,6 +113,10 @@ zsh:
 
 
 fzf:
+  install:
+    self:
+      packages:
+        - "fzf"
 
 
 
@@ -164,6 +168,9 @@ git:
     ignore:
       src: "git/files/ignore"
       dst: "~/.config/git/ignore"
+    pre-push:
+      src: "git/files/hooks/pre-push"
+      dst: "~/.config/git/hooks/pre-push"
 
 
 
@@ -463,7 +470,12 @@ docker:
 
 
 terraform:
-  url: "https://releases.hashicorp.com/terraform/0.12.0/terraform_0.12.0_linux_amd64.zip"
+  url: "https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip"
+
+  configure:
+    self:
+      src: "terraform/files/config"
+      dst: "~/.config/terraform/config"
 
 
 
