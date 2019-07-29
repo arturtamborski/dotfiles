@@ -132,6 +132,9 @@ export PROMPT_COMMAND="history -a"
 
 shopt -s histappend
 
+# gnupg
+export GNUPGHOME={{ gpg.configure.self.dst | dirname }}
+
 # less
 export LESSHISTFILE="{{ less.configure.self.dst }}"
 
