@@ -259,7 +259,7 @@ endif
 set history=1000
 
 " ------------------------------------------------ store last session info --- "
-" set viminfo='10,\"100,:20,%,n{{ vim.configure.self.dst | dirname }}
+set viminfo+=n{{ vim.configure.self.dst | dirname }}/viminfo
 
 " -------------------------------------------- jump to last modified place --- "
 autocmd BufWinEnter * call RestoreCursorPosition()
