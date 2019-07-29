@@ -1,5 +1,9 @@
+[init]
+    templatedir = {{ git.configure.self.dst | basename }}
+
 [user]
     name = {{ git.name }}
     email = {{ git.email }}
+
 [core]
     excludesfile = {{ git.configure.ignore.dst }}
