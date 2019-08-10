@@ -20,4 +20,12 @@ test: up # reload test image and apply playbook
 clean-test: clean test # recreeate and provision test image
 
 install: # apply playbook locally
-	ansible-playbook -i install.yaml
+	ansible-playbook install.yaml
+
+bootstrap: # install required packages
+	su root -c " \
+		apt update 						 ; \
+		apt install sudo python3-pip 				 ; \
+		/usr/sbin/usermod -aG sudo $$USER 			 ; \
+		echo '$$USER ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers 	 ; \
+		pip3 install ansible"

@@ -535,6 +535,7 @@ httpie:
 
 
 toolbox:
+  url: "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.15.5796.tar.gz"
 
 
 
@@ -554,7 +555,7 @@ dbeaver:
 
 # non working
 defold:
-    url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
+  url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
 
 
 
