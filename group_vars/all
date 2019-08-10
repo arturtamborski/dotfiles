@@ -25,7 +25,7 @@ user-dirs:
   configure:
     global:
       src: "user-dirs/templates/config"
-      dst: "~/.config/user-dirs.dirs"
+      dst: "{{ pre.config }}/user-dirs.dirs"
 
 
 
@@ -93,7 +93,7 @@ tlp:
 
 
 bash:
-  histfile: "~/.config/bash/history"
+  histfile: "{{ pre.config }}/bash/history"
 
   install:
     self:
@@ -107,7 +107,7 @@ bash:
       become: yes
     self:
       src: "bash/templates/config"
-      dst: "~/.config/bash/config"
+      dst: "{{ pre.config }}/bash/config"
 
 
 
@@ -121,7 +121,7 @@ zsh:
   configure:
     self:
       src: "zsh/templates/config"
-      dst: "~/.config/zsh/config"
+      dst: "{{ pre.config }}/zsh/config"
 
 
 
@@ -153,15 +153,15 @@ ssh:
       become: yes
     self:
       src: "ssh/templates/config"
-      dst: "~/.config/ssh/config"
+      dst: "{{ pre.config }}/ssh/config"
 
   move:
     known_hosts:
       src: "~/.ssh/known_hosts"
-      dst: "~/.config/ssh/known_hosts"
+      dst: "{{ pre.config }}/ssh/known_hosts"
     authorized_keys:
       src: "~/.ssh/authorized_keys"
-      dst: "~/.config/ssh/authorized_keys"
+      dst: "{{ pre.config }}/ssh/authorized_keys"
 
 
 
@@ -178,13 +178,13 @@ git:
   configure:
     self:
       src: "git/templates/config"
-      dst: "~/.config/git/config"
+      dst: "{{ pre.config }}/git/config"
     ignore:
       src: "git/files/ignore"
-      dst: "~/.config/git/ignore"
+      dst: "{{ pre.config }}/git/ignore"
     pre-push:
       src: "git/files/hooks/pre-push"
-      dst: "~/.config/git/hooks/pre-push"
+      dst: "{{ pre.config }}/git/hooks/pre-push"
 
 
 
@@ -198,7 +198,7 @@ less:
   configure:
     self:
       src: "less/files/history"
-      dst: "~/.config/less/history"
+      dst: "{{ pre.config }}/less/history"
 
 
 
@@ -212,7 +212,7 @@ tmux:
   configure:
     self:
       src: "tmux/files/config"
-      dst: "~/.config/tmux/config"
+      dst: "{{ pre.config }}/tmux/config"
 
 
 
@@ -226,7 +226,7 @@ gpg:
   configure:
     self:
       src: "gpg/files/config"
-      dst: "~/.config/gpg/config"
+      dst: "{{ pre.config }}/gpg/config"
 
 
 
@@ -258,7 +258,7 @@ mutt:
   configure:
     self:
       src: "mutt/templates/config"
-      dst: "~/.config/mutt/config"
+      dst: "{{ pre.config }}/mutt/config"
 
 
 
@@ -323,10 +323,10 @@ vim:
   configure:
     self:
       src: "vim/templates/config"
-      dst: "~/.config/vim/vimrc"
+      dst: "{{ pre.config }}/vim/vimrc"
     theme:
       src: "vim/templates/hero.vim"
-      dst: "~/.config/vim/colors/hero.vim"
+      dst: "{{ pre.config }}/vim/colors/hero.vim"
 
 
 
@@ -516,7 +516,7 @@ terraform:
   configure:
     self:
       src: "terraform/files/config"
-      dst: "~/.config/terraform/config"
+      dst: "{{ pre.config }}/terraform/config"
 
 
 
