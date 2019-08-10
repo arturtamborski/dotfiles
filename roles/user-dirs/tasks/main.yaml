@@ -6,7 +6,7 @@
     name: common
     tasks_from: main
   vars:
-    given: "{{ user-dirs }}"
+    given: "{{ user_dirs }}"
 
 
 - name: remove home directories
@@ -29,11 +29,11 @@
     path: "{{ item }}"
     state: directory
   with_items: 
-    - "{{ user-dirs.documents }}"
-    - "{{ user-dirs.music }}"
-    - "{{ user-dirs.public }}"
-    - "{{ user-dirs.videos }}"
-    - "{{ user-dirs.desktop }}"
-    - "{{ user-dirs.pictures }}"
-    - "{{ user-dirs.downloads }}"
-    - "{{ user-dirs.templates }}"
+    - "{{ user_dirs.documents }}"
+    - "{{ user_dirs.music }}"
+    - "{{ user_dirs.public }}"
+    - "{{ user_dirs.videos }}"
+    - "{{ user_dirs.desktop }}"
+    - "{{ user_dirs.pictures }}"
+    - "{{ user_dirs.downloads }}"
+    - "{{ user_dirs.templates }}"
