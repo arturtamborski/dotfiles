@@ -6,7 +6,7 @@
     name: common
     tasks_from: main
   vars:
-    given: "{{ home }}"
+    given: "{{ user-dirs }}"
 
 
 - name: remove home directories
