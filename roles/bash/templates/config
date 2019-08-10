@@ -147,3 +147,24 @@ export PATH=$PATH:/usr/local/go/bin
 # terraform
 export TF_CLI_CONFIG_FILE="{{ terraform.configure.self.dst }}"
 export TF_PLUGIN_CACHE_DIR="~/.cache/terraform/plugin-cache"
+
+
+# tmux
+alias tmux='tmux -f {{ tmux.configure.self.dst }}'
+
+# mutt
+alias mutt='mutt -F {{ mutt.configure.self.dst }}"
+
+# xdg
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.local/cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+export XDG_DOCUMENTS_DIR="$HOME/docs"
+export XDG_DESKTOP_DIR="$XDG_DOCUMENTS_DIR/desktop"
+export XDG_DOWNLOAD_DIR="$XDG_DOCUMENTS_DIR/downloads"
+export XDG_MUSIC_DIR="$XDG_DOCUMENTS_DIR/music"
+export XDG_PICTURES_DIR="$XDG_DOCUMENTS_DIR/pics"
+export XDG_PUBLICSHARE_DIR="$XDG_DOCUMENTS_DIR/public"
+export XDG_TEMPLATES_DIR="$XDG_DOCUMENTS_DIR/templates"
+export XDG_VIDEOS_DIR="$XDG_DOCUMENTS_DIR/vids"
