@@ -255,11 +255,16 @@ syncthing:
 
 
 gopass:
-
+  url: "https://github.com/gopasspw/gopass/releases/download/v1.8.6/gopass-1.8.6-linux-amd64.deb"
+  cmd: "dpkg -i gopass-1.8.6-linux-amd64.deb"
 
 
 
 keepassxc:
+  install:
+    self:
+      packages:
+        - "keepassxc"
 
 
 
@@ -308,6 +313,10 @@ firefox:
 
 
 qbittorrent:
+  install:
+    self:
+      packages:
+        "qbittorrent"
 
 
 
@@ -340,11 +349,28 @@ audacity:
 
 
 gimp:
+  install:
+    self:
+      packages:
+        - "gimp"
+
+
+
+
+inkscape:
+  install:
+    self:
+      packages:
+        - "inkscape"
 
 
 
 
 imagemagick:
+  install:
+    self:
+      packages:
+        - "imagemagick"
 
 
 
@@ -508,21 +534,25 @@ httpie:
 
 
 
-x2go:
-
-
-
-
 toolbox:
 
 
 
 
 dbeaver:
+  install:
+    self:
+      gpgkeys:
+        - "https://dbeaver.io/debs/dbeaver.gpg.key"
+      lists:
+        - "deb https://dbeaver.io/debs/dbeaver-ce /"
+      packages:
+        - "dbeaver-ce"
 
 
 
 
+# non working
 defold:
     url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
 

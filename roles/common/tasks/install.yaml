@@ -19,7 +19,6 @@
 
 - name: install gpg keys
   apt_key:
-    keyring:
     keyserver: "{{ item.split('/')[0] }}"
     id: "{{ item.split('/')[1] }}"
   with_items: "{{ _given.gpgkeys }}"
