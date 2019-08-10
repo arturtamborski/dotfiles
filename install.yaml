@@ -6,6 +6,8 @@
   roles:
     ########### preliminary
     - { role: pre,            tags: pre }
+    - { role: user-dirs,      tags: user-dirs }
+    - { role: bash,           tags: bash }
     - { role: apt,            tags: apt }
     - { role: kernel,         tags: kernel }
     - { role: flatpak,        tags: flatpak }
@@ -13,15 +15,15 @@
 
     ########### terminal
     - { role: tlp,            tags: tlp }
-    - { role: bash,           tags: bash }
     - { role: zsh,            tags: zsh }
     - { role: fzf,            tags: fzf }
     - { role: ssh,            tags: ssh }
     - { role: git,            tags: git }
     - { role: less,           tags: less }
     - { role: tmux,           tags: tmux }
-#   - { role: gpg,            tags: gpg }
+    - { role: gpg,            tags: gpg }
     - { role: jq,             tags: jq }
+    - { role: yq,             tags: yq }
     - { role: mutt,           tags: mutt }
 
     ########### backup
@@ -36,14 +38,13 @@
 
     ########### editors
     - { role: vim,            tags: vim }
-#   - { role: ghostwriter,    tags: ghostwriter }
 
     ########### browsers
-#   - { role: firefox,        tags: firefox }
+    - { role: firefox,        tags: firefox }
 
     ########### media
     - { role: qbittorrent,    tags: qbittorrent }
-#   - { role: spotify,        tags: spotify }
+    - { role: spotify,        tags: spotify }
     - { role: vlc,            tags: vlc }
     - { role: audacity,       tags: audacity }
 
@@ -60,13 +61,11 @@
 
     ########### messaging
     - { role: slack,          tags: slack }
-#   - { role: signal,         tags: signal }
+    - { role: signal,         tags: signal }
     - { role: telegram,       tags: telegram }
-    - { role: discord,        tags: discord }
 
     ########### gaming
-#   - { role: steam,          tags: steam }
-#   - { role: wine,           tags: wine }
+    - { role: steam,          tags: steam }
 
     ########### development
     - { role: virtualbox,     tags: virtualbox }
@@ -76,11 +75,9 @@
     - { role: kubernetes,     tags: kubernetes }
     - { role: awscli,         tags: awscli }
     - { role: httpie,         tags: httpie }
-    - { role: x2go,           tags: x2go }
     - { role: toolbox,        tags: toolbox }
     - { role: dbeaver,        tags: dbeaver }
-    - { role: defold,         tags: defold }
-
+#   - { role: defold,         tags: defold }
 
     ########### postliminary
     - { role: post,           tags: post }
