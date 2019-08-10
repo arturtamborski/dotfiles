@@ -7,7 +7,7 @@ pre:
 
 
 
-user-dirs:
+user_dirs:
   documents: "docs"
   music: "docs/music"
   public: "docs/shared"
@@ -58,10 +58,9 @@ flatpak:
 
   install:
     self:
-      lists:
-        - "deb http://deb.debian.org/debian flatpak main"
       packages:
         - "flatpak"
+        - "gnome-software-plugin-flatpak"
 
 
 
