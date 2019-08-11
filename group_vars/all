@@ -1,21 +1,29 @@
 ---
 
+user_name: "artur"
+user_home: "/home/{{ user_name }}"
+
+
 pre:
-  config: "~/.config"
+  config: "{{ user_home }}/.config"
   backup: "backup/{{ ansible_date_time.date }}.zip"
 
 
 
 
 user_dirs:
-  documents: "docs"
-  music: "docs/music"
-  public: "docs/shared"
-  videos: "docs/videos"
-  desktop: "docs/desktop"
-  pictures: "docs/pictures"
-  downloads: "docs/downloads"
-  templates: "docs/templates"
+  home: "{{ user_home }}"
+  data: "{{ user_home }}/.local/share"
+  cache: "{{ user_home }}/.local/cache"
+
+  documents: "{{ user_home }}/docs"
+  music: "{{ user_home }}/docs/music"
+  public: "{{ user_home }}/docs/shared"
+  videos: "{{ user_home }}/docs/videos"
+  desktop: "{{ user_home }}/docs/desktop"
+  pictures: "{{ user_home }}/docs/pictures"
+  downloads: "{{ user_home }}/docs/downloads"
+  templates: "{{ user_home }}/docs/templates"
 
   install:
     self:
@@ -334,7 +342,7 @@ firefox:
   install:
     self:
       packages:
-        - "firefox"
+        - "firefox-esr"
 
 
 
@@ -441,12 +449,8 @@ slack:
 signal:
   install:
     self:
-      gpgkeys:
-        - "https://updates.signal.org/desktop/apt/keys.asc"
-      lists:
-        - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
-      packages:
-        - "signal"
+      flatpaks:
+        - "flathub org.signal.Signal"
 
 
 
@@ -463,8 +467,8 @@ telegram:
 steam:
   install:
     self:
-      packages:
-        - "steam"
+      flatpaks:
+        - "flathub com.valvesoftware.Steam"
 
 
 

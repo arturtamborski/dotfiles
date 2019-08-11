@@ -14,13 +14,14 @@
     path: "{{ item }}"
     state: absent
   with_items:
-    - "~/Desktop"
     - "~/Documents"
-    - "~/Downloads"
-    - "~/Pictures"
+    - "~/Music"
     - "~/Public"
     - "~/Videos"
-    - "~/Music"
+    - "~/Desktop"
+    - "~/Pictures"
+    - "~/Downloads"
+    - "~/Templates"
     - "~/Sync"
 
 
@@ -29,6 +30,9 @@
     path: "{{ item }}"
     state: directory
   with_items: 
+    - "{{ user_dirs.home }}"
+    - "{{ user_dirs.data }}"
+    - "{{ user_dirs.cache }}"
     - "{{ user_dirs.documents }}"
     - "{{ user_dirs.music }}"
     - "{{ user_dirs.public }}"
