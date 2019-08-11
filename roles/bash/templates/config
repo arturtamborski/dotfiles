@@ -153,7 +153,7 @@ export TF_PLUGIN_CACHE_DIR="~/.cache/terraform/plugin-cache"
 alias tmux='tmux -f {{ tmux.configure.self.dst }}'
 
 # mutt
-alias mutt='mutt -F {{ mutt.configure.self.dst }}"
+alias mutt='mutt -F {{ mutt.configure.self.dst }}'
 
 # xdg
 export XDG_DATA_HOME="{{ user_dirs.data }}"
