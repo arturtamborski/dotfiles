@@ -48,7 +48,10 @@
 
 
 - name: install flatpaks
-  command: "flatpak info {{ item.split(' ')[1] }} || flatpak -y install {{ item }}"
+  flatpak:
+    remote: "{{ item.split(' ')[0] }}"
+    name: "{{ item.split(' ')[1] }}"
+    state: present
   with_items: "{{ _given.flatpaks }}"
   when: _given.flatpaks is defined
 
