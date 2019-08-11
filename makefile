@@ -19,8 +19,10 @@ test: start # reload test image and apply playbook
 
 remove-test: remove test # remove and test test image
 
-apply: # apply playbook locally
-	ansible-playbook install.yaml
+apply: # apply playbook locally (with optional TAG=<tag>)
+	@test -z "${TAG}" \
+		&& ansible-playbook install.yaml \
+		|| ansible-playbook install.yaml -t ${TAG}
 
 install: # install required packages
 	su root -c " \
