@@ -7,6 +7,7 @@
       - _given.packages is defined
         or _given.flatpaks is defined
         or _given.pips is defined
+        or _given.commands is defined
 
 
 - name: install www keys
@@ -47,8 +48,11 @@
   when: _given.packages is defined
 
 
-- name: install flatpaks
-  command: "flatpak info {{ item.split(' ')[1] }} || flatpak -y install {{ item }}"
+- name: install flatpaks                                                                                                                                                                                                                        
+  flatpak:
+    remote: "{{ item.split(' ')[0] }}"
+    name: "{{ item.split(' ')[1] }}"
+    state: present
   with_items: "{{ _given.flatpaks }}"
   when: _given.flatpaks is defined
 
@@ -57,3 +61,9 @@
   command: "python3 -m pip --no-cache-dir install {{ item }}"
   with_items: "{{ _given.pips }}"
   when: _given.pips is defined
+
+
+- name: run commands
+  command: "{{ item }}"
+  with_items: "{{ _given.commands }}"
+  when: _given.commands is defined

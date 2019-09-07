@@ -1,0 +1,6 @@
+# pyenv
+export PYENV_ROOT="~/.cache/pyenv"
+export PATH="$PATH:$PYENV_ROOT"
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

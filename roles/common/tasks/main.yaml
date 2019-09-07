@@ -34,6 +34,19 @@
   when: given.configure is defined
 
 
+- name: environment
+  include_role:
+    public: no
+    name: common
+    tasks_from: environment
+  vars:
+    _given: "{{ _dict_item.value }}"
+  with_dict: "{{ given.environment }}"
+  loop_control:
+    loop_var: _dict_item
+  when: given.environment is defined
+
+
 - name: move
   include_role:
     public: no

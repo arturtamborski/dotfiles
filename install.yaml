@@ -4,83 +4,63 @@
   hosts: local
   strategy: debug
   roles:
-    ########### preliminary
     - { role: pre,            tags: pre }
     - { role: apt,            tags: apt }
     - { role: kernel,         tags: kernel }
     - { role: flatpak,        tags: flatpak }
     - { role: pip,            tags: pip }
-
-    ########### terminal
+    - { role: autoenv,        tags: autoenv }
+    - { role: dircolors,      tags: dircolors }
     - { role: tlp,            tags: tlp }
     - { role: bash,           tags: bash }
     - { role: zsh,            tags: zsh }
     - { role: fzf,            tags: fzf }
     - { role: ssh,            tags: ssh }
     - { role: git,            tags: git }
+    - { role: github,         tags: github }
     - { role: less,           tags: less }
     - { role: tmux,           tags: tmux }
-#   - { role: gpg,            tags: gpg }
+    - { role: gnupg,          tags: gnupg }
     - { role: jq,             tags: jq }
     - { role: mutt,           tags: mutt }
-
-    ########### backup
+    - { role: htop,           tags: htop }
+    - { role: inkscape,       tags: inkscape }
+    - { role: kitty,          tags: kitty }
+    - { role: monitors,       tags: monitors }
     - { role: unar,           tags: unar }
     - { role: unzip,          tags: unzip }
-#   - { role: tarsnap,        tags: tarsnap }
+    - { role: tarsnap,        tags: tarsnap }
     - { role: syncthing,      tags: syncthing }
-
-    ########### keys
     - { role: gopass,         tags: gopass }
     - { role: keepassxc,      tags: keepassxc }
-
-    ########### editors
     - { role: vim,            tags: vim }
-#   - { role: ghostwriter,    tags: ghostwriter }
-
-    ########### browsers
-#   - { role: firefox,        tags: firefox }
-
-    ########### media
+    - { role: ghostwriter,    tags: ghostwriter }
+    - { role: firefox,        tags: firefox }
     - { role: qbittorrent,    tags: qbittorrent }
-#   - { role: spotify,        tags: spotify }
+    - { role: spotify,        tags: spotify }
     - { role: vlc,            tags: vlc }
     - { role: audacity,       tags: audacity }
-
-    ########### media
     - { role: gimp,           tags: gimp }
     - { role: imagemagick,    tags: imagemagick }
-
-
-    ########### languages
     - { role: c,              tags: c }
     - { role: go,             tags: go }
     - { role: python,         tags: python }
     - { role: ruby,           tags: ruby }
-
-    ########### messaging
     - { role: slack,          tags: slack }
-#   - { role: signal,         tags: signal }
+    - { role: signal,         tags: signal }
     - { role: telegram,       tags: telegram }
-    - { role: discord,        tags: discord }
-
-    ########### gaming
-#   - { role: steam,          tags: steam }
-#   - { role: wine,           tags: wine }
-
-    ########### development
+    - { role: steam,          tags: steam }
+    - { role: wine,           tags: wine }
     - { role: virtualbox,     tags: virtualbox }
     - { role: vagrant,        tags: vagrant }
     - { role: docker,         tags: docker }
     - { role: terraform,      tags: terraform }
-    - { role: kubernetes,     tags: kubernetes }
     - { role: awscli,         tags: awscli }
     - { role: httpie,         tags: httpie }
-    - { role: x2go,           tags: x2go }
     - { role: toolbox,        tags: toolbox }
     - { role: dbeaver,        tags: dbeaver }
     - { role: defold,         tags: defold }
-
-
-    ########### postliminary
     - { role: post,           tags: post }
+    - { role: pyenv,          tags: pyenv }
+    - { role: pipenv,         tags: pipenv }
+    - { role: userdirs,       tags: userdirs }

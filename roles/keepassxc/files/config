@@ -1,0 +1,7 @@
+[General]
+LastDir=/home/artur/docs/t440/keys
+LastOpenedDatabases=/home/artur/docs/t440/keys/stx.kdbx, /home/artur/artur.kdbx
+
+[GUI]
+HidePasswords=true
+HideUsernames=false

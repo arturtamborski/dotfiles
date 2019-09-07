@@ -1,0 +1,12 @@
+XDG_DATA_HOME="{{ userdirs.data }}"
+XDG_CACHE_HOME="{{ userdirs.cache }}"
+XDG_CONFIG_HOME="{{ userdirs.home }}"
+
+XDG_DOCUMENTS_DIR="{{ userdirs.documents }}"
+XDG_MUSIC_DIR="{{ userdirs.music }}"
+XDG_PUBLICSHARE_DIR="{{ userdirs.public }}"
+XDG_VIDEOS_DIR="{{ userdirs.videos }}"
+XDG_DESKTOP_DIR="{{ userdirs.desktop }}"
+XDG_PICTURES_DIR="{{ userdirs.pictures }}"
+XDG_DOWNLOAD_DIR="{{ userdirs.downloads }}"
+XDG_TEMPLATES_DIR="{{ userdirs.templates }}"

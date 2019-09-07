@@ -1,0 +1,2 @@
+# less
+export LESSHISTFILE="{{ less.configure.self.dst }}" 

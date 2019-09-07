@@ -1,0 +1,3 @@
+# autoenv
+export AUTOENV_ENV_FILENAME="environment"
+source ~/.local/bin/activate.sh

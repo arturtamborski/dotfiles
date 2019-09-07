@@ -1,0 +1,2 @@
+# tmux
+alias tmux='tmux -f {{ tmux.configure.self.dst }}

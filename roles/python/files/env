@@ -1,0 +1,6 @@
+# pyc
+pyc() {
+    find "${1:-$PWD}" \
+        -name '__pycache__' -delete -print -o \
+        -name '*.pyc' -delete -print
+}

@@ -1,8 +1,78 @@
 ---
 
+user_name: "artur"
+user_home: "/home/{{ user_name }}"
+
+
 pre:
-  config: "~/.config"
+  config: "{{ user_home }}/.config"
   backup: "backup/{{ ansible_date_time.date }}.zip"
+
+
+
+
+monitors:
+  configure:
+    global:
+      src: "monitors/files/config"
+      dst: "{{ pre.config }}/monitors.xml"
+
+
+
+
+kitty:
+  configure:
+    global:
+      src: "kitty/files/config"
+      dst: "{{ pre.config }}/kitty/config"
+
+  environment:
+    src: "kitty/files/env"
+    dst: "{{ pre.config }}/kitty/env"
+
+
+
+
+autoenv:
+  configure:
+    global:
+      src: "autoenv/files/script"
+      dst: "{{ pre.config }}/autoenv/script"
+
+  environment:
+    src: "autoenv/files/env"
+    dst: "{{ pre.config }}/autoenv/env"
+
+
+
+
+userdirs:
+  home: "{{ user_home }}"
+  data: "{{ user_home }}/.local/share"
+  cache: "{{ user_home }}/.local/cache"
+
+  downloads: "{{ user_home }}/downloads"
+  documents: "{{ user_home }}/docs"
+  music: "{{ user_home }}/docs/music"
+  public: "{{ user_home }}/docs/shared"
+  videos: "{{ user_home }}/docs/videos"
+  desktop: "{{ user_home }}/docs/desktop"
+  pictures: "{{ user_home }}/docs/pictures"
+  templates: "{{ user_home }}/docs/templates"
+
+  install:
+    self:
+      packages:
+        - "xdg-utils"
+
+  configure:
+    global:
+      src: "userdirs/files/config"
+      dst: "{{ pre.config }}/user-dirs.dirs"
+
+  environment:
+    src: "userdirs/files/env"
+    dst: "{{ pre.config }}/userdirs/env"
 
 
 
@@ -54,6 +124,44 @@ pip:
 
 
 
+pipenv:
+  install:
+    self:
+      pips:
+        - "pipenv"
+
+  environment:
+    src: "pipenv/files/env"
+    dst: "{{ pre.config }}/pipenv/env"
+
+
+
+pyenv:
+  install:
+    self:
+      commands:
+        - "curl https://pyenv.run | PYENV_ROOT='~/.cache/pyenv' bash"
+
+  environment:
+    src: "pyenv/files/env"
+    dst: "{{ pre.config }}/pyenv/env"
+
+
+
+
+dircolors:
+  configure:
+    self:
+      src: "dircolors/files/config"
+      dst: "{{ pre.config }}/dircolors/config"
+
+  environment:
+    src: "dircolors/files/env"
+    dst: "{{ pre.config }}/dircolors/env"
+
+
+
+
 tlp:
   install:
     self:
@@ -62,7 +170,7 @@ tlp:
 
   configure:
     global:
-      src: "tlp/templates/config"
+      src: "tlp/files/config"
       dst: "/etc/default/tlp"
       become: yes
 
@@ -70,7 +178,7 @@ tlp:
 
 
 bash:
-  histfile: "~/.config/bash/history"
+  histfile: "{{ pre.config }}/bash/history"
 
   install:
     self:
@@ -79,12 +187,12 @@ bash:
 
   configure:
     global:
-      src: "bash/templates/global"
+      src: "bash/files/global"
       dst: "/etc/bash.bashrc"
       become: yes
     self:
-      src: "bash/templates/config"
-      dst: "~/.config/bash/config"
+      src: "bash/files/config"
+      dst: "{{ pre.config }}/bash/config"
 
 
 
@@ -97,8 +205,8 @@ zsh:
 
   configure:
     self:
-      src: "zsh/templates/config"
-      dst: "~/.config/zsh/config"
+      src: "zsh/files/config"
+      dst: "{{ pre.config }}/zsh/config"
 
 
 
@@ -121,24 +229,24 @@ ssh:
 
   configure:
     ssh:
-      src: "ssh/templates/ssh_config"
+      src: "ssh/files/ssh_config"
       dst: "/etc/ssh/ssh_config"
       become: yes
     sshd:
-      src: "ssh/templates/sshd_config"
+      src: "ssh/files/sshd_config"
       dst: "/etc/ssh/sshd_config"
       become: yes
     self:
-      src: "ssh/templates/config"
-      dst: "~/.config/ssh/config"
+      src: "ssh/files/config"
+      dst: "{{ pre.config }}/ssh/config"
 
   move:
     known_hosts:
       src: "~/.ssh/known_hosts"
-      dst: "~/.config/ssh/known_hosts"
+      dst: "{{ pre.config }}/ssh/known_hosts"
     authorized_keys:
       src: "~/.ssh/authorized_keys"
-      dst: "~/.config/ssh/authorized_keys"
+      dst: "{{ pre.config }}/ssh/authorized_keys"
 
 
 
@@ -151,17 +259,27 @@ git:
     self:
       packages:
         - "git"
+        - "git-extras"
 
   configure:
     self:
-      src: "git/templates/config"
-      dst: "~/.config/git/config"
+      src: "git/files/config"
+      dst: "{{ pre.config }}/git/config"
     ignore:
       src: "git/files/ignore"
-      dst: "~/.config/git/ignore"
+      dst: "{{ pre.config }}/git/ignore"
     pre-push:
       src: "git/files/hooks/pre-push"
-      dst: "~/.config/git/hooks/pre-push"
+      dst: "{{ pre.config }}/git/hooks/pre-push"
+
+  environment:
+    src: "git/files/env"
+    dst: "{{ pre.config }}/git/env"
+
+
+
+
+github:
 
 
 
@@ -175,7 +293,11 @@ less:
   configure:
     self:
       src: "less/files/history"
-      dst: "~/.config/less/history"
+      dst: "{{ pre.config }}/less/history"
+
+  environment:
+    src: "less/files/env"
+    dst: "{{ pre.config }}/less/env"
 
 
 
@@ -186,10 +308,19 @@ tmux:
       packages:
         - "tmux"
 
+  configure:
+    self:
+      src: "tmux/files/config"
+      dst: "{{ pre.config }}/tmux/config"
+
+  environment:
+    src: "tmux/files/env"
+    dst: "{{ pre.config }}/tmux/env"
 
 
 
-gpg:
+
+gnupg:
   install:
     self:
       packages:
@@ -197,8 +328,12 @@ gpg:
   
   configure:
     self:
-      src: "gpg/files/config"
-      dst: "~/.config/gpg/config"
+      src: "gnupg/files/config"
+      dst: "{{ pre.config }}/gnupg/config"
+
+  environment:
+    src: "gnupg/files/env"
+    dst: "{{ pre.config }}/gnupg/env"
 
 
 
@@ -217,6 +352,24 @@ mutt:
     self:
       packages:
         - "mutt"
+
+  environment:
+    src: "mutt/files/env"
+    dst: "{{ pre.config }}/mutt/env"
+
+
+
+
+htop:
+  install:
+    self:
+      packages:
+        - "htop"
+
+  configure:
+    self:
+      src: "htop/files/config"
+      dst: "{{ pre.config }}/htop/config"
 
 
 
@@ -277,12 +430,15 @@ vim:
 
   configure:
     self:
-      src: "vim/templates/config"
-      dst: "~/.config/vim/vimrc"
+      src: "vim/files/config"
+      dst: "{{ pre.config }}/vim/config"
     theme:
-      src: "vim/templates/hero.vim"
-      dst: "~/.config/vim/colors/hero.vim"
+      src: "vim/files/hero.vim"
+      dst: "{{ pre.config }}/vim/colors/hero.vim"
 
+  environment:
+    src: "vim/files/env"
+    dst: "{{ pre.config }}/vim/env"
 
 
 
@@ -382,11 +538,19 @@ c:
         - "gcc"
         - "build-essential"
 
+  environment:
+    src: "c/files/env"
+    dst: "{{ pre.config }}/c/env"
+
 
 
 
 go:
   url: "https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz"
+
+  environment:
+    src: "go/files/env"
+    dst: "{{ pre.config }}/go/env"
 
 
 
@@ -397,6 +561,10 @@ python:
       packages:
         - "python3"
         - "python3-pip"
+
+  environment:
+    src: "python/files/env"
+    dst: "{{ pre.config }}/python/env"
 
 
 
@@ -488,6 +656,10 @@ docker:
       packages:
         - "docker-ce"
 
+    compose:
+      pips:
+        - "docker-compose"
+
 
 
 
@@ -497,22 +669,11 @@ terraform:
   configure:
     self:
       src: "terraform/files/config"
-      dst: "~/.config/terraform/config"
+      dst: "{{ pre.config }}/terraform/config"
 
-
-
-
-kubernetes:
-  install:
-    self:
-      gpgkeys:
-        - "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
-      lists:
-        - "deb https://apt.kubernetes.io/ kubernetes-xenial main"
-      packages:
-        - "kubectl"
-        - "kubelet"
-        - "kubeadm"
+  environment:
+    src: "terraform/files/env"
+    dst: "{{ pre.config }}/terraform/env"
 
 
 
@@ -528,8 +689,17 @@ awscli:
 httpie:
   install:
     self:
-      packages:
+      pips:
         - "httpie"
+
+  configure:
+    self:
+      src: "httpie/files/config"
+      dst: "{{ pre.config }}/httpie/config"
+
+  environment:
+    src: "httpie/files/env"
+    dst: "{{ pre.config }}/httpie/env"
 
 
 

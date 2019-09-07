@@ -1,3 +1,93 @@
+some way of downloading and extracting kdbx files?
+.mozilla ...
+.cache moved to .local
+.pki?
+.viminfo ffs
+.zsh envs
+.config/environment
+git autocloner
+.aws
+.gnupg
+.ICEauthority
+.java
+short dir names (pictures -> pics)
+
+
+autoenv
+
+
+$BASHRC => {{ pre.config }}/bash/config
+
+
+templates as files, no distinction
+
+docker system prune as env file
+
+
+apt no-install-sugest
+
+git autocomplete
+
+zsh autocomplete
+
+aliasses from https://www.circuidipity.com/bashrc/
+
+redshift
+
+
+apply script which checks git status and applies given roles
+
+
+palemoon
+wget -nv https://download.opensuse.org/repositories/home:stevenpusser/Debian_10/Release.key -O Release.ke
+
+
+cups ffs (and drivers maybe, if i remember the name)
+
+.ssh
+
+gnome tweaks (alternate tab, animation tweaks, do not disturb button, extended
+gestures, launch new instance, removable drive menu, screensot window sizer,
+sensors, user themes, window list, worksapace indicator, window navigator,
+
+gconf-editor
+
+
+monitors - https://askubuntu.com/questions/6137/saving-monitor-settings
+or just fix that fucking bug
+
+docker-compose add to install along with docker
+
+docker-nuke
+
+chromium
+
+firefox...
+
+apt-get install network-manager-openvpn network-manager-openvpn-gnome
+
+pipenv with custom dirs plsssss
+
+
+redshift
+
+
+daddy please
+
+
+.npm
+.profile
+pycharm2
+serverless
+steam
+ssh
+vscode
+waterfox?
+.X shit
+
+
+
+
 tweaks
 bootstrap
 gconf?
@@ -24,3 +114,9 @@ sudo
 .yarnrc
 .zcompdump
 .zhistory
+
+
+cloc
+
+
+autostart

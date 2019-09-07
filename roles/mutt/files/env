@@ -1,0 +1,2 @@
+# mutt
+alias mutt='mutt -F {{ mutt.configure.self.dst }}'

@@ -1,0 +1,92 @@
+# ------------------------------------------------------------- shell options --
+umask 022
+shopt -s checkwinsize
+shopt -s globstar
+
+
+
+# ----------------------------------------------------------- prompt settings --
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+
+
+# ---------------------------------------------------------------- completion --
+if ! shopt -oq posix; then
+    source /usr/share/bash-completion/bash_completion || true
+    source /etc/bash_completion || true
+fi
+
+
+
+# ------------------------------------------------------------- color aliases --
+if [ -x /usr/bin/dircolors ]; then
+    test -r "{{ dircolors.configure.self.dst }}" \
+        && eval "$(dircolors -b {{ dircolors.configure.self.dst }})" \
+        || eval "$(dircolors -b)"
+
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+
+
+# ------------------------------------------------------------------- aliases --
+alias l='ls --file-type -Ch'
+alias ll='ls --file-type -lh'
+alias la='ls --file-type -A'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+
+# ------------------------------------------------------------------- history --
+shopt -s histappend
+export HISTSIZE=10000
+export HISTFILESIZE=$HISTSIZE
+export HISTFILE={{ bash.histfile }}
+export HISTTIMEFORMAT="%F %T "
+export HISTCONTROL=ignoredups
+export PROMPT_COMMAND="history -a"
+
+# useful
+export BASHRC="{{ bash.configure.self.dst }}"
+alias reset='reset && source $BASHRC'
+
+
+
+# ----------------------------------------------------------------- local bin --
+export PATH="$PATH:~/.local/bin"
+
+
+
+# ------------------------------------------------------------ load env files --
+find "{{ pre.config }}" -type f -name "env" | while read -r file; do
+    if ! source "$file"; then
+        echo "[!] failed to load $file"
+    fi
+done
+
+
+
+# ------------------------------------------------------------ user functions --
+show-srn() {
+    perl -pe 's/ /_/g ; s/\r/r/g ; s/\n/n\n/g' $1
+}
+
+cmpf() {
+    diff <(show-srn $1) <(show-srn $2)
+}

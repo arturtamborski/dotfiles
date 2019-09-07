@@ -1,0 +1,4 @@
+# vim
+export VIM="{{ vim.configure.self.dst | dirname }}"
+
+export EDITOR="vim"

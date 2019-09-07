@@ -1,0 +1,43 @@
+---
+
+- name: userdirs - main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ userdirs }}"
+
+
+- name: remove home directories
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "~/Documents"
+    - "~/Music"
+    - "~/Public"
+    - "~/Videos"
+    - "~/Desktop"
+    - "~/Pictures"
+    - "~/Downloads"
+    - "~/Templates"
+    - "~/Sync"
+
+
+- name: create new directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items: 
+    - "{{ userdirs.home }}"
+    - "{{ userdirs.data }}"
+    - "{{ userdirs.cache }}"
+    - "{{ userdirs.documents }}"
+    - "{{ userdirs.music }}"
+    - "{{ userdirs.public }}"
+    - "{{ userdirs.videos }}"
+    - "{{ userdirs.desktop }}"
+    - "{{ userdirs.pictures }}"
+    - "{{ userdirs.downloads }}"
+    - "{{ userdirs.templates }}"

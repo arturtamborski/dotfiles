@@ -1,0 +1,2 @@
+# gnupg
+export GNUPGHOME={{ gpg.configure.self.dst | dirname }}

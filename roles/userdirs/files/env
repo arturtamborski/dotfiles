@@ -1,0 +1,13 @@
+# userdirs
+export XDG_DATA_HOME="{{ userdirs.data }}"
+export XDG_CACHE_HOME="{{ userdirs.cache }}"
+export XDG_CONFIG_HOME="{{ userdirs.home }}"
+
+export XDG_MUSIC_DIR="{{ userdirs.music }}"
+export XDG_VIDEOS_DIR="{{ userdirs.videos }}"
+export XDG_DESKTOP_DIR="{{ userdirs.desktop }}"
+export XDG_PICTURES_DIR="{{ userdirs.pictures }}"
+export XDG_DOWNLOAD_DIR="{{ userdirs.downloads }}"
+export XDG_TEMPLATES_DIR="{{ userdirs.templates }}"
+export XDG_DOCUMENTS_DIR="{{ userdirs.documents }}"
+export XDG_PUBLICSHARE_DIR="{{ userdirs.public }}"
