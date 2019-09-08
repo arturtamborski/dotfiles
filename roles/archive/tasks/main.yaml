@@ -1,9 +1,9 @@
 ---
 
-- name: unzip - main
+- name: archive - main
   include_role:
     public: yes
     name: common
     tasks_from: main
   vars:
-    given: "{{ unzip }}"
+    given: "{{ archive }}"

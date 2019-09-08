@@ -2,33 +2,39 @@
 
 user_name: "artur"
 user_home: "/home/{{ user_name }}"
-
-
-pre:
-  config: "{{ user_home }}/.config"
-  backup: "backup/{{ ansible_date_time.date }}.zip"
+user_conf: "{{ user_home }}/.config"
 
 
 
 
-monitors:
-  configure:
-    global:
-      src: "monitors/files/config"
-      dst: "{{ pre.config }}/monitors.xml"
+apt:
+  dependencies:
+    - "curl"
+    - "wget"
+    - "dirmngr"
+    - "aptitude"
+    - "ca-certificates"
+    - "apt-transport-https"
+    - "software-properties-common"
 
 
 
 
-kitty:
-  configure:
-    global:
-      src: "kitty/files/config"
-      dst: "{{ pre.config }}/kitty/config"
+archive:
+  install:
+    self:
+      packages:
+        - "unar"
+        - "unzip"
 
-  environment:
-    src: "kitty/files/env"
-    dst: "{{ pre.config }}/kitty/env"
+
+
+
+audacity:
+  install:
+    self:
+      packages:
+        - "audacity"
 
 
 
@@ -37,11 +43,569 @@ autoenv:
   configure:
     global:
       src: "autoenv/files/script"
-      dst: "{{ pre.config }}/autoenv/script"
+      dst: "{{ user_conf }}/autoenv/script"
 
   environment:
     src: "autoenv/files/env"
-    dst: "{{ pre.config }}/autoenv/env"
+    dst: "{{ user_conf }}/autoenv/env"
+
+
+
+
+awscli:
+  install:
+    self:
+      pips:
+        - "awscli"
+
+
+
+
+bash:
+  histfile: "{{ user_conf }}/bash/history"
+
+  install:
+    self:
+      packages:
+        - "bash"
+
+  configure:
+    global:
+      src: "bash/files/global"
+      dst: "/etc/bash.bashrc"
+      become: yes
+    self:
+      src: "bash/files/config"
+      dst: "{{ user_conf }}/bash/config"
+
+
+
+
+c:
+  install:
+    self:
+      packages:
+        - "gcc"
+        - "build-essential"
+
+  environment:
+    src: "c/files/env"
+    dst: "{{ user_conf }}/c/env"
+
+
+
+
+common:
+  given:
+
+
+
+
+dbeaver:
+  install:
+    self:
+      gpgkeys:
+        - "https://dbeaver.io/debs/dbeaver.gpg.key"
+      lists:
+        - "deb https://dbeaver.io/debs/dbeaver-ce /"
+      packages:
+        - "dbeaver-ce"
+
+
+
+
+defold:
+  url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
+
+
+
+
+dircolors:
+  configure:
+    self:
+      src: "dircolors/files/config"
+      dst: "{{ user_conf }}/dircolors/config"
+
+  environment:
+    src: "dircolors/files/env"
+    dst: "{{ user_conf }}/dircolors/env"
+
+
+
+
+docker:
+  install:
+    self:
+      gpgkeys:
+        - "https://download.docker.com/linux/debian/gpg"
+      lists:
+        - "deb [arch=amd64] https://download.docker.com/linux/debian buster stable"
+      packages:
+        - "docker-ce"
+
+    compose:
+      pips:
+        - "docker-compose"
+
+
+
+
+firefox:
+  install:
+    self:
+      packages:
+        - "firefox-esr"
+
+
+
+
+flatpak:
+  remotes:
+    - "flathub https://flathub.org/repo/flathub.flatpakrepo"
+
+  install:
+    self:
+      packages:
+        - "flatpak"
+        - "gnome-software-plugin-flatpak"
+
+
+
+
+fzf:
+  install:
+    self:
+      packages:
+        - "fzf"
+
+
+
+
+gimp:
+  install:
+    self:
+      packages:
+        - "gimp"
+
+
+
+
+git:
+  name: "Artur Tamborski"
+  email: "tamborskiartur@gmail.com"
+
+  install:
+    self:
+      packages:
+        - "git"
+        - "git-extras"
+
+  configure:
+    self:
+      src: "git/files/config"
+      dst: "{{ user_conf }}/git/config"
+    ignore:
+      src: "git/files/ignore"
+      dst: "{{ user_conf }}/git/ignore"
+    pre-push:
+      src: "git/files/hooks/pre-push"
+      dst: "{{ user_conf }}/git/hooks/pre-push"
+
+  environment:
+    src: "git/files/env"
+    dst: "{{ user_conf }}/git/env"
+
+
+
+
+github:
+
+
+
+
+gnupg:
+  install:
+    self:
+      packages:
+        - "gpg"
+  
+  configure:
+    self:
+      src: "gnupg/files/config"
+      dst: "{{ user_conf }}/gnupg/config"
+
+  environment:
+    src: "gnupg/files/env"
+    dst: "{{ user_conf }}/gnupg/env"
+
+
+
+
+go:
+  url: "https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz"
+
+  environment:
+    src: "go/files/env"
+    dst: "{{ user_conf }}/go/env"
+
+
+
+
+gopass:
+  install:
+    self:
+      packages:
+        - "gopass"
+
+
+
+
+htop:
+  install:
+    self:
+      packages:
+        - "htop"
+
+  configure:
+    self:
+      src: "htop/files/config"
+      dst: "{{ user_conf }}/htop/config"
+
+
+
+
+httpie:
+  install:
+    self:
+      pips:
+        - "httpie"
+
+  configure:
+    self:
+      src: "httpie/files/config"
+      dst: "{{ user_conf }}/httpie/config"
+
+  environment:
+    src: "httpie/files/env"
+    dst: "{{ user_conf }}/httpie/env"
+
+
+
+
+imagemagick:
+  install:
+    self:
+      packages:
+        - "imagemagick"
+
+
+
+
+inkscape:
+  install:
+    self:
+      packages:
+        - "inkscape"
+
+
+
+
+jq:
+  install:
+    self:
+      packages:
+        - "jq"
+      pips:
+        - "yq"
+
+
+
+
+keepassxc:
+  install:
+    self:
+      packages:
+        - "keepassxc"
+
+
+
+
+kernel:
+  install:
+    self:
+      packages:
+        - "dkms"
+
+
+
+
+kitty:
+  configure:
+    global:
+      src: "kitty/files/config"
+      dst: "{{ user_conf }}/kitty/config"
+
+  environment:
+    src: "kitty/files/env"
+    dst: "{{ user_conf }}/kitty/env"
+
+
+
+
+less:
+  install:
+    self:
+      packages:
+        - "less"
+
+  configure:
+    self:
+      src: "less/files/history"
+      dst: "{{ user_conf }}/less/history"
+
+  environment:
+    src: "less/files/env"
+    dst: "{{ user_conf }}/less/env"
+
+
+
+
+monitors:
+  configure:
+    global:
+      src: "monitors/files/config"
+      dst: "{{ user_conf }}/monitors.xml"
+
+
+
+
+mutt:
+  install:
+    self:
+      packages:
+        - "mutt"
+
+  environment:
+    src: "mutt/files/env"
+    dst: "{{ user_conf }}/mutt/env"
+
+
+
+
+pip:
+  install:
+    self:
+      packages:
+        - "python-apt"
+        - "python-pip"
+        - "python3-pip"
+
+
+
+
+pipenv:
+  install:
+    self:
+      pips:
+        - "pipenv"
+
+  environment:
+    src: "pipenv/files/env"
+    dst: "{{ user_conf }}/pipenv/env"
+
+
+
+
+post:
+
+
+
+
+pre:
+  config: "{{ user_conf }}"
+  backup: "backup/{{ ansible_date_time.date }}.zip"
+
+
+
+
+pyenv:
+  install:
+    self:
+      commands:
+        - "curl https://pyenv.run | PYENV_ROOT='~/.cache/pyenv' bash"
+
+  environment:
+    src: "pyenv/files/env"
+    dst: "{{ user_conf }}/pyenv/env"
+
+
+
+
+python:
+  install:
+    self:
+      packages:
+        - "python3"
+        - "python3-pip"
+
+  environment:
+    src: "python/files/env"
+    dst: "{{ user_conf }}/python/env"
+
+
+
+
+qbittorrent:
+  install:
+    self:
+      packages:
+        "qbittorrent"
+
+
+
+
+ruby:
+
+
+
+
+signal:
+  install:
+    self:
+      flatpaks:
+        - "flathub org.signal.Signal"
+
+
+
+
+slack:
+
+
+
+
+spotify:
+  install:
+    self:
+      flatpaks:
+        - "flathub com.spotify.Client"
+
+
+
+
+ssh:
+  install:
+    self:
+      packages:
+        - "openssh-client"
+        - "openssh-server"
+
+  configure:
+    ssh:
+      src: "ssh/files/ssh_config"
+      dst: "/etc/ssh/ssh_config"
+      become: yes
+    sshd:
+      src: "ssh/files/sshd_config"
+      dst: "/etc/ssh/sshd_config"
+      become: yes
+    self:
+      src: "ssh/files/config"
+      dst: "{{ user_conf }}/ssh/config"
+
+  move:
+    known_hosts:
+      src: "~/.ssh/known_hosts"
+      dst: "{{ user_conf }}/ssh/known_hosts"
+    authorized_keys:
+      src: "~/.ssh/authorized_keys"
+      dst: "{{ user_conf }}/ssh/authorized_keys"
+
+
+
+
+steam:
+  install:
+    self:
+      flatpaks:
+        - "flathub com.valvesoftware.Steam"
+
+
+
+
+syncthing:
+  install:
+    self:
+      packages:
+        - "syncthing"
+
+
+
+
+tarsnap:
+  url: "https://www.tarsnap.com/download/tarsnap-autoconf-1.0.39.tgz"
+
+
+
+
+telegram:
+  install:
+    self:
+      flatpaks:
+        - "flathub org.telegram.desktop"
+
+
+
+
+terraform:
+  url: "https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip"
+
+  configure:
+    self:
+      src: "terraform/files/config"
+      dst: "{{ user_conf }}/terraform/config"
+
+  environment:
+    src: "terraform/files/env"
+    dst: "{{ user_conf }}/terraform/env"
+
+
+
+
+tlp:
+  install:
+    self:
+      packages:
+        - "tlp"
+
+  configure:
+    global:
+      src: "tlp/files/config"
+      dst: "/etc/default/tlp"
+      become: yes
+
+
+
+
+tmux:
+  install:
+    self:
+      packages:
+        - "tmux"
+
+  configure:
+    self:
+      src: "tmux/files/config"
+      dst: "{{ user_conf }}/tmux/config"
+
+  environment:
+    src: "tmux/files/env"
+    dst: "{{ user_conf }}/tmux/env"
+
+
+
+
+toolbox:
+  url: "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.15.5796.tar.gz"
 
 
 
@@ -68,561 +632,11 @@ userdirs:
   configure:
     global:
       src: "userdirs/files/config"
-      dst: "{{ pre.config }}/user-dirs.dirs"
+      dst: "{{ user_conf }}/user-dirs.dirs"
 
   environment:
     src: "userdirs/files/env"
-    dst: "{{ pre.config }}/userdirs/env"
-
-
-
-
-apt:
-  dependencies:
-    - "curl"
-    - "wget"
-    - "dirmngr"
-    - "aptitude"
-    - "ca-certificates"
-    - "apt-transport-https"
-    - "software-properties-common"
-
-
-
-
-kernel:
-  install:
-    self:
-      packages:
-        - "dkms"
-
-
-
-
-flatpak:
-  remotes:
-    - "flathub https://flathub.org/repo/flathub.flatpakrepo"
-
-  install:
-    self:
-      packages:
-        - "flatpak"
-        - "gnome-software-plugin-flatpak"
-
-
-
-
-pip:
-  install:
-    self:
-      packages:
-        - "python-apt"
-        - "python-pip"
-        - "python3-pip"
-
-
-
-
-pipenv:
-  install:
-    self:
-      pips:
-        - "pipenv"
-
-  environment:
-    src: "pipenv/files/env"
-    dst: "{{ pre.config }}/pipenv/env"
-
-
-
-pyenv:
-  install:
-    self:
-      commands:
-        - "curl https://pyenv.run | PYENV_ROOT='~/.cache/pyenv' bash"
-
-  environment:
-    src: "pyenv/files/env"
-    dst: "{{ pre.config }}/pyenv/env"
-
-
-
-
-dircolors:
-  configure:
-    self:
-      src: "dircolors/files/config"
-      dst: "{{ pre.config }}/dircolors/config"
-
-  environment:
-    src: "dircolors/files/env"
-    dst: "{{ pre.config }}/dircolors/env"
-
-
-
-
-tlp:
-  install:
-    self:
-      packages:
-        - "tlp"
-
-  configure:
-    global:
-      src: "tlp/files/config"
-      dst: "/etc/default/tlp"
-      become: yes
-
-
-
-
-bash:
-  histfile: "{{ pre.config }}/bash/history"
-
-  install:
-    self:
-      packages:
-        - "bash"
-
-  configure:
-    global:
-      src: "bash/files/global"
-      dst: "/etc/bash.bashrc"
-      become: yes
-    self:
-      src: "bash/files/config"
-      dst: "{{ pre.config }}/bash/config"
-
-
-
-
-zsh:
-  install:
-    self:
-      packages:
-        - "zsh"
-
-  configure:
-    self:
-      src: "zsh/files/config"
-      dst: "{{ pre.config }}/zsh/config"
-
-
-
-
-fzf:
-  install:
-    self:
-      packages:
-        - "fzf"
-
-
-
-
-ssh:
-  install:
-    self:
-      packages:
-        - "openssh-client"
-        - "openssh-server"
-
-  configure:
-    ssh:
-      src: "ssh/files/ssh_config"
-      dst: "/etc/ssh/ssh_config"
-      become: yes
-    sshd:
-      src: "ssh/files/sshd_config"
-      dst: "/etc/ssh/sshd_config"
-      become: yes
-    self:
-      src: "ssh/files/config"
-      dst: "{{ pre.config }}/ssh/config"
-
-  move:
-    known_hosts:
-      src: "~/.ssh/known_hosts"
-      dst: "{{ pre.config }}/ssh/known_hosts"
-    authorized_keys:
-      src: "~/.ssh/authorized_keys"
-      dst: "{{ pre.config }}/ssh/authorized_keys"
-
-
-
-
-git:
-  name: "Artur Tamborski"
-  email: "tamborskiartur@gmail.com"
-
-  install:
-    self:
-      packages:
-        - "git"
-        - "git-extras"
-
-  configure:
-    self:
-      src: "git/files/config"
-      dst: "{{ pre.config }}/git/config"
-    ignore:
-      src: "git/files/ignore"
-      dst: "{{ pre.config }}/git/ignore"
-    pre-push:
-      src: "git/files/hooks/pre-push"
-      dst: "{{ pre.config }}/git/hooks/pre-push"
-
-  environment:
-    src: "git/files/env"
-    dst: "{{ pre.config }}/git/env"
-
-
-
-
-github:
-
-
-
-
-less:
-  install:
-    self:
-      packages:
-        - "less"
-
-  configure:
-    self:
-      src: "less/files/history"
-      dst: "{{ pre.config }}/less/history"
-
-  environment:
-    src: "less/files/env"
-    dst: "{{ pre.config }}/less/env"
-
-
-
-
-tmux:
-  install:
-    self:
-      packages:
-        - "tmux"
-
-  configure:
-    self:
-      src: "tmux/files/config"
-      dst: "{{ pre.config }}/tmux/config"
-
-  environment:
-    src: "tmux/files/env"
-    dst: "{{ pre.config }}/tmux/env"
-
-
-
-
-gnupg:
-  install:
-    self:
-      packages:
-        - "gpg"
-  
-  configure:
-    self:
-      src: "gnupg/files/config"
-      dst: "{{ pre.config }}/gnupg/config"
-
-  environment:
-    src: "gnupg/files/env"
-    dst: "{{ pre.config }}/gnupg/env"
-
-
-
-
-jq:
-  install:
-    self:
-      packages:
-        - "jq"
-
-
-
-
-yq:
-  install:
-    self:
-      pips:
-        - "yq"
-
-
-
-
-mutt:
-  install:
-    self:
-      packages:
-        - "mutt"
-
-  environment:
-    src: "mutt/files/env"
-    dst: "{{ pre.config }}/mutt/env"
-
-
-
-
-htop:
-  install:
-    self:
-      packages:
-        - "htop"
-
-  configure:
-    self:
-      src: "htop/files/config"
-      dst: "{{ pre.config }}/htop/config"
-
-
-
-
-unar:
-  install:
-    self:
-      packages:
-        - "unar"
-
-
-
-
-unzip:
-  install:
-    self:
-      packages:
-        - "unzip"
-
-
-
-
-tarsnap:
-  url: "https://www.tarsnap.com/download/tarsnap-autoconf-1.0.39.tgz"
-
-
-
-
-syncthing:
-  install:
-    self:
-      packages:
-        - "syncthing"
-
-
-
-
-gopass:
-  install:
-    self:
-      packages:
-        - "gopass"
-
-
-
-
-keepassxc:
-  install:
-    self:
-      packages:
-        - "keepassxc"
-
-
-
-
-vim:
-  install:
-    self:
-      packages:
-        - "vim"
-
-  configure:
-    self:
-      src: "vim/files/config"
-      dst: "{{ pre.config }}/vim/config"
-    theme:
-      src: "vim/files/hero.vim"
-      dst: "{{ pre.config }}/vim/colors/hero.vim"
-
-  environment:
-    src: "vim/files/env"
-    dst: "{{ pre.config }}/vim/env"
-
-
-
-ghostwriter:
-  install:
-    self:
-      gpgkeys:
-        - "ha.pool.sks-keyservers.net/EF3F38C8FD5E1EE2E7B3B657653124679B3CCB19"
-      lists:
-        - "deb http://ppa.launchpad.net/wereturtle/ppa/ubuntu stretch main"
-      packages:
-        - "ghostwriter"
-
-
-
-
-firefox:
-  install:
-    self:
-      packages:
-        - "firefox-esr"
-
-
-
-
-qbittorrent:
-  install:
-    self:
-      packages:
-        "qbittorrent"
-
-
-
-
-spotify:
-  install:
-    self:
-      flatpaks:
-        - "flathub com.spotify.Client"
-
-
-
-
-vlc:
-  install:
-    self:
-      packages:
-        "vlc"
-
-
-
-
-audacity:
-  install:
-    self:
-      packages:
-        - "audacity"
-
-
-
-
-gimp:
-  install:
-    self:
-      packages:
-        - "gimp"
-
-
-
-
-inkscape:
-  install:
-    self:
-      packages:
-        - "inkscape"
-
-
-
-
-imagemagick:
-  install:
-    self:
-      packages:
-        - "imagemagick"
-
-
-
-
-c:
-  install:
-    self:
-      packages:
-        - "gcc"
-        - "build-essential"
-
-  environment:
-    src: "c/files/env"
-    dst: "{{ pre.config }}/c/env"
-
-
-
-
-go:
-  url: "https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz"
-
-  environment:
-    src: "go/files/env"
-    dst: "{{ pre.config }}/go/env"
-
-
-
-
-python:
-  install:
-    self:
-      packages:
-        - "python3"
-        - "python3-pip"
-
-  environment:
-    src: "python/files/env"
-    dst: "{{ pre.config }}/python/env"
-
-
-
-
-ruby:
-
-
-
-
-slack:
-
-
-
-
-signal:
-  install:
-    self:
-      flatpaks:
-        - "flathub org.signal.Signal"
-
-
-
-
-telegram:
-  install:
-    self:
-      flatpaks:
-        - "flathub org.telegram.desktop"
-
-
-
-
-steam:
-  install:
-    self:
-      flatpaks:
-        - "flathub com.valvesoftware.Steam"
-
-
-
-
-virtualbox:
-  install:
-    self:
-      gpgkeys:
-        - "https://www.virtualbox.org/download/oracle_vbox.asc"
-        - "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
-      lists:
-        - "deb [arch=i386,amd64] http://download.virtualbox.org/virtualbox/debian buster contrib"
-      packages:
-        - "virtualbox-6.0"
+    dst: "{{ user_conf }}/userdirs/env"
 
 
 
@@ -640,88 +654,62 @@ vagrant:
 
 
 
-docker:
+vim:
+ install:
+   self:
+     packages:
+       - "vim"
+
+ configure:
+   self:
+     src: "vim/files/config"
+     dst: "{{ user_conf }}/vim/config"
+   theme:
+     src: "vim/files/hero.vim"
+     dst: "{{ user_conf }}/vim/colors/hero.vim"
+
+ environment:
+   src: "vim/files/env"
+   dst: "{{ user_conf }}/vim/env"
+ 
+
+
+
+virtualbox:
   install:
     self:
       gpgkeys:
-        - "https://download.docker.com/linux/debian/gpg"
+        - "https://www.virtualbox.org/download/oracle_vbox.asc"
+        - "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
       lists:
-        - "deb [arch=amd64] https://download.docker.com/linux/debian buster stable"
+        - "deb [arch=i386,amd64] http://download.virtualbox.org/virtualbox/debian buster contrib"
       packages:
-        - "docker-ce"
-
-    compose:
-      pips:
-        - "docker-compose"
+        - "virtualbox-6.0"
 
 
 
 
-terraform:
-  url: "https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip"
+vlc:
+  install:
+    self:
+      packages:
+        "vlc"
+
+
+
+
+wine:
+
+
+
+
+zsh:
+  install:
+    self:
+      packages:
+        - "zsh"
 
   configure:
     self:
-      src: "terraform/files/config"
-      dst: "{{ pre.config }}/terraform/config"
-
-  environment:
-    src: "terraform/files/env"
-    dst: "{{ pre.config }}/terraform/env"
-
-
-
-
-awscli:
-  install:
-    self:
-      pips:
-        - "awscli"
-
-
-
-
-httpie:
-  install:
-    self:
-      pips:
-        - "httpie"
-
-  configure:
-    self:
-      src: "httpie/files/config"
-      dst: "{{ pre.config }}/httpie/config"
-
-  environment:
-    src: "httpie/files/env"
-    dst: "{{ pre.config }}/httpie/env"
-
-
-
-
-toolbox:
-  url: "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.15.5796.tar.gz"
-
-
-
-
-dbeaver:
-  install:
-    self:
-      gpgkeys:
-        - "https://dbeaver.io/debs/dbeaver.gpg.key"
-      lists:
-        - "deb https://dbeaver.io/debs/dbeaver-ce /"
-      packages:
-        - "dbeaver-ce"
-
-
-
-
-defold:
-  url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
-
-
-
-
-post:
+      src: "zsh/files/config"
+      dst: "{{ user_conf }}/zsh/config"
