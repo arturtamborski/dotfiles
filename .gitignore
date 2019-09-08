@@ -1,11 +1,6 @@
-# macos shit
-.DS_Store
-
 # vagrant
 .vagrant/
 
 # ansible
 *.retry
-
-# intelij
-.idea/
+backup/

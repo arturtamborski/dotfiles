@@ -12,7 +12,6 @@
     - { role: autoenv,        tags: autoenv }
     - { role: dircolors,      tags: dircolors }
     - { role: tlp,            tags: tlp }
-    - { role: bash,           tags: bash }
     - { role: zsh,            tags: zsh }
     - { role: fzf,            tags: fzf }
     - { role: ssh,            tags: ssh }

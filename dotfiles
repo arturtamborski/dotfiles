@@ -92,6 +92,7 @@ tweaks
 bootstrap
 gconf?
 sudo
+pre: remove default dirs, create new ones
 .gem/
 .gnupg/
 .gradle/

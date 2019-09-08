@@ -105,10 +105,9 @@ flatpak:
 
   install:
     self:
-      lists:
-        - "deb http://deb.debian.org/debian stretch-backports main"
       packages:
         - "flatpak"
+        - "gnome-software-plugin-flatpak"
 
 
 
@@ -347,6 +346,15 @@ jq:
 
 
 
+yq:
+  install:
+    self:
+      pips:
+        - "yq"
+
+
+
+
 mutt:
   install:
     self:
@@ -408,8 +416,11 @@ syncthing:
 
 
 gopass:
-  url: "https://github.com/gopasspw/gopass/releases/download/v1.8.6/gopass-1.8.6-linux-amd64.deb"
-  cmd: "dpkg -i gopass-1.8.6-linux-amd64.deb"
+  install:
+    self:
+      packages:
+        - "gopass"
+
 
 
 
@@ -458,12 +469,8 @@ ghostwriter:
 firefox:
   install:
     self:
-      gpgkeys:
-        - "keyserver.ubuntu.com/2667CA5C"
-      lists:
-        - "deb http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt all main"
       packages:
-        - "firefox"
+        - "firefox-esr"
 
 
 
@@ -582,17 +589,17 @@ slack:
 signal:
   install:
     self:
-      gpgkeys:
-        - "https://updates.signal.org/desktop/apt/keys.asc"
-      lists:
-        - "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
-      packages:
-        - "signal"
+      flatpaks:
+        - "flathub org.signal.Signal"
 
 
 
 
 telegram:
+  install:
+    self:
+      flatpaks:
+        - "flathub org.telegram.desktop"
 
 
 
@@ -600,21 +607,8 @@ telegram:
 steam:
   install:
     self:
-      packages:
-        - "steam"
-
-
-
-
-wine:
-  install:
-    self:
-      gpgkeys:
-        - "ha.pool.sks-keyservers.net/818A435C5FCBF54A"
-      lists:
-        - "deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ buster main"
-      packages:
-        - "wine"
+      flatpaks:
+        - "flathub com.valvesoftware.Steam"
 
 
 
@@ -686,6 +680,7 @@ awscli:
 
 
 
+
 httpie:
   install:
     self:
@@ -705,6 +700,7 @@ httpie:
 
 
 toolbox:
+  url: "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.15.5796.tar.gz"
 
 
 
@@ -722,9 +718,8 @@ dbeaver:
 
 
 
-# non working
 defold:
-    url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
+  url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
 
 
 

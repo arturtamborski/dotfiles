@@ -2,22 +2,32 @@ help:
 	@perl -ne '/^([A-Za-z0-9-_]+):.*#\s+(.*)/ && \
 		printf "%*s%s\n", 10, $$1, $$2 ? " - $$2" : ""' makefile
 
-up: # start test image
+start: # start test image
 	vagrant up --no-provision
 
-ssh: up # ssh to test image
+ssh: start # ssh to test image
 	vagrant ssh
 
-clean: # remove test image
+remove: # remove test image
 	vagrant destroy --force
 
 reload: # reload test image
 	vagrant reload
 
-test: up # reload test image and apply playbook
+test: start # reload test image and apply playbook
 	vagrant reload --provision
 
-clean-test: clean test # recreeate and provision test image
+remove-test: remove test # remove and test test image
 
-install: # apply playbook locally
-	ansible-playbook -i install.yaml
+apply: # apply playbook locally (with optional TAG=<tag>)
+	@test -z "${TAG}" \
+		&& ansible-playbook install.yaml \
+		|| ansible-playbook install.yaml -t ${TAG}
+
+install: # install required packages
+	su root -c " \
+		apt update 						 ; \
+		apt install sudo python3-pip 				 ; \
+		/usr/sbin/usermod -aG sudo $$USER 			 ; \
+		echo '$$USER ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers 	 ; \
+		pip3 install ansible"
