@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import atexit
+import readline
+
+
+hist_file = "{{ python.configure.history.dst }}"
+
+
+try:
+    readline.read_history_file(hist_file)
+    readline.set_history_length(1000)
+except IOError:
+    pass
+
+
+def rm_def_hist_file():
+	try:
+		os.remove("{{ user_conf }}/.python_history")
+	except OSError:
+		pass
+
+
+def register_readline_completion():
+    try:
+    	import readline
+    	import rlcompleter
+    except ImportError:
+    	return
+
+    readline_doc = getattr(readline, '__doc__', '')
+    if readline_doc is not None and 'libedit' in readline_doc:
+        readline.parse_and_bind('bind ^I rl_complete')
+    else:
+        readline.parse_and_bind('tab: complete')
+
+
+sys.__interactivehook__ = register_readline_completion
+atexit.register(readline.write_history_file, hist_file)
+atexit.register(rm_def_hist_file)
