@@ -1,34 +1,55 @@
-# ------------------------------------------------------------- shell options --
 umask 022
+
+# ----------------------------------------------------- bash shell options --- #
 shopt -s checkwinsize
 shopt -s globstar
 
 
 
-# ----------------------------------------------------------- prompt settings --
+# -------------------------------------------------------- prompt settings --- #
+if [[ -n "$SSH_CLIENT" ]]; then
+    ssh_message="-ssh_session"
+fi
+
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+PROMPT_CHROOT="${debian_chroot:+(chroot: $debian_chroot) }"
+PROMPT_SSH="${ssh_message:+(ssh) }"
+
 if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    RESET="\\[\\e[0m\\]"
+    BLUE="\\[\\e[1;34m\\]"
+    GREEN="\\[\\e[1;32m\\]"
+    WHITE="\\[\\e[1;37m\\]"
+    YELLOW="\\[\\e[1;33m\\]"
+    MAGENTA="\\[\\e[1;35m\\]"
 fi
+
+PS1=""
+PS1="${PS1}${PROMPT_CHROOT}"
+PS1="${PS1}${PROMPT_SSH}"
+PS1="${PS1}${GREEN}\u"
+PS1="${PS1}${WHITE}@"
+PS1="${PS1}${GREEN}\h"
+PS1="${PS1}${BLUE} \w "
+PS1="${PS1}${RESET}\\$ "
+
+export PS1="${PS1}"
 
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 
 
-# ---------------------------------------------------------------- completion --
+# ------------------------------------------------------------- completion --- #
 if ! shopt -oq posix; then
-    source /usr/share/bash-completion/bash_completion || true
-    source /etc/bash_completion || true
+    source /usr/share/bash-completion/completions/*
 fi
 
 
 
-# ------------------------------------------------------------- color aliases --
+# ---------------------------------------------------------- color aliases --- #
 if [ -x /usr/bin/dircolors ]; then
     test -r "{{ dircolors.configure.self.dst }}" \
         && eval "$(dircolors -b {{ dircolors.configure.self.dst }})" \
@@ -42,47 +63,56 @@ fi
 
 
 
-# ------------------------------------------------------------------- aliases --
-alias l='ls --file-type -Ch'
-alias ll='ls --file-type -lh'
-alias la='ls --file-type -A'
+# ---------------------------------------------------------------- history --- #
+shopt -s cmdhist
+shopt -s histappend
+shopt -s histreedit
+shopt -s histverify
+
+export HISTSIZE=10000
+export HISTFILESIZE=$HISTSIZE
+export HISTFILE="{{ bash.configure.self.dst | dirname }}/history"
+export HISTTIMEFORMAT="%FT%T  "
+export HISTCONTROL=ignoredups
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+alias stophistory="set +o history"
+alias starthistory="set -o history"
+
+
+
+# ---------------------------------------------------------------- exports --- #
+export BASHRC="{{ bash.configure.self.dst }}"
+
+export LS_COLLATE="C"
+export LC_ALL="C.UTF-8"
+
+
+
+# ---------------------------------------------------------------- aliases --- #
+alias ll='ls --file-type -ANlh'
+alias  l='ls --file-type -Ch'
+alias la='ll'
 
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias dpkgg="dpkg -l | grep -i"
+alias dff="df -hT --total"
+alias r='reset && source $BASHRC'
+alias x="exit"
 
-
-# ------------------------------------------------------------------- history --
-shopt -s histappend
-export HISTSIZE=10000
-export HISTFILESIZE=$HISTSIZE
-export HISTFILE={{ bash.histfile }}
-export HISTTIMEFORMAT="%F %T "
-export HISTCONTROL=ignoredups
-export PROMPT_COMMAND="history -a"
-
-# useful
-export BASHRC="{{ bash.configure.self.dst }}"
-alias reset='reset && source $BASHRC'
+alias wget='wget --hsts-file=/dev/null'
 
 
 
-# ----------------------------------------------------------------- local bin --
+# -------------------------------------------------------------- local bin --- #
 export PATH="$PATH:~/.local/bin"
 
 
 
-# ------------------------------------------------------------ load env files --
-find "{{ pre.config }}" -type f -name "env" | while read -r file; do
-    if ! source "$file"; then
-        echo "[!] failed to load $file"
-    fi
-done
-
-
-
-# ------------------------------------------------------------ user functions --
+# --------------------------------------------------------- user functions --- #
 show-srn() {
     perl -pe 's/ /_/g ; s/\r/r/g ; s/\n/n\n/g' $1
 }
@@ -90,3 +120,35 @@ show-srn() {
 cmpf() {
     diff <(show-srn $1) <(show-srn $2)
 }
+
+bak() {
+    for f in "$@"; do
+        cp "$f" "$f.$(date +%FT%H%M%S).bak"
+    done
+}
+
+c() {
+    cd "$@" && ll
+}
+
+md() {
+    mkdir -p "$@" && cd "$@" || return
+}
+
+mtg() {
+    for f in "$@"; do
+        mv "$f" "${f//[^a-zA-Z0-9\.\-]/_}"
+    done
+}
+
+aaa() {
+    sudo apt update \
+        && apt list --upgradable \
+        && sudo apt full-upgrade \
+        && sudo apt autoremove
+}
+
+
+
+# --------------------------------------------------------- load env files --- #
+source {{ common.global_env }}

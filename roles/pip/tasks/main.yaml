@@ -14,3 +14,4 @@
   with_items:
     - "python2"
     - "python3"
+  become: yes

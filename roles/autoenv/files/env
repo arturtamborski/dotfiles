@@ -1,3 +1,6 @@
-# autoenv
+# ---------------------------------------------------------------- autoenv --- #
+export AUTOENV_AUTH_FILE="{{ autoenv.configure.self.dst | dirname }}/authorized"
 export AUTOENV_ENV_FILENAME="environment"
-source ~/.local/bin/activate.sh
+export AUTOENV_ENV_LEAVE_FILENAME="${AUTOENV_ENV_FILENAME}-leave"
+
+source "{{ autoenv.configure.self.dst }}"

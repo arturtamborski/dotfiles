@@ -1,7 +1,7 @@
-# userdirs
+# --------------------------------------------------------------- userdirs --- #
 export XDG_DATA_HOME="{{ userdirs.data }}"
 export XDG_CACHE_HOME="{{ userdirs.cache }}"
-export XDG_CONFIG_HOME="{{ userdirs.home }}"
+export XDG_CONFIG_HOME="{{ userdirs.config }}"
 
 export XDG_MUSIC_DIR="{{ userdirs.music }}"
 export XDG_VIDEOS_DIR="{{ userdirs.videos }}"

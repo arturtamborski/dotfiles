@@ -1,2 +1,2 @@
-# gnupg
-export GNUPGHOME={{ gpg.configure.self.dst | dirname }}
+# ------------------------------------------------------------------ gnupg --- #
+export GNUPGHOME="{{ gnupg.configure.self.dst | dirname }}"

@@ -1,2 +1,2 @@
-# docker
-alias docker-stop-all='docker stop `docker ps -aq`'
+# ----------------------------------------------------------------- docker --- #
+alias docker-stop-all="docker stop $(docker ps -aq)"

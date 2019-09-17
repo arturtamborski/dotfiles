@@ -116,7 +116,7 @@ cnoremap w!! execute 'silent! write !sudo tee > /dev/null %' <bar> edit!<enter>
 " ====================================================   S E T T I N G S   === "
 
 " ------------------------------------------------------------ set runtime --- "
-let $VIMRUNTIME="/usr/share/vim/vim" . v:version / 10
+let $VIMRUNTIME="/usr/share/vim/vim" . v:version / 100 . v:version % 100
 
 " ------------------------------------------------------------ color theme --- "
 set background=dark

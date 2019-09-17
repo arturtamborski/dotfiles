@@ -1,6 +1,6 @@
 XDG_DATA_HOME="{{ userdirs.data }}"
 XDG_CACHE_HOME="{{ userdirs.cache }}"
-XDG_CONFIG_HOME="{{ userdirs.home }}"
+XDG_CONFIG_HOME="{{ userdirs.config }}"
 
 XDG_DOCUMENTS_DIR="{{ userdirs.documents }}"
 XDG_MUSIC_DIR="{{ userdirs.music }}"

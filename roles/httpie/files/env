@@ -1,2 +1,2 @@
-# httpie
+# ----------------------------------------------------------------- httpie --- #
 export HTTPIE_CONFIG_DIR="{{ httpie.configure.self.dst | dirname }}"

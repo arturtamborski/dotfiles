@@ -1,5 +1,5 @@
-set from = "tamborskiartur@gmail.com"
-set realname = "Artur Tamborski"
+set from = "{{ git.email }}"
+set realname = "{{ git.name }}"
 
 set smtp_url = "smtp://user@domain.com@smtp.domain.com:587/"
 set smtp_pass = "password"
@@ -23,4 +23,4 @@ set sort = threads
 set editor = "vim"
 
 # GnuPG bootstrap
-# source {{ pre.config }}/gpg/config
+# source {{ gnupg.configure.self.dst }}

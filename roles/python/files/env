@@ -1,4 +1,7 @@
-# pyc
+# ----------------------------------------------------------------- python --- #
+export PYTHONSTARTUP="{{ python.configure.self.dst }}"
+export IPYTHONDIR="{{ user_conf }}/ipython"
+
 pyc() {
     find "${1:-$PWD}" \
         -name '__pycache__' -delete -print -o \

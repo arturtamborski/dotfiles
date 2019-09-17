@@ -1,6 +1,8 @@
-# pyenv
-export PYENV_ROOT="~/.cache/pyenv"
-export PATH="$PATH:$PYENV_ROOT"
+# ------------------------------------------------------------------ pyenv --- #
+export PYENV_ROOT="$HOME/.cache/pyenv"
+export PATH="$PATH:$PYENV_ROOT/bin"
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [ -x "$PYENV_ROOT/bin/pyenv" ]; then
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi

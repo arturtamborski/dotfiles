@@ -64,6 +64,6 @@
 
 
 - name: run commands
-  command: "{{ item }}"
+  shell: "{{ item }}"
   with_items: "{{ _given.commands }}"
   when: _given.commands is defined

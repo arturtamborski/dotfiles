@@ -1,19 +1,18 @@
-# git
-
-git-branch {
+# -------------------------------------------------------------------- git --- #
+git-branch() {
   [ -d ".git" ] && printf "[$(git name-rev --name-only @)] "
 }
 
-git-clean-branches {
-    git branch | grep -v \* | while read line ; do
-        git branch -D $line
+git-clean-branches() {
+    git branch | grep -v \* | while read -r line ; do
+        git branch -D "$line"
     done
 }
 
 git-back() {
-    CURRENT=`git log -n1 HEAD~1 | head -n1 | cut -d" " -f2`
+    CURRENT=$(git log -n1 HEAD~1 | head -n1 | cut -d" " -f2)
     git checkout -f $CURRENT
-    NEXT=`git log --reverse --ancestry-path HEAD..master | head -n1 | cut -d" " -f2`
+    NEXT=$(git log --reverse --ancestry-path HEAD..master | head -n1 | cut -d" " -f2)
 
     git reset --hard $NEXT
     git reset --soft $CURRENT
@@ -21,9 +20,9 @@ git-back() {
 }
 
 git-next() {
-    CURRENT=`git log --reverse --ancestry-path HEAD..master | head -n1 | cut -d" " -f2`
+    CURRENT=$(git log --reverse --ancestry-path HEAD..master | head -n1 | cut -d" " -f2)
     git checkout -f $CURRENT
-    NEXT=`git log --reverse --ancestry-path HEAD..master | head -n1 | cut -d" " -f2`
+    NEXT=$(git log --reverse --ancestry-path HEAD..master | head -n1 | cut -d" " -f2)
 
     git reset --hard $NEXT
     git reset --soft $CURRENT

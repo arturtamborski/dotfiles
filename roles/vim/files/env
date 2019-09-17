@@ -1,4 +1,4 @@
-# vim
+# -------------------------------------------------------------------- vim --- #
+alias vim="vim -u {{ vim.configure.self.dst }}"
 export VIM="{{ vim.configure.self.dst | dirname }}"
-
 export EDITOR="vim"
