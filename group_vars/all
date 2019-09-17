@@ -3,6 +3,8 @@
 user_name: "artur"
 user_home: "/home/{{ user_name }}"
 user_conf: "{{ user_home }}/.config"
+user_work: "{{ user_home }}/work"
+user_mine: "{{ user_home }}/self"
 
 
 
@@ -41,7 +43,7 @@ audacity:
 
 autoenv:
   configure:
-    global:
+    self:
       src: "autoenv/files/script"
       dst: "{{ user_conf }}/autoenv/script"
 
@@ -58,12 +60,19 @@ awscli:
       pips:
         - "awscli"
 
+  configure:
+    self:
+      src: "awscli/files/script"
+      dst: "{{ user_conf }}/awscli/script"
+
+  environment:
+    src: "awscli/files/env"
+    dst: "{{ user_conf }}/awscli/env"
+
 
 
 
 bash:
-  histfile: "{{ user_conf }}/bash/history"
-
   install:
     self:
       packages:
@@ -97,6 +106,8 @@ c:
 
 common:
   given:
+
+  global_env: "{{ user_conf }}/env"
 
 
 
@@ -142,10 +153,14 @@ docker:
         - "deb [arch=amd64] https://download.docker.com/linux/debian buster stable"
       packages:
         - "docker-ce"
-
     compose:
       pips:
         - "docker-compose"
+        - "docker-nuke"
+
+  environment:
+    src: "docker/files/env"
+    dst: "{{ user_conf }}/docker/env"
 
 
 
@@ -242,7 +257,7 @@ gnupg:
 
 
 go:
-  url: "https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz"
+  url: "https://dl.google.com/go/go1.13.linux-amd64.tar.gz"
 
   environment:
     src: "go/files/env"
@@ -310,6 +325,24 @@ inkscape:
 
 
 
+java:
+  install:
+    self:
+      packages:
+        - "default-jre"
+
+  configure:
+    self:
+      src: "java/files/config"
+      dst: "{{ user_conf }}/java/config"
+
+  environment:
+    src: "java/files/env"
+    dst: "{{ user_conf }}/java/env"
+
+
+
+
 jq:
   install:
     self:
@@ -335,6 +368,12 @@ kernel:
     self:
       packages:
         - "dkms"
+
+
+
+
+keybase:
+  url: "https://prerelease.keybase.io/keybase_amd64.deb"
 
 
 
@@ -385,6 +424,11 @@ mutt:
       packages:
         - "mutt"
 
+  configure:
+    self:
+      src: "mutt/files/config"
+      dst: "{{ user_conf }}/mutt/config"
+
   environment:
     src: "mutt/files/env"
     dst: "{{ user_conf }}/mutt/env"
@@ -428,11 +472,17 @@ pre:
 
 
 
+pycharm:
+
+
+
+
 pyenv:
   install:
     self:
       commands:
-        - "curl https://pyenv.run | PYENV_ROOT='~/.cache/pyenv' bash"
+        - "rm -r '{{ user_home }}/.cache/pyenv' || true"
+        - "curl https://pyenv.run | PYENV_ROOT='{{ user_home }}/.cache/pyenv' bash"
 
   environment:
     src: "pyenv/files/env"
@@ -447,6 +497,18 @@ python:
       packages:
         - "python3"
         - "python3-pip"
+    uitls:
+      pips:
+        - "ipdb"
+        - "ripdb"
+
+  configure:
+    self:
+      src: "python/files/config"
+      dst: "{{ user_conf }}/python/config"
+    history:
+      src: "python/files/history"
+      dst: "{{ user_conf }}/python/history"
 
   environment:
     src: "python/files/env"
@@ -460,6 +522,14 @@ qbittorrent:
     self:
       packages:
         "qbittorrent"
+
+
+
+
+readline:
+  environment:
+    src: "readline/files/env"
+    dst: "{{ user_conf }}/readline/env"
 
 
 
@@ -611,9 +681,9 @@ toolbox:
 
 
 userdirs:
-  home: "{{ user_home }}"
   data: "{{ user_home }}/.local/share"
   cache: "{{ user_home }}/.local/cache"
+  config: "{{ user_home }}/.config"
 
   downloads: "{{ user_home }}/downloads"
   documents: "{{ user_home }}/docs"
@@ -623,6 +693,9 @@ userdirs:
   desktop: "{{ user_home }}/docs/desktop"
   pictures: "{{ user_home }}/docs/pictures"
   templates: "{{ user_home }}/docs/templates"
+
+  work: "{{ user_work }}"
+  mine: "{{ user_mine }}"
 
   install:
     self:
@@ -676,6 +749,8 @@ vim:
 
 
 virtualbox:
+  machine_folder: "vboxmanage setproperty machinefolder /path/to/directory/"
+
   install:
     self:
       gpgkeys:
