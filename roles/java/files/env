@@ -1,0 +1,3 @@
+# ------------------------------------------------------------------- java --- #
+export VM_OPTIONS="-Duser.home={{ java.configure.self.dst | dirname }}"
+export _JAVA_OPTIONS="$VM_OPTIONS"

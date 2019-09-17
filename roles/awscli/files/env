@@ -1,0 +1,6 @@
+# ----------------------------------------------------------------- awscli --- #
+export AWS_CONFIG_FILE="{{ awscli.configure.self.dst }}"
+export AWS_CLI_HISTORY_FILE="{{ awscli.configure.self.dst | dirname }}/history"
+export AWS_CREDENTIALS_FILE="{{ awscli.configure.self.dst | dirname }}/credentials"
+export AWS_WEB_IDENTITY_TOKEN_FILE="{{ awscli.configure.self.dst | dirname }}/token"
+export AWS_SHARED_CREDENTIALS_FILE="{{ awscli.configure.self.dst | dirname }}/shared-credentials"

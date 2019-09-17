@@ -1,0 +1,21 @@
+---
+
+- set_fact:
+    context: "{{ lookup('vars', role_name) | combine({'role_name': role_name}) }}"
+
+
+- name: main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ context }}"
+
+
+- name: add environment variable
+  lineinfile:
+    path: "{{ user_home }}/.local/share/applications/jetbrains-pycharm.desktop"
+    regexp: "Exec=(.*)"
+    line: 'Exec=env IDE_PROPERTIES_PROPERTY=-Duser.home={{ user_cache }}/java \1'
+    backrefs: yes
