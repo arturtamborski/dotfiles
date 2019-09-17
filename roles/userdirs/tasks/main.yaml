@@ -1,15 +1,19 @@
 ---
 
-- name: userdirs - main
+- set_fact:
+    context: "{{ lookup('vars', role_name) | combine({'role_name': role_name}) }}"
+
+
+- name: main
   include_role:
     public: yes
     name: common
     tasks_from: main
   vars:
-    given: "{{ userdirs }}"
+    given: "{{ context }}"
 
 
-- name: remove home directories
+- name: remove old home directories
   file:
     path: "{{ item }}"
     state: absent
@@ -22,15 +26,16 @@
     - "~/Pictures"
     - "~/Downloads"
     - "~/Templates"
+    - "~/Recordings"
     - "~/Sync"
 
 
-- name: create new directories
+- name: create new home directories
   file:
     path: "{{ item }}"
     state: directory
   with_items: 
-    - "{{ userdirs.home }}"
+    - "{{ userdirs.config }}"
     - "{{ userdirs.data }}"
     - "{{ userdirs.cache }}"
     - "{{ userdirs.documents }}"
@@ -41,3 +46,5 @@
     - "{{ userdirs.pictures }}"
     - "{{ userdirs.downloads }}"
     - "{{ userdirs.templates }}"
+    - "{{ userdirs.work }}"
+    - "{{ userdirs.mine }}"
