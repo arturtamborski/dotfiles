@@ -31,10 +31,10 @@
   when: not check_path.stat.exists
 
 
-- name: check if role environment exists
+- name: check if role environment file exists
   stat:
     path: "{{ playbook_dir }}/roles/{{ _given.src | default('.nofile') }}"
-  register: check_environment
+  register: check_file
   when: _given.src is search("/files/")
 
 
@@ -43,4 +43,27 @@
   template:
     src: "{{ playbook_dir }}/roles/{{ _given.src }}"
     dest: "{{ _given.dst }}"
-  when: check_environment.stat is defined and check_environment.stat.exists
+  when: check_file.stat is defined and check_file.stat.exists
+
+
+- name: create global environment file
+  file:
+    path: "{{ common.global_env }}"
+    state: touch
+
+
+- name: check if content of role environment is in global environment file
+  lineinfile:
+    path: "{{ common.global_env }}"
+    regexp: "# -+ {{ context.role_name }} -+ #"
+    state: absent
+  register: check_line
+  check_mode: yes
+
+
+- name: append content of role environment to global environment file
+  blockinfile:
+    path: "{{ common.global_env }}"
+    block: "{{ lookup('file', _given.dst) }}"
+    marker: ""
+  when: not check_line.changed
