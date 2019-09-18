@@ -96,6 +96,9 @@ c:
       packages:
         - "gcc"
         - "build-essential"
+    utils:
+      packages:
+        - "cloc"
 
   environment:
     src: "c/files/env"
@@ -436,6 +439,15 @@ mutt:
 
 
 
+network:
+  install:
+    vpn:
+      packages:
+        - "network-manager-openvpn"
+        - "network-manager-openvpn-gnome"
+
+
+
 pip:
   install:
     self:
@@ -611,6 +623,16 @@ steam:
 
 
 
+sublime:
+  install:
+    self:
+      packages:
+        - "sublime-text"
+        - "sublime-merge"
+
+
+
+
 syncthing:
   install:
     self:
@@ -732,6 +754,10 @@ vagrant:
         - "deb https://vagrant-deb.linestarve.com/ any main"
       packages:
         - "vagrant"
+
+  environment:
+    src: "vagrant/files/env"
+    dst: "{{ user_conf }}/vagrant/env"
 
 
 

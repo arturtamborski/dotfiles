@@ -40,6 +40,7 @@
     - { role: less,           tags: less        }
     - { role: monitors,       tags: monitors    }
     - { role: mutt,           tags: mutt        }
+    - { role: network,        tags: network     }
     - { role: pipenv,         tags: pipenv      }
     - { role: post,           tags: post        }
     - { role: pre,            tags: pre         }
@@ -55,6 +56,7 @@
     - { role: spotify,        tags: spotify     }
     - { role: ssh,            tags: ssh         }
     - { role: steam,          tags: steam       }
+    - { role: sublime,        tags: sublime     }
     - { role: syncthing,      tags: syncthing   }
     - { role: tarsnap,        tags: tarsnap     }
     - { role: telegram,       tags: telegram    }
