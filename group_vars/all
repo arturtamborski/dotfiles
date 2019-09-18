@@ -497,7 +497,7 @@ python:
       packages:
         - "python3"
         - "python3-pip"
-    uitls:
+    debugger:
       pips:
         - "ipdb"
         - "ripdb"
@@ -521,7 +521,7 @@ qbittorrent:
   install:
     self:
       packages:
-        "qbittorrent"
+        - "qbittorrent"
 
 
 
@@ -530,6 +530,15 @@ readline:
   environment:
     src: "readline/files/env"
     dst: "{{ user_conf }}/readline/env"
+
+
+
+
+redshift:
+  install:
+    self:
+      packages:
+        - "redshift"
 
 
 

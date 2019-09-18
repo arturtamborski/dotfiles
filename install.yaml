@@ -48,6 +48,7 @@
     - { role: python,         tags: python      }
     - { role: qbittorrent,    tags: qbittorrent }
     - { role: readline,       tags: readline    }
+    - { role: redshift,       tags: redshift    }
     - { role: ruby,           tags: ruby        }
     - { role: signal,         tags: signal      }
     - { role: slack,          tags: slack       }
