@@ -1,0 +1,4 @@
+# ---------------------------------------------------------------- vagrant --- #
+export VAGRANT_HOME="{{ user_conf }}/vagrant"
+export VAGRANT_ALIAS_FILE="$VAGRANT_HOME/aliases"
+
