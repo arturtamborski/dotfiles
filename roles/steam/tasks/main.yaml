@@ -1,11 +1,15 @@
 ---
 
-- name: steam - main
+- set_fact:
+    context: "{{ lookup('vars', role_name) | combine({'role_name': role_name}) }}"
+
+
+- name: main
   include_role:
     public: yes
     name: common
     tasks_from: main
   vars:
-    given: "{{ steam }}"
+    given: "{{ context }}"
 
 #https://github.com/ValveSoftware/steam-for-linux/issues/3474

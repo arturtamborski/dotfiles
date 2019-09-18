@@ -1,12 +1,16 @@
 ---
 
-- name: syncthing - main
+- set_fact:
+    context: "{{ lookup('vars', role_name) | combine({'role_name': role_name}) }}"
+
+
+- name: main
   include_role:
     public: yes
     name: common
     tasks_from: main
   vars:
-    given: "{{ syncthing }}"
+    given: "{{ context }}"
 
 
 - name: enable service
