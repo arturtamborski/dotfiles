@@ -1,33 +1,43 @@
-help:
+help: # print this help
 	@perl -ne '/^([A-Za-z0-9-_]+):.*#\s+(.*)/ && \
-		printf "%*s%s\n", 10, $$1, $$2 ? " - $$2" : ""' makefile
+		printf "%*s%s\n", 9, $$1, $$2 ? " - $$2" : ""' makefile
+
+
+ssh: start # enter test image
+	vagrant ssh
+
 
 start: # start test image
 	vagrant up --no-provision
 
-ssh: start # ssh to test image
-	vagrant ssh
+
+stop: # stop test image
+	vagrant halt
+
 
 remove: # remove test image
 	vagrant destroy --force
 
+
 reload: # reload test image
 	vagrant reload
 
-test: start # reload test image and apply playbook
+
+test: start # apply playbook in test image
 	vagrant reload --provision
 
-rm-test: remove test # remove and test test image
 
-apply: # apply playbook locally (with optional TAG=<tag>)
-	@test -z "${TAG}" \
+apply: # apply playbook locally (with optional tag=<tag>)
+	@test -z "${tag}" \
 		&& ansible-playbook install.yaml \
-		|| ansible-playbook install.yaml -t ${TAG}
+		|| ansible-playbook install.yaml -t ${tag}
 
-install: # install required packages
-	su root -c " \
-		apt update 						 ; \
-		apt install sudo python3-pip 				 ; \
-		/usr/sbin/usermod -aG sudo $$USER 			 ; \
-		echo '$$USER ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers 	 ; \
-		pip3 install ansible"
+
+bootstrap: # install required packages, add user to sudoers
+	su root -c "                                               \
+		apt  update                                          ; \
+		apt  install --yes          sudo python3-pip         ; \
+		pip3 install --no-cache-dir ansible                  ; \
+		/usr/sbin/usermod -aG sudo $$USER                    ; \
+		echo '$$USER ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers ; \
+		echo "Done, run `make apply` to install dotfiles"
