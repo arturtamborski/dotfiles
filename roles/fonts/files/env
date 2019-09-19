@@ -1,0 +1,4 @@
+# ------------------------------------------------------------------ fonts --- #
+FONTCONFIG_PATH="{{ fonts.configure.self.dst | dirname }}"
+FONTCONFIG_FILE="{{ fonts.configure.self.dst }}"
+
