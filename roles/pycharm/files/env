@@ -1,3 +1,3 @@
 # ---------------------------------------------------------------- pycharm --- #
-export IDEA_VM_OPTIONS="{{ pycharm.configure.self }}"
+export IDEA_VM_OPTIONS="{{ pycharm.configure.self.dst }}"
 export PYCHARM_PROPERTIES="$IDEA_VM_OPTIONS"
