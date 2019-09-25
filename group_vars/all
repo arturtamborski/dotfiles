@@ -162,8 +162,6 @@ desktop:
       picture-options: "zoom"
       primary-color: "#ffffff"
       secondary-color: "#000000"
-    /org/gnome/desktop/input-sources:
-      sources: "[('xkb', 'pl')]"
 
 
 
@@ -209,7 +207,7 @@ firefox:
         - "firefox-esr"
 
   environment:
-    src: "files/firefox/env"
+    src: "firefox/files/env"
     dst: "{{ user_conf }}/firefox/env"
 
 
