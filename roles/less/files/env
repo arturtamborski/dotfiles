@@ -1,2 +1,4 @@
 # ------------------------------------------------------------------- less --- #
 export LESSHISTFILE="{{ less.configure.self.dst }}" 
+export LESSCHARSET="utf-8"
+
