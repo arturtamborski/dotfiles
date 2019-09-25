@@ -19,8 +19,8 @@
     state: absent
 
 
-- name: restart sshd
+- name: restart ssh service
   become: yes
   service:
-    name: sshd
+    name: ssh
     state: restarted
