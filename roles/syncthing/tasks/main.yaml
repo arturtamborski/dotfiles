@@ -23,5 +23,5 @@
 - name: start service
   become: yes
   service:
-    name: "syncthing@{{ ansible_user }}"
+    name: "syncthing@{{ user_name }}"
     state: started

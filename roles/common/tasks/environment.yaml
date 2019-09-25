@@ -26,8 +26,8 @@
   file:
     path: "{{ _given.dst | dirname }}"
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
   when: not check_path.stat.exists
 
 

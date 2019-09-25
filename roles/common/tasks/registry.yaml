@@ -26,8 +26,8 @@
   file:
     path: "{{ _given.dst | dirname }}"
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
   when: not check_path.stat.exists
 
 
@@ -35,8 +35,8 @@
   file:
     path: "{{ pre.backup | dirname }}/{{ _given.src.split('/')[0] }}"
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
   when: check_name.stat is defined and check_name.stat.exists
 
 
@@ -44,8 +44,8 @@
   copy:
     src: "{{ _given.dst }}"
     dest: "{{ pre.backup | dirname }}/{{ _given.src.split('/')[0] }}/"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
   when: check_name.stat is defined and check_name.stat.exists
 
 
