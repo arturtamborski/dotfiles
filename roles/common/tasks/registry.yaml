@@ -9,5 +9,6 @@
 - name: apply change in dconf registry
   dconf:
     key: "{{ _given.key }}/{{ item.key }}"
-    value: "{{ item.value }}"
+    value: |-
+      "{{ item.value }}"
   with_dict: "{{ _given.value }}"

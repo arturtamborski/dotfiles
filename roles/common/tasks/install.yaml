@@ -47,7 +47,7 @@
   when: _given.packages is defined
 
 
-- name: install flatpaks                                                                                                                                                                                                                        
+- name: install flatpaks
   flatpak:
     remote: "{{ item.split(' ')[0] }}"
     name: "{{ item.split(' ')[1] }}"
@@ -57,7 +57,8 @@
 
 
 - name: install pips
-  command: "python3 -m pip --no-cache-dir install {{ _given.pips }}"
+  command: "python3 -m pip --no-cache-dir install {{ item }}"
+  with_items: "{{ _given.pips }}"
   when: _given.pips is defined
 
 

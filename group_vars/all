@@ -145,18 +145,25 @@ defold:
 
 
 desktop:
+  install:
+    self:
+      packages:
+        - "python-psutil"
+
   registry:
-    org/gnome/desktop/interface:
+    /org/gnome/desktop/interface:
       font-name: "Lato Medium 11"
-      text-scaling-factor: 0.75
-      gtk-in-module: "gtk-im-context-simple"
-      enable-animations: false
-      gtk-theme: "Adawaita"
-    org/gnome/desktop/screensaver:
+      text-scaling-factor: "0.75"
+      gtk-im-module: "gtk-im-context-simple"
+      enable-animations: "false"
+      gtk-theme: "Adwaita"
+    /org/gnome/desktop/screensaver:
       picture-uri: "file:///usr/share/backgrounds/gnome/endless-shapes.jpg"
       picture-options: "zoom"
       primary-color: "#ffffff"
       secondary-color: "#000000"
+    /org/gnome/desktop/input-sources:
+      sources: "[('xkb', 'pl')]"
 
 
 
