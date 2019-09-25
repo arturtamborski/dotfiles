@@ -235,9 +235,7 @@ set backup
 set noswapfile
 set writebackup
 
-let &backupdir = "{{ vim.configure.self.dst | dirname }}/backup"
-let &backupdir = substitute(&backupdir, "\\~", $HOME, "")
-let &directory = &backupdir
+let &backupdir = "{{ user_cache }}/vim/backup"
 
 if !isdirectory(&backupdir)
     call mkdir(&backupdir)
@@ -248,8 +246,7 @@ set undofile
 set undolevels=10000
 set undoreload=10000
 
-let &undodir = "{{ vim.configure.self.dst | dirname }}/undo"
-let &undodir = substitute(&undodir, "\\~", $HOME, "")
+let &undodir = "{{ user_cache }}/vim/undo"
 
 if !isdirectory(&undodir)
     call mkdir(&undodir)
@@ -259,7 +256,7 @@ endif
 set history=1000
 
 " ------------------------------------------------ store last session info --- "
-set viminfo+=n{{ vim.configure.self.dst | dirname }}/viminfo
+set viminfo+=n{{ user_cache }}/vim/session
 
 " -------------------------------------------- jump to last modified place --- "
 autocmd BufWinEnter * call RestoreCursorPosition()
