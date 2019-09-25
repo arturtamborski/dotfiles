@@ -69,6 +69,7 @@ shopt -s histappend
 shopt -s histreedit
 shopt -s histverify
 
+export HISTIGNORE=?:??
 export HISTSIZE=10000
 export HISTFILESIZE=$HISTSIZE
 export HISTFILE="{{ bash.configure.self.dst | dirname }}/history"
@@ -84,8 +85,16 @@ alias starthistory="set -o history"
 # ---------------------------------------------------------------- exports --- #
 export BASHRC="{{ bash.configure.self.dst }}"
 
-export LS_COLLATE="C"
-export LC_ALL="C.UTF-8"
+export LANG="en_US.UTF-8"
+export LANGUAGE="$LANG"
+
+export LC_ALL="en_US.UTF-8"
+#export LC_TIME="en_US.UTF-8"
+#export LC_CTYPE="en_US.UTF-8"
+#export LC_NUMERIC="en_US.UTF-8"
+#export LC_COLLATE="en_US.UTF-8"
+#export LC_MESSAGES="en_US.UTF-8"
+#export LC_MONETARY="en_US.UTF-8"
 
 
 
@@ -104,6 +113,22 @@ alias r='reset && source $BASHRC'
 alias x="exit"
 
 alias wget='wget --hsts-file=/dev/null'
+
+alias daddy='sudo'
+alias please='systemctl'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+alias b="cd -"
+alias c="clear"
+alias d="cd ~/self/dotfiles"
+alias f="open ."
+alias k="pkill -i"
+alias h="cd ~"
+alias t="type"
+alias v="vim"
 
 
 
