@@ -36,7 +36,7 @@ apply: # apply playbook locally (with optional role=<role>)
 bootstrap: # install required packages, add user to sudoers
 	su root -c "                                               \
 		apt  update                                          ; \
-		apt  install --yes          sudo python3-pip         ; \
+		apt  install --yes          sudo rsync python3-pip   ; \
 		pip3 install --no-cache-dir ansible==2.8.3           ; \
 		/usr/sbin/usermod -aG sudo $$USER                    ; \
 		echo '$$USER ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers ; \
