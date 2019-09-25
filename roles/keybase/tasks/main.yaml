@@ -21,9 +21,7 @@
 
 - name: install
   become: yes
-  command: "apt install keybase.deb"
-  args:
-    chdir: "/tmp/"
+  command: "apt install /tmp/keybase.deb"
 
 
 - name: clean up
