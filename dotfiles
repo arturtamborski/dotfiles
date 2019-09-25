@@ -1,29 +1,17 @@
 some way of downloading and extracting kdbx files?
 .mozilla ...
-.cache moved to .local
-.pki?
-.viminfo ffs
+.cache moved to .local (idkhow)
+.pki? (ehh...)
 .zsh envs
-git autocloner
-.aws
-.gnupg
-.ICEauthority
-.java
+.gnupg (tricky)
+.ICEauthority (fuuu)
+.java (well, kinda, not yet)
 
 git autocomplete
 zsh autocomplete
-
-aliasses from https://www.circuidipity.com/bashrc/
-
-redshift
-
+git autocloner
 
 apply script which checks git status and applies given roles
-
-
-palemoon
-wget -nv https://download.opensuse.org/repositories/home:stevenpusser/Debian_10/Release.key -O Release.ke
-
 
 cups ffs (and drivers maybe, if i remember the name)
 
@@ -33,53 +21,24 @@ gnome tweaks (alternate tab, animation tweaks, do not disturb button, extended
 gestures, launch new instance, removable drive menu, screensot window sizer,
 sensors, user themes, window list, worksapace indicator, window navigator,
 
-gconf-editor
+gconf - move shit to their place with gconf, that will require some hacking tho
+like, this needs to be executed one time only somehow
 
 
-monitors - https://askubuntu.com/questions/6137/saving-monitor-settings
-or just fix that fucking bug
-
-docker-compose add to install along with docker
-
-docker-nuke
-
-chromium
-
-firefox...
-
-apt-get install network-manager-openvpn network-manager-openvpn-gnome
-
-pipenv with custom dirs plsssss
-
-
-redshift
-
-
-daddy please
-
+vim remap x to something that can be dotted (repeated)
 
 .npm
 .profile
 pycharm2
 serverless
 steam
-ssh
 vscode
 waterfox?
 .X shit
-
-
-
-
-tweaks
-bootstrap
 gconf?
-sudo
-pre: remove default dirs, create new ones
 .gem/
 .gnupg/
 .gradle/
-.ipython/
 .lein/
 .local/
 .m2/
@@ -88,19 +47,11 @@ pre: remove default dirs, create new ones
 .node-gyp/
 .npm/
 .ptpython/
-.python_history
 .sqlite_history
 .terraform
 .vagrant
 .vnc/
-.voltapp/
 .vscode/
 .yarnrc
 .zcompdump
 .zhistory
-
-
-cloc
-
-
-autostart
