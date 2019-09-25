@@ -9,6 +9,7 @@
     - { role: apt,            tags: apt         }
     - { role: pip,            tags: pip         }
     - { role: flatpak,        tags: flatpak     }
+    - { role: fonts,          tags: fonts       }
     - { role: archive,        tags: archive     }
     - { role: audacity,       tags: audacity    }
     - { role: autoenv,        tags: autoenv     }
@@ -16,7 +17,9 @@
     - { role: c,              tags: c           }
     - { role: common,         tags: common      }
     - { role: dbeaver,        tags: dbeaver     }
+    - { role: dconf,          tags: dconf       }
     - { role: defold,         tags: defold      }
+    - { role: desktop,        tags: desktop     }
     - { role: dircolors,      tags: dircolors   }
     - { role: docker,         tags: docker      }
     - { role: firefox,        tags: firefox     }
@@ -32,12 +35,14 @@
     - { role: imagemagick,    tags: imagemagick }
     - { role: inkscape,       tags: inkscape    }
     - { role: java,           tags: java        }
+    - { role: journal,        tags: journal     }
     - { role: jq,             tags: jq          }
     - { role: keepassxc,      tags: keepassxc   }
     - { role: kernel,         tags: kernel      }
     - { role: keybase,        tags: keybase     }
     - { role: kitty,          tags: kitty       }
     - { role: less,           tags: less        }
+    - { role: locale,         tags: locale      }
     - { role: monitors,       tags: monitors    }
     - { role: mutt,           tags: mutt        }
     - { role: network,        tags: network     }
