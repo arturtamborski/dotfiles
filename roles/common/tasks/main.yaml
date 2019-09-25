@@ -21,17 +21,17 @@
   when: given.install is defined
 
 
-- name: configure
+- name: template
   include_role:
     public: no
     name: common
-    tasks_from: configure
+    tasks_from: template
   vars:
     _given: "{{ _dict_item.value }}"
-  with_dict: "{{ given.configure }}"
+  with_dict: "{{ given.template }}"
   loop_control:
     loop_var: _dict_item
-  when: given.configure is defined
+  when: given.template is defined
 
 
 - name: environment
@@ -55,3 +55,17 @@
   loop_control:
     loop_var: _dict_item
   when: given.move is defined
+
+
+- name: registry
+  include_role:
+    public: no
+    name: common
+    tasks_from: registry
+  vars:
+    _given: "{{ _dict_item.value }}"
+  with_dict: "{{ given.registry }}"
+  loop_control:
+    loop_var: _dict_item
+  when: given.registry is defined
+
