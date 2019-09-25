@@ -1,7 +1,7 @@
 ---
 
 - set_fact:
-    context: "{{ lookup('vars', role_name) | combine({'role_name': role_name}) }}"
+    context: "{{ vars[role_name] or {} | combine({'role_name': role_name}) }}"
 
 
 - name: main
@@ -13,9 +13,19 @@
     given: "{{ context }}"
 
 
-- name: add environment variable
+- name: check if desktop shortcut was modified already
+  lineinfile:
+    path: "{{ user_home }}/.local/share/applications/jetbrains-pycharm.desktop"
+    regexp: "Exec=env .*"
+    state: absent
+  register: check_line
+  check_mode: yes
+
+
+- name: modify desktop shortcut
   lineinfile:
     path: "{{ user_home }}/.local/share/applications/jetbrains-pycharm.desktop"
     regexp: "Exec=(.*)"
-    line: 'Exec=env IDE_PROPERTIES_PROPERTY=-Duser.home={{ user_cache }}/java \1'
+    line: 'Exec=env IDE_PROPERTIES_PROPERTY=-Duser.home={{ userdirs.cache }}/java \1'
     backrefs: yes
+  when: not check_line.changed
