@@ -880,6 +880,19 @@ wine:
 
 
 
+yarn:
+  install:
+    self:
+      gpgkeys:
+        - "https://dl.yarnpkg.com/debian/pubkey.gpg"
+      lists:
+        - "deb https://dl.yarnpkg.com/debian/ stable main"
+      packages:
+        - "yarn"
+
+
+
+
 zsh:
   install:
     self:

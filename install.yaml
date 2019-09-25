@@ -74,4 +74,5 @@
     - { role: virtualbox,     tags: virtualbox  }
     - { role: vlc,            tags: vlc         }
     - { role: wine,           tags: wine        }
+    - { role: yarn,           tags: yarn        }
     - { role: zsh,            tags: zsh         }

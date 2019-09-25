@@ -1,0 +1,14 @@
+---
+
+- set_fact:
+    context: "{{ vars.get(role_name, {}) | combine({'role_name': role_name}) }}"
+
+
+- name: main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ context }}"
+
