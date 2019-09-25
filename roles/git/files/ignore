@@ -5,3 +5,17 @@
 .venv/
 *.py[cod]
 __pycache__/
+
+# vagrant
+.vagrant
+
+# c
+*.o
+*.so
+
+# vim
+*.swp
+
+# vcs
+.hg/
+.svn/
