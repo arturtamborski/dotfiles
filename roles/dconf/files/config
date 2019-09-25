@@ -1,0 +1,930 @@
+[org/gnome/documents]
+window-maximized=true
+
+[org/gnome/GWeather]
+temperature-unit='centigrade'
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-schedule-automatic=false
+night-light-schedule-to=23.983333333333334
+night-light-schedule-from=0.0
+night-light-enabled=true
+night-light-temperature=6500
+
+[org/gnome/settings-daemon/plugins/xsettings]
+antialiasing='rgba'
+hinting='full'
+
+[org/gnome/settings-daemon/peripherals/keyboard]
+numlock-state='off'
+
+[org/gnome/gedit/preferences/ui]
+show-tabs-mode='auto'
+
+[org/gnome/gedit/plugins]
+active-plugins=['filebrowser', 'spell', 'modelines', 'time', 'docinfo']
+
+[org/gnome/gedit/state/window]
+size=(753, 601)
+state=87168
+bottom-panel-size=140
+side-panel-size=200
+side-panel-active-page='GeditWindowDocumentsPanel'
+
+[org/gnome/nautilus/preferences]
+search-view='list-view'
+default-folder-viewer='list-view'
+search-filter-time-type='last_modified'
+
+[org/gnome/nautilus/window-state]
+sidebar-width=143
+maximized=false
+initial-size=(958, 678)
+
+[org/gnome/evince/default]
+window-ratio=(1.8614402978304474, 1.1932367149758454)
+
+[org/gnome/file-roller/listing]
+sort-method='name'
+name-column-width=338
+sort-type='ascending'
+list-mode='as-folder'
+show-path=false
+
+[org/gnome/file-roller/dialogs/extract]
+skip-newer=false
+recreate-folders=true
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=515
+window-width=960
+
+[org/gnome/calendar]
+window-position=(0, 0)
+active-view='month'
+window-maximized=true
+window-size=(1920, 1137)
+
+[org/gnome/evolution-data-server]
+network-monitor-gio-name=''
+migrated=true
+
+[org/gnome/desktop/interface]
+font-name='Lato Medium 11'
+text-scaling-factor=0.75
+gtk-im-module='gtk-im-context-simple'
+enable-animations=false
+gtk-theme='Adwaita'
+
+[org/gnome/desktop/applications/terminal]
+exec='kitty'
+
+[org/gnome/desktop/notifications]
+application-children=['org-gnome-software', 'org-gnome-nautilus', 'gnome-network-panel', 'qbittorrent', 'jetbrains-toolbox', 'firefox-esr', 'org-keepassxc-keepassxc', 'org-gnome-chromegnomeshell', 'org-gnome-evolution-alarm-notify']
+
+[org/gnome/desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[org/gnome/desktop/notifications/application/org-keepassxc-keepassxc]
+application-id='org.keepassxc.KeePassXC.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-evolution-alarm-notify]
+application-id='org.gnome.Evolution-alarm-notify.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[org/gnome/desktop/notifications/application/firefox-esr]
+application-id='firefox-esr.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-chromegnomeshell]
+application-id='org.gnome.ChromeGnomeShell.desktop'
+
+[org/gnome/desktop/notifications/application/qbittorrent]
+application-id='qbittorrent.desktop'
+
+[org/gnome/desktop/notifications/application/jetbrains-toolbox]
+application-id='jetbrains-toolbox.desktop'
+
+[org/gnome/desktop/app-folders]
+folder-children=['Utilities', 'Sundry', 'YaST']
+
+[org/gnome/desktop/app-folders/folders/Utilities]
+translate=true
+categories=['X-GNOME-Utilities']
+apps=['org.gnome.baobab.desktop', 'deja-dup-preferences.desktop', 'eog.desktop', 'evince.desktop', 'org.gnome.FileRoller.desktop', 'gnome-calculator.desktop', 'gnome-dictionary.desktop', 'org.gnome.Characters.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Screenshot.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gnome-tweak-tool.desktop', 'gucharmap.desktop', 'seahorse.desktop', 'vinagre.desktop', 'yelp.desktop']
+name='X-GNOME-Utilities.directory'
+
+[org/gnome/desktop/app-folders/folders/Sundry]
+translate=true
+categories=['X-GNOME-Sundry']
+apps=['alacarte.desktop', 'authconfig.desktop', 'ca.desrt.dconf-editor.desktop', 'fedora-release-notes.desktop', 'firewall-config.desktop', 'flash-player-properties.desktop', 'gconf-editor.desktop', 'gnome-abrt.desktop', 'gnome-power-statistics.desktop', 'ibus-setup-anthy.desktop', 'ibus-setup.desktop', 'ibus-setup-hangul.desktop', 'ibus-setup-libbopomofo.desktop', 'ibus-setup-libpinyin.desktop', 'ibus-setup-m17n.desktop', 'ibus-setup-typing-booster.desktop', 'im-chooser.desktop', 'itweb-settings.desktop', 'jhbuild.desktop', 'javaws.desktop', 'java-1.7.0-openjdk-jconsole.desktop', 'java-1.7.0-openjdk-policytool.desktop', 'log4j-chainsaw.desktop', 'log4j-logfactor5.desktop', 'nm-connection-editor.desktop', 'orca.desktop', 'setroubleshoot.desktop', 'system-config-date.desktop', 'system-config-firewall.desktop', 'system-config-keyboard.desktop', 'system-config-language.desktop', 'system-config-printer.desktop', 'system-config-users.desktop', 'vino-preferences.desktop']
+name='X-GNOME-Sundry.directory'
+
+[org/gnome/desktop/app-folders/folders/YaST]
+translate=true
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+
+[org/gnome/desktop/screensaver]
+picture-uri='file:///usr/share/backgrounds/gnome/endless-shapes.jpg'
+primary-color='#ffffff'
+picture-options='zoom'
+secondary-color='#000000'
+
+[org/gnome/desktop/peripherals/touchpad]
+speed=0.55147058823529416
+
+[org/gnome/desktop/peripherals/mouse]
+speed=-0.080882352941176516
+
+[org/gnome/desktop/calendar]
+show-weekdate=false
+
+[org/gnome/desktop/search-providers]
+sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
+disabled=@as []
+
+[org/gnome/desktop/privacy]
+remove-old-temp-files=true
+old-files-age=uint32 1
+
+[org/gnome/desktop/wm/preferences]
+button-layout=':minimize,maximize,close'
+focus-mode='sloppy'
+num-workspaces=2
+
+registry:
+  org/gnome/desktop/wm:
+    button-layout: ':minimize,maximize,close'
+  org/gnome/desktop/datetime:
+    picture-uri: 'file:///usr/share/desktop-base/lines-theme/wallpaper/gnome-background.xml'
+    primary-color: '#ffffff'
+    picture-options: 'zoom'
+    secondary-color: '#000000'
+
+
+[org/gnome/desktop/datetime]
+automatic-timezone=true
+
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/desktop-base/lines-theme/wallpaper/gnome-background.xml'
+primary-color='#ffffff'
+picture-options='zoom'
+secondary-color='#000000'
+
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'pl')]
+xkb-options=@as []
+
+[org/gnome/cheese]
+photo-y-resolution=540
+burst-delay=1000
+video-y-resolution=540
+selected-effect='No Effect'
+camera='Integrated Camera: Integrated C'
+photo-x-resolution=960
+video-x-resolution=960
+
+[org/gnome/control-center]
+last-panel='display'
+
+[org/gnome/eog/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
+
+[org/gnome/eog/ui]
+sidebar=false
+
+[org/gnome/shell]
+app-picker-view=uint32 1
+command-history=['r']
+enabled-extensions=['gnomeGlobalAppMenu@lestcape', 'todo.txt@bart.libert.gmail.com', 'no-title-bar@franglais125.gmail.com', 'noannoyance@sindex.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'gnome-shell-screenshot@ttll.de', 'extendedgestures@mpiannucci.github.com', 'caffeine@patapon.info', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'dash-to-panel@jderose9.github.com']
+had-bluetooth-devices-setup=true
+favorite-apps=['firefox-esr.desktop', 'org.gnome.Nautilus.desktop']
+
+[org/gnome/shell/extensions/topicons-redux]
+alignment='right'
+
+[org/gnome/shell/extensions/TodoTxt]
+todotxt-location='/home/artur/.local/share/todo.txt/todo.txt'
+donetxt-location='/home/artur/.local/share/todo.txt/done.txt'
+
+[org/gnome/shell/extensions/caffeine]
+user-enabled=false
+
+[org/gnome/shell/extensions/screenshot]
+imgur-enable-notification=true
+shortcut-select-area=['<Super>Print']
+enable-indicator=true
+enable-notification=true
+filename-template='{N}-{Y}{m}{d}{H}{M}{S}-{w}x{h}'
+
+[org/gnome/shell/extensions/dash-to-panel]
+animate-app-switch=false
+focus-highlight-color='#eeeeee'
+hotkeys-overlay-combo='TEMPORARILY'
+trans-use-custom-opacity=true
+primary-monitor=-1
+animate-window-launch=false
+intellihide-hide-from-windows=false
+dot-color-unfocused-1='#5294e2'
+dot-color-unfocused-2='#5294e2'
+dot-color-unfocused-3='#5294e2'
+dot-color-unfocused-4='#5294e2'
+focus-highlight=true
+leftbox-size=0
+show-appmenu=true
+show-show-apps-button=true
+show-tooltip=false
+dot-color-1='#5294e2'
+dot-color-2='#5294e2'
+dot-color-3='#5294e2'
+dot-position='TOP'
+dot-color-4='#5294e2'
+show-favorites=true
+focus-highlight-opacity=30
+stockgs-keep-dash=false
+taskbar-position='LEFTPANEL'
+panel-size=24
+panel-position='TOP'
+trans-panel-opacity=1.0
+tray-padding=-1
+isolate-workspaces=false
+secondarymenu-contains-showdetails=false
+trans-use-custom-bg=true
+dot-size=3
+intellihide=false
+click-action='RAISE'
+appicon-padding=4
+multi-monitors=false
+dot-style-focused='METRO'
+isolate-monitors=true
+animate-show-apps=false
+trans-bg-color='#000000'
+show-showdesktop-button=false
+show-window-previews=false
+appicon-margin=4
+show-apps-icon-file=''
+tray-size=0
+
+[org/gnome/shell/extensions/extendedgestures]
+right-three-swipes=false
+down-three-action='switch-workspace'
+up-three-action='switch-workspace'
+left-three-action='switch-workspace'
+right-three-action='switch-workspace'
+left-three-swipes=false
+down-three-swipes=true
+up-three-swipes=true
+
+[org/gnome/shell/window-switcher]
+app-icon-mode='both'
+
+[org/gnome/terminal/legacy]
+menu-accelerator-enabled=false
+default-show-menubar=false
+
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+default-size-columns=100
+default-size-rows=30
+cursor-blink-mode='off'
+use-system-font=false
+audible-bell=false
+font='Monospace 13'
+
+[org/gnome/evolution/bogofilter]
+command=''
+utf8-for-spam-filter=true
+
+[org/gnome/evolution/plugin/prefer-plain]
+show-suppressed=true
+mode='normal'
+
+[org/gnome/evolution/mail]
+forward-style-name='attached'
+image-loading-policy='never'
+junk-check-incoming=true
+browser-close-on-reply-policy='ask'
+search-gravatar-for-photo=false
+reply-style-name='quoted'
+
+[org/gnome/evolution/calendar]
+work-day-thursday=true
+work-day-sunday=false
+prefer-new-item=''
+work-day-saturday=false
+work-day-tuesday=true
+week-start-day-name='monday'
+work-day-wednesday=true
+work-day-monday=true
+work-day-friday=true
+
+[org/gnome/evolution/shell]
+attachment-view=0
+
+[org/gnome/evolution]
+version='3.30.5'
+
+[org/gnome/Totem]
+subtitle-encoding='UTF-8'
+active-plugins=['vimeo', 'movie-properties', 'variable-rate', 'media_player_keys', 'recent', 'apple-trailers', 'skipto', 'screenshot', 'screensaver', 'save-file', 'autoload-subtitles']
+
+[org/gnome/mutter]
+dynamic-workspaces=false
+workspaces-only-on-primary=true
+
+[org/gnome/nm-applet/eap/e5da16fe-42a6-4069-b58a-ed482159f681]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=true
+
+[org/gnome/nm-applet/eap/17f1e45c-be24-4ac9-a5a9-4bf0b8be7687]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gtk/settings/file-chooser]
+sort-column='modified'
+sidebar-width=157
+window-position=(3840, 0)
+show-size-column=true
+show-hidden=true
+window-size=(690, 517)
+sort-directories-first=false
+date-format='regular'
+sort-order='descending'
+location-mode='path-bar'
+
+[org/gtk/settings/color-chooser]
+selected-color=(true, 0.0, 0.0, 0.0, 1.0)
+
+[org/virt-manager/virt-manager/vmlist-fields]
+network-traffic=false
+disk-usage=false
+
+[org/virt-manager/virt-manager/confirm]
+delete-storage=true
+forcepoweroff=true
+
+[org/virt-manager/virt-manager/connections]
+autoconnect=['qemu:///system']
+uris=['qemu:///system']
+
+[org/virt-manager/virt-manager/details]
+show-toolbar=true
+
+[org/virt-manager/virt-manager]
+manager-window-width=550
+manager-window-height=550
+
+[org/virt-manager/virt-manager/vms/28dad927362c4797b992d8d172368344]
+vm-window-size=(800, 600)
+
+[org/yorba/shotwell/preferences/ui]
+display-sidebar=true
+pin-toolbar-state=false
+display-basic-properties=true
+display-photo-tags=true
+display-extended-properties=false
+display-search-bar=false
+display-photo-titles=false
+show-welcome-dialog=false
+display-photo-ratings=true
+events-sort-ascending=false
+library-photos-sort-by=2
+library-photos-sort-ascending=false
+display-photo-comments=false
+
+[org/yorba/shotwell/preferences/window]
+direct-maximize=false
+direct-height=768
+direct-width=1024
+
+[com/github/wwmm/pulseeffects]
+last-used-preset='Presets'
+enable-all-sourceoutputs=true
+window-height=726
+window-width=1267
+
+[com/github/wwmm/pulseeffects/sinkinputs/pitch]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/equalizer]
+mode='IIR'
+input-gain=0.0
+post-messages=false
+num-bands=10
+output-gain=0.0
+installed=true
+state=false
+
+[com/github/wwmm/pulseeffects/sinkinputs/equalizer/leftchannel]
+band4-type='Bell'
+band4-q=1.5047602375372453
+band5-solo=false
+band8-mode='RLC (BT)'
+band7-gain=11.0
+band6-slope='x1'
+band16-type='Off'
+band0-gain=8.0
+band7-mute=false
+band23-type='Off'
+band9-frequency=15011.872336272731
+band5-mode='RLC (BT)'
+band7-type='Bell'
+band8-solo=false
+band2-frequency=119.24354052777788
+band7-slope='x1'
+band6-q=1.5047602375372449
+band0-mute=false
+band3-gain=-8.0
+band8-slope='x1'
+band26-type='Off'
+band0-type='Lo-shelf'
+band19-type='Off'
+band1-solo=false
+band9-gain=11.5
+band12-type='Off'
+band3-mute=false
+band6-gain=8.0
+band1-mode='RLC (BT)'
+band1-q=1.5047602375372453
+band29-type='Off'
+band4-frequency=474.71708526294935
+band3-type='Bell'
+band9-type='Hi-shelf'
+band4-solo=false
+band9-slope='x1'
+band9-mute=false
+band8-q=1.5047602375372453
+band4-mode='RLC (BT)'
+band15-type='Off'
+band6-mute=false
+band22-type='Off'
+band9-q=1.5047602375372451
+band6-type='Bell'
+band3-q=1.5047602375372451
+band6-frequency=1889.8827562743609
+band7-solo=false
+band18-type='Off'
+band2-gain=-5.5
+band25-type='Off'
+band1-frequency=59.763340205038524
+band0-slope='x1'
+band1-slope='x1'
+band0-solo=false
+band7-mode='RLC (BT)'
+band8-gain=11.0
+band11-type='Off'
+band2-mute=false
+band5-gain=4.0
+band0-mode='RLC (BT)'
+band28-type='Off'
+band2-type='Bell'
+band2-slope='x1'
+band3-solo=false
+band3-frequency=237.92214271853953
+band8-mute=false
+band3-mode='RLC (BT)'
+band14-type='Off'
+band5-mute=false
+band21-type='Off'
+band8-type='Bell'
+band5-q=1.5047602375372451
+band0-q=1.5047602375372451
+band5-type='Bell'
+band6-solo=false
+band7-q=1.5047602375372449
+band8-frequency=7523.7587677823067
+band3-slope='x1'
+band17-type='Off'
+band1-gain=5.0
+band24-type='Off'
+band5-frequency=947.18511049703125
+band6-mode='RLC (BT)'
+band9-mode='RLC (BT)'
+band9-solo=false
+band10-type='Off'
+band1-mute=false
+band4-gain=-3.0
+band4-slope='x1'
+band27-type='Off'
+band1-type='Bell'
+band2-solo=false
+band2-q=1.5047602375372451
+band7-frequency=3770.8118433037489
+band2-mode='RLC (BT)'
+band13-type='Off'
+band4-mute=false
+band20-type='Off'
+band0-frequency=29.952623149688797
+band5-slope='x1'
+
+[com/github/wwmm/pulseeffects/sinkinputs/equalizer/rightchannel]
+band23-frequency=4507.1499999999996
+band3-gain=-8.0
+band7-frequency=3770.8118433037489
+band4-mode='RLC (BT)'
+band8-gain=11.0
+band25-mode='RLC (BT)'
+band25-frequency=7143.3500000000004
+band5-mute=false
+band5-solo=false
+band9-frequency=15011.872336272731
+band9-mode='RLC (BT)'
+band0-q=1.5047602375372451
+band27-frequency=11321.450000000001
+band3-q=1.5047602375372451
+band19-type='Off'
+band17-mode='RLC (BT)'
+band26-type='Off'
+band5-type='Bell'
+band24-mode='RLC (BT)'
+band2-gain=-5.5
+band29-frequency=17943.279999999999
+band3-mode='RLC (BT)'
+band6-q=1.5047602375372449
+band9-q=1.5047602375372451
+band8-mode='RLC (BT)'
+band0-frequency=29.952623149688797
+band4-mute=false
+band2-slope='x1'
+band4-solo=false
+band9-mute=false
+band9-slope='x1'
+band9-solo=false
+band24-slope='x1'
+band2-frequency=119.24354052777788
+band17-slope='x1'
+band18-type='Off'
+band16-mode='RLC (BT)'
+band25-type='Off'
+band4-type='Bell'
+band4-frequency=474.71708526294935
+band23-mode='RLC (BT)'
+band0-slope='x1'
+band1-gain=5.0
+band7-slope='x1'
+band2-mode='RLC (BT)'
+band22-slope='x1'
+band3-mute=false
+band29-slope='x1'
+band15-slope='x1'
+band3-solo=false
+band8-mute=false
+band8-solo=false
+band6-frequency=1889.8827562743609
+band9-type='Hi-shelf'
+band8-frequency=7523.7587677823067
+band17-type='Off'
+band15-mode='RLC (BT)'
+band3-type='Bell'
+band20-slope='x1'
+band0-gain=8.0
+band1-mode='RLC (BT)'
+band13-slope='x1'
+band22-mode='RLC (BT)'
+band27-slope='x1'
+band8-type='Bell'
+band24-type='Off'
+band2-mute=false
+band2-solo=false
+band16-type='Off'
+band14-mode='RLC (BT)'
+band23-type='Off'
+band2-type='Bell'
+band21-mode='RLC (BT)'
+band1-q=1.5047602375372453
+band0-mode='RLC (BT)'
+band4-q=1.5047602375372453
+band1-slope='x1'
+band7-q=1.5047602375372449
+band1-mute=false
+band8-slope='x1'
+band1-solo=false
+band16-frequency=899.28999999999996
+band15-type='Off'
+band13-mode='RLC (BT)'
+band22-type='Off'
+band1-type='Bell'
+band18-frequency=1425.29
+band20-mode='RLC (BT)'
+band6-slope='x1'
+band21-slope='x1'
+band28-slope='x1'
+band14-slope='x1'
+band0-mute=false
+band0-solo=false
+band4-slope='x1'
+band14-type='Off'
+band12-mode='RLC (BT)'
+band0-type='Lo-shelf'
+band26-slope='x1'
+band12-slope='x1'
+band29-mode='RLC (BT)'
+band19-slope='x1'
+band21-type='Off'
+band11-frequency=284.38
+band7-gain=11.0
+band13-frequency=450.72000000000003
+band10-slope='x1'
+band13-type='Off'
+band11-mode='RLC (BT)'
+band15-frequency=714.34000000000003
+band20-type='Off'
+band20-frequency=2258.9299999999998
+band28-mode='RLC (BT)'
+band6-gain=8.0
+band17-frequency=1132.1500000000001
+band22-frequency=3580.1599999999999
+band2-q=1.5047602375372451
+band5-q=1.5047602375372451
+band19-frequency=1794.3299999999999
+band8-q=1.5047602375372453
+band24-frequency=5674.1599999999999
+band12-type='Off'
+band10-mode='RLC (BT)'
+band5-slope='x1'
+band29-type='Off'
+band27-mode='RLC (BT)'
+band5-gain=4.0
+band26-frequency=8992.9400000000005
+band6-mode='RLC (BT)'
+band7-mute=false
+band10-frequency=225.88999999999999
+band28-frequency=14252.860000000001
+band3-slope='x1'
+band7-solo=false
+band25-slope='x1'
+band11-type='Off'
+band12-frequency=358.01999999999998
+band19-mode='RLC (BT)'
+band18-slope='x1'
+band28-type='Off'
+band4-gain=-3.0
+band1-frequency=59.763340205038524
+band26-mode='RLC (BT)'
+band14-frequency=567.41999999999996
+band11-slope='x1'
+band5-mode='RLC (BT)'
+band7-type='Bell'
+band3-frequency=237.92214271853953
+band23-slope='x1'
+band6-solo=false
+band6-mute=false
+band9-gain=11.5
+band16-slope='x1'
+band21-frequency=2843.8200000000002
+band5-frequency=947.18511049703125
+band10-type='Off'
+band18-mode='RLC (BT)'
+band27-type='Off'
+band6-type='Bell'
+band7-mode='RLC (BT)'
+
+[com/github/wwmm/pulseeffects/sinkinputs/limiter]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/loudness]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/filter]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/exciter]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/maximizer]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/autogain]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/reverb]
+predelay=25.0
+room-size='Large/smooth'
+decay-time=0.44594499999999998
+amount=-6.5624608993530273
+diffusion=0.54000000000000004
+post-messages=false
+bass-cut=257.64999999999998
+treble-cut=20000.0
+hf-damp=5508.46
+installed=true
+state=false
+
+[com/github/wwmm/pulseeffects/sinkinputs/crossfeed]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/delay]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/gate]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/multibandcompressor]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/compressor]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/bassenhancer]
+blend=10.0
+harmonics=9.9999999999999947
+floor-active=false
+amount=5.0
+input-gain=-10.0
+post-messages=false
+listen=false
+installed=true
+state=true
+floor=32.0
+scope=101.0
+
+[com/github/wwmm/pulseeffects/sinkinputs/multibandgate]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/deesser]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/convolver]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/stereotools]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sinkinputs/crystalizer]
+intensity-band1=32.0
+intensity-band12=-21.0
+state=false
+post-messages=false
+installed=true
+intensity-band0=32.0
+intensity-band11=-25.0
+
+[com/github/wwmm/pulseeffects/sourceoutputs/pitch]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sourceoutputs/equalizer]
+post-messages=false
+state=false
+installed=true
+
+[com/github/wwmm/pulseeffects/sourceoutputs/equalizer/rightchannel]
+band20-type='Bell'
+band23-slope='x1'
+band14-mode='RLC (BT)'
+band24-slope='x1'
+band4-type='Bell'
+band21-mode='RLC (BT)'
+band18-frequency=1425.29
+band6-slope='x1'
+band16-type='Bell'
+band5-mode='RLC (BT)'
+band9-slope='x1'
+band11-frequency=284.38
+band23-type='Bell'
+band13-slope='x1'
+band14-slope='x1'
+band17-mode='RLC (BT)'
+band25-slope='x1'
+band2-frequency=35.799999999999997
+band23-frequency=4507.1499999999996
+band24-mode='RLC (BT)'
+band7-frequency=113.20999999999999
+band19-type='Bell'
+band9-frequency=179.43000000000001
+band7-slope='x1'
+band26-type='Bell'
+band8-slope='x1'
+band0-type='Bell'
+band10-mode='RLC (BT)'
+band8-type='Bell'
+band15-slope='x1'
+band13-frequency=450.72000000000003
+band27-mode='RLC (BT)'
+band26-slope='x1'
+band12-type='Bell'
+band1-mode='RLC (BT)'
+band7-type='Bell'
+band4-frequency=56.740000000000002
+band25-frequency=7143.3500000000004
+band29-type='Bell'
+band3-type='Bell'
+band13-mode='RLC (BT)'
+band8-mode='RLC (BT)'
+band20-mode='RLC (BT)'
+band9-mode='RLC (BT)'
+band20-frequency=2258.9299999999998
+band15-type='Bell'
+band4-mode='RLC (BT)'
+band17-slope='x1'
+band15-frequency=714.34000000000003
+band22-type='Bell'
+band16-slope='x1'
+band6-type='Bell'
+band16-mode='RLC (BT)'
+band27-slope='x1'
+band6-frequency=89.930000000000007
+band23-mode='RLC (BT)'
+band27-frequency=11321.450000000001
+band28-slope='x1'
+band18-type='Bell'
+band7-mode='RLC (BT)'
+band18-slope='x1'
+band25-type='Bell'
+band1-frequency=28.440000000000001
+band22-frequency=3580.1599999999999
+band0-slope='x1'
+band19-mode='RLC (BT)'
+band1-slope='x1'
+band17-frequency=1132.1500000000001
+band26-mode='RLC (BT)'
+band29-slope='x1'
+band11-type='Bell'
+band0-mode='RLC (BT)'
+band10-frequency=225.88999999999999
+band8-frequency=142.53
+band28-type='Bell'
+band29-frequency=17943.279999999999
+band19-slope='x1'
+band2-type='Bell'
+band12-mode='RLC (BT)'
+band2-slope='x1'
+band29-mode='RLC (BT)'
+band24-frequency=5674.1599999999999
+band14-type='Bell'
+band3-frequency=45.07
+band21-type='Bell'
+band19-frequency=1794.3299999999999
+band3-mode='RLC (BT)'
+band15-mode='RLC (BT)'
+band12-frequency=358.01999999999998
+band5-type='Bell'
+band22-mode='RLC (BT)'
+band21-slope='x1'
+band20-slope='x1'
+band17-type='Bell'
+band6-mode='RLC (BT)'
+band3-slope='x1'
+band24-type='Bell'
+band5-frequency=71.430000000000007
+band26-frequency=8992.9400000000005
+band18-mode='RLC (BT)'
+band9-type='Bell'
+band25-mode='RLC (BT)'
+band10-slope='x1'
+band10-type='Bell'
+band11-slope='x1'
+band14-frequency=567.41999999999996
+band27-type='Bell'
+band16-frequency=899.28999999999996
+band1-type='Bell'
+band11-mode='RLC (BT)'
+band22-slope='x1'
+band4-slope='x1'
+band28-mode='RLC (BT)'
+band28-frequency=14252.860000000001
+band2-mode='RLC (BT)'
+band13-type='Bell'
+band12-slope='x1'
+band0-frequency=22.59
+band21-frequency=2843.8200000000002
+band5-slope='x1'
