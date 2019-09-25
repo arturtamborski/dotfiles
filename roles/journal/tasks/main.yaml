@@ -1,0 +1,26 @@
+---
+
+- set_fact:
+  context: "{{ vars[role_name] or {} | combine({'role_name': role_name}) }}"
+
+
+- name: main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ context }}"
+
+
+- name: create journal log directory
+  become: yes
+  file:
+    path: "/var/log/journal"
+    state: directory
+    mode: '0755'
+
+
+- name: create journal temp files
+  become: yes
+  command: "systemd-tmpfiles --create --prefix /var/log/journal"
