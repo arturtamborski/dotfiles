@@ -1,6 +1,6 @@
 ---
 
-user_name: "{{ ansible_user }}"
+user_name: "artur"
 user_home: "/home/{{ user_name }}"
 user_conf: "{{ user_home }}/.config"
 user_cache: "{{ user_home }}/.cache"
