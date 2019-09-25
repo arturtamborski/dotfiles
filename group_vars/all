@@ -3,6 +3,7 @@
 user_name: "artur"
 user_home: "/home/{{ user_name }}"
 user_conf: "{{ user_home }}/.config"
+user_cache: "{{ user_home }}/.cache"
 user_work: "{{ user_home }}/work"
 user_mine: "{{ user_home }}/self"
 
@@ -128,8 +129,34 @@ dbeaver:
 
 
 
+dconf:
+  install:
+    self:
+      packages:
+        - "dconf-editor"
+
+
+
+
 defold:
   url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
+
+
+
+
+desktop:
+  registry:
+    org/gnome/desktop/interface:
+      font-name: "Lato Medium 11"
+      text-scaling-factor: 0.75
+      gtk-in-module: "gtk-im-context-simple"
+      enable-animations: false
+      gtk-theme: "Adawaita"
+    org/gnome/desktop/screensaver:
+      picture-uri: "file:///usr/share/backgrounds/gnome/endless-shapes.jpg"
+      picture-options: "zoom"
+      primary-color: "#ffffff"
+      secondary-color: "#000000"
 
 
 
@@ -174,6 +201,10 @@ firefox:
       packages:
         - "firefox-esr"
 
+  environment:
+    src: "files/firefox/env"
+    dst: "{{ user_conf }}/firefox/env"
+
 
 
 
@@ -186,6 +217,19 @@ flatpak:
       packages:
         - "flatpak"
         - "gnome-software-plugin-flatpak"
+
+
+
+
+fonts:
+  configure:
+    self:
+      src: "fonts/files/config"
+      dst: "{{ user_conf }}/fonts/config"
+
+  environment:
+    src: "fonts/files/env"
+    dst: "{{ user_conf }}/fonts/env"
 
 
 
@@ -346,6 +390,11 @@ java:
 
 
 
+journal:
+
+
+
+
 jq:
   install:
     self:
@@ -412,6 +461,14 @@ less:
 
 
 
+locale:
+  environment:
+    src: "locale/files/env"
+    dst: "{{ user_conf }}/locale/env"
+
+
+
+
 monitors:
   configure:
     global:
@@ -455,6 +512,7 @@ pip:
         - "python-apt"
         - "python-pip"
         - "python3-pip"
+        - "python3-venv"
 
 
 
@@ -485,6 +543,15 @@ pre:
 
 
 pycharm:
+  configure:
+    self:
+      src: "pycharm/files/config"
+      dst: "{{ user_conf }}/pycharm/config"
+
+  environment:
+    src: "pycharm/files/env"
+    dst: "{{ user_conf }}/pycharm/env"
+  
 
 
 
@@ -716,13 +783,13 @@ userdirs:
   cache: "{{ user_home }}/.local/cache"
   config: "{{ user_home }}/.config"
 
-  downloads: "{{ user_home }}/downloads"
   documents: "{{ user_home }}/docs"
   music: "{{ user_home }}/docs/music"
   public: "{{ user_home }}/docs/shared"
   videos: "{{ user_home }}/docs/videos"
   desktop: "{{ user_home }}/docs/desktop"
   pictures: "{{ user_home }}/docs/pictures"
+  downloads: "{{ user_home }}/docs/downloads"
   templates: "{{ user_home }}/docs/templates"
 
   work: "{{ user_work }}"
