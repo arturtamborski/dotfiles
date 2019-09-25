@@ -1,7 +1,7 @@
 ---
 
 - set_fact:
-    context: "{{ lookup('vars', role_name) | combine({'role_name': role_name}) }}"
+    context: "{{ vars[role_name] or {} | combine({'role_name': role_name}) }}"
 
 
 - name: main
@@ -11,3 +11,4 @@
     tasks_from: main
   vars:
     given: "{{ context }}"
+
