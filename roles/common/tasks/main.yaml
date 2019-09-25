@@ -63,7 +63,7 @@
     name: common
     tasks_from: registry
   vars:
-    _given: "{{ _dict_item.value }}"
+    _given: "{{ _dict_item }}"
   with_dict: "{{ given.registry }}"
   loop_control:
     loop_var: _dict_item

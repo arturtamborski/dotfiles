@@ -42,9 +42,8 @@
 
 - name: install packages
   package:
-    name: "{{ item }}"
+    name: "{{ _given.packages }}"
     state: latest
-  with_items: "{{ _given.packages }}"
   when: _given.packages is defined
 
 
@@ -58,8 +57,7 @@
 
 
 - name: install pips
-  command: "python3 -m pip --no-cache-dir install {{ item }}"
-  with_items: "{{ _given.pips }}"
+  command: "python3 -m pip --no-cache-dir install {{ _given.pips }}"
   when: _given.pips is defined
 
 
