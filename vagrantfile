@@ -6,7 +6,7 @@ Vagrant.configure(1) do |config|
     config.vm.provision "shell", inline: <<-end
         sudo su
             apt  install --yes          python3-pip
-            pip3 install --no-cache-dir ansible
+            pip3 install --no-cache-dir ansible==2.8.3
         exit
     end
 

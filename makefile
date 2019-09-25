@@ -27,17 +27,17 @@ test: start # apply playbook in test image
 	vagrant reload --provision
 
 
-apply: # apply playbook locally (with optional tag=<tag>)
-	@test -z "${tag}" \
+apply: # apply playbook locally (with optional role=<role>)
+	@test -z "${role}" \
 		&& ansible-playbook install.yaml \
-		|| ansible-playbook install.yaml -t ${tag}
+		|| ansible-playbook install.yaml -t ${role}
 
 
 bootstrap: # install required packages, add user to sudoers
 	su root -c "                                               \
 		apt  update                                          ; \
 		apt  install --yes          sudo python3-pip         ; \
-		pip3 install --no-cache-dir ansible                  ; \
+		pip3 install --no-cache-dir ansible==2.8.3           ; \
 		/usr/sbin/usermod -aG sudo $$USER                    ; \
 		echo '$$USER ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers ; \
 		echo "Done, run `make apply` to install dotfiles"
