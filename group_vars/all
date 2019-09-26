@@ -556,18 +556,11 @@ pycharm:
   environment:
     src: "pycharm/files/env"
     dst: "{{ user_conf }}/pycharm/env"
-  
 
 
 
 
 pyenv:
-  install:
-    self:
-      commands:
-        - "rm -r '{{ user_home }}/.cache/pyenv' || true"
-        - "curl https://pyenv.run | PYENV_ROOT='{{ user_home }}/.cache/pyenv' bash"
-
   environment:
     src: "pyenv/files/env"
     dst: "{{ user_conf }}/pyenv/env"

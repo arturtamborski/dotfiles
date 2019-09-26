@@ -11,3 +11,15 @@
     tasks_from: main
   vars:
     given: "{{ context }}"
+
+
+- name: remove previous installation directory
+  file:
+    path: "{{ user_home }}/.cache/pyenv"
+    state: absent
+
+
+- name: install
+  shell: "curl https://pyenv.run | PYENV_ROOT='{{ user_home }}/.cache/pyenv' bash"
+  args:
+    warn: no
