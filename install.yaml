@@ -63,7 +63,7 @@
     - { role: steam,          tags: steam       }
     - { role: sublime,        tags: sublime     }
     - { role: syncthing,      tags: syncthing   }
-    - { role: tarsnap,        tags: tarsnap     }
+#   - { role: tarsnap,        tags: tarsnap     }
     - { role: telegram,       tags: telegram    }
     - { role: terraform,      tags: terraform   }
     - { role: tlp,            tags: tlp         }
