@@ -437,7 +437,7 @@ keybase:
 
 kitty:
   configure:
-    global:
+    self:
       src: "kitty/files/config"
       dst: "{{ user_conf }}/kitty/config"
 
@@ -551,7 +551,7 @@ pycharm:
   configure:
     self:
       src: "pycharm/files/config"
-      dst: "{{ user_conf }}/pycharm/config"
+      dst: "{{ user_conf }}/pycharm/options"
 
   environment:
     src: "pycharm/files/env"

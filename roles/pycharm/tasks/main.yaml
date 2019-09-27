@@ -16,7 +16,7 @@
 - name: check if desktop shortcut was modified already
   lineinfile:
     path: "{{ user_home }}/.local/share/applications/jetbrains-pycharm.desktop"
-    regexp: "Exec=env .*"
+    regexp: "Exec=bash .*"
     state: absent
   register: check_line
   check_mode: yes
@@ -26,6 +26,6 @@
   lineinfile:
     path: "{{ user_home }}/.local/share/applications/jetbrains-pycharm.desktop"
     regexp: "Exec=(.*)"
-    line: 'Exec=env IDE_PROPERTIES_PROPERTY=-Duser.home={{ userdirs.cache }}/java \1'
+    line: 'Exec=bash -c \1'
     backrefs: yes
   when: not check_line.changed

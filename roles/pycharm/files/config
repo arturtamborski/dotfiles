@@ -1,5 +1,5 @@
-idea.config.path={{ pycharm.configure.self.dst | dirname }}
-idea.plugins.path={{ pycharm.configure.self.dst | dirname }}/plugins
+user.home={{ user_cache }}/java
 idea.log.path={{ user_cache }}/pycharm/logs
 idea.system.path={{ user_cache }}/pycharm
-
+idea.config.path={{ pycharm.configure.self.dst | dirname }}
+idea.plugins.path={{ pycharm.configure.self.dst | dirname }}/plugins
