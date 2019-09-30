@@ -15,7 +15,7 @@
 
 - name: remove previous installation directory
   file:
-    path: "{{ user_home }}/.cache/pyenv"
+    path: "{{ user_cache }}/pyenv"
     state: absent
 
 
