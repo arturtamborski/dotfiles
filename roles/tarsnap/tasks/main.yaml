@@ -19,33 +19,29 @@
     dest: "/tmp/{{ tarsnap.url.split('/')[-1] }}"
 
 
-- name: rename file
-  command: "mv /tmp/{{ tarsnap.url.split('/')[-1] }} /tmp/tarsnap.tar.gz"
-
-
 - name: extract archive
   unarchive:
-    src: "/tmp/tarsnap.tar.gz"
+    src: "/tmp/{{ tarsnap.url.split('/')[-1] }}.tar.gz"
     dest: "/tmp/"
 
 
 - name: configure
   command: "./configure"
   args:
-    chdir: "/tmp/tarsnap/"
+    chdir: "/tmp/{{ tarsnap.url.split('/')[-1] }}"
 
 
 - name: build
   command: "make all"
   args:
-    chdir: "/tmp/tarsnap/"
+    chdir: "/tmp/{{ tarsnap.url.split('/')[-1] }}"
 
 
 - name: install
   become: yes
   command: "make install"
   args:
-    chdir: "/tmp/tarsnap/"
+    chdir: "/tmp/{{ tarsnap.url.split('/')[-1] }}"
 
 
 - name: clean up
@@ -53,5 +49,5 @@
     path: "{{ item }}"
     state: absent
   with_items:
-    - "/tmp/tarsnap"
-    - "/tmp/tarsnap.tar.gz"
+    - "/tmp/{{ tarsnap.url.split('/')[-1] }}"
+    - "/tmp/{{ tarsnap.url.split('/')[-1] }}.tar.gz"
