@@ -7,3 +7,34 @@
 
 [core]
     excludesfile = {{ git.configure.ignore.dst }}
+    attributesfile = {{ git.configure.attribute.dst }}
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+[alias]
+    s = status -s
+    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
+
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
+
+    amend = commit --amend --reuse-message=HEAD
+
+[url "git@github.com:"]
+    pushInsteadOf = https://github.com/
+    InsteadOf = https://github.com/
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+    insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+    insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+    insteadOf = "gist:"
