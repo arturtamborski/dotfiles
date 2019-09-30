@@ -11,3 +11,10 @@
     tasks_from: main
   vars:
     given: "{{ context }}"
+
+
+- name: install themes
+  git:
+    repo: "git@github.com:dexpota/kitty-themes.git"
+    dest: "{{ kitty.configure.self.dst | dirname }}/themes"
+    depth: 1
