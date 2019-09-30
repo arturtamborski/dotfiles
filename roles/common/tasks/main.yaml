@@ -21,17 +21,17 @@
   when: given.install is defined
 
 
-- name: template
+- name: configure
   include_role:
     public: no
     name: common
-    tasks_from: template
+    tasks_from: configure
   vars:
     _given: "{{ _dict_item.value }}"
-  with_dict: "{{ given.template }}"
+  with_dict: "{{ given.configure }}"
   loop_control:
     loop_var: _dict_item
-  when: given.template is defined
+  when: given.configure is defined
 
 
 - name: environment
