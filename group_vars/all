@@ -162,6 +162,8 @@ desktop:
       picture-options: "zoom"
       primary-color: "#ffffff"
       secondary-color: "#000000"
+    /org/gnome/desktop/wm/preferences:
+      button-layout: ":minimize,maximize,close"
 
 
 
@@ -274,6 +276,9 @@ git:
     ignore:
       src: "git/files/ignore"
       dst: "{{ user_conf }}/git/ignore"
+    attribute:
+      src: "git/files/attribute"
+      dst: "{{ user_conf }}/git/attribute"
     pre-push:
       src: "git/files/hooks/pre-push"
       dst: "{{ user_conf }}/git/hooks/pre-push"
