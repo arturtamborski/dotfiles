@@ -164,6 +164,8 @@ desktop:
       secondary-color: "#000000"
     /org/gnome/desktop/wm/preferences:
       button-layout: ":minimize,maximize,close"
+    /org/gnome/desktop/calendar:
+      show-weekdate: "true"
 
 
 
@@ -626,6 +628,10 @@ redshift:
     self:
       packages:
         - "redshift"
+  
+  registry:
+    /org/gnome/settings-daemon/plugins/color:
+      night-light-temperature: "5000"
 
 
 
@@ -884,6 +890,19 @@ vlc:
 
 
 wine:
+  install:
+    self:
+      packages:
+        - "wine"
+
+  configure:
+    self:
+      src: "wine/files/config"
+      dst: "{{ user_conf }}/wine/config"
+  
+  environment:
+    src: "wine/files/env"
+    dst: "{{ user_conf }}/wine/env"
 
 
 
