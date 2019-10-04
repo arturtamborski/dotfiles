@@ -24,6 +24,7 @@ sensors, user themes, window list, worksapace indicator, window navigator,
 gconf - move shit to their place with gconf, that will require some hacking tho
 like, this needs to be executed one time only somehow
 
+radare2 :>
 
 vim remap x to something that can be dotted (repeated)
 

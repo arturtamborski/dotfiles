@@ -210,6 +210,12 @@ firefox:
       packages:
         - "firefox-esr"
 
+  configure:
+    self:
+      src: "firefox/files/config"
+      dst: "/etc/firefox/syspref.js"
+      become: yes
+
   environment:
     src: "firefox/files/env"
     dst: "{{ user_conf }}/firefox/env"
@@ -380,6 +386,24 @@ inkscape:
     self:
       packages:
         - "inkscape"
+
+
+
+
+irssi:
+  install:
+    self:
+      packages:
+        - "irssi"
+  
+  configure:
+    self:
+      src: "irssi/files/config"
+      dst: "{{ user_conf }}/irssi/config"
+
+  environment:
+    src: "irssi/files/env"
+    dst: "{{ user_conf }}/irssi/env"
 
 
 
