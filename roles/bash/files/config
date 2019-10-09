@@ -134,6 +134,7 @@ alias v="vim"
 
 # -------------------------------------------------------------- local bin --- #
 export PATH="$PATH:~/.local/bin"
+export PATH="$PATH:/usr/sbin"
 
 
 

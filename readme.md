@@ -1,6 +1,6 @@
 # dotfiles
 
-How I can take?
+How can I take?
 ```
 make
 ```
