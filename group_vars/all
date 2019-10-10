@@ -212,9 +212,14 @@ firefox:
 
   configure:
     self:
+      # todo: http://kb.mozillazine.org/User.js_file
       src: "firefox/files/config"
       dst: "/etc/firefox/syspref.js"
       become: yes
+
+    chrome:
+      src: "firefox/files/chrome"
+      dst: "{{ user_home }}/.mozilla/firefox/*.default/chrome/userChrome.css"
 
   environment:
     src: "firefox/files/env"
