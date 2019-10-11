@@ -1,11 +1,13 @@
+/* hide tabs bar */
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
 #sidebar-box #sidebar-header {
   display: none !important;
 }
 
-#TabsToolbar {
- visibility: collapse !important;
-}
-
+/* fix input boxes on dark themes */
 input:not(.urlbar-input):not(.textbox-input):not(.form-control):not([type='checkbox']):not([type='radio']), textarea, select {
     -moz-appearance: none !important;
     background-color: white;
@@ -14,4 +16,31 @@ input:not(.urlbar-input):not(.textbox-input):not(.form-control):not([type='check
 
 #downloads-indicator-counter {
     color: white;
+}
+
+
+#identity-icon:not(:hover) {
+  visibility: hidden;
+}
+
+#connection-icon {
+  visibility: hidden;
+}
+
+/* hide save to pocket button */
+#pocket-button-box {
+    display: none !important;
+}
+
+#pageActionButton {
+    display: none !important;
+}
+
+/* vertical tab tweaks */
+.sidebar-splitter {
+    display: none !important;
+}
+
+.tabbrowser-tab[pinned] {
+    border-left: none !important;
 }

@@ -1,3 +1,10 @@
 pref("browser.tabs.remote.autostart", false);
 
+# enable userChrome
+pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+
+# Browser Toolbox popup
+pref("devtools.debugger.prompt-connection", false);
+
 # https://gist.github.com/tioxy/b83342e32c018ff24dd3e0899b09f0dd
+
