@@ -11,24 +11,28 @@
 input:not(.urlbar-input):not(.textbox-input):not(.form-control):not([type='checkbox']):not([type='radio']), textarea, select {
     -moz-appearance: none !important;
     background-color: white;
-    color: black;
+    color: black !important;
 }
 
 #downloads-indicator-counter {
-    color: white;
+    color: white !important;
 }
 
 
 #identity-icon:not(:hover) {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 #connection-icon {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 /* hide save to pocket button */
 #pocket-button-box {
+    display: none !important;
+}
+/* hide reader mode button */
+#reader-mode-button {
     display: none !important;
 }
 
@@ -37,10 +41,17 @@ input:not(.urlbar-input):not(.textbox-input):not(.form-control):not([type='check
 }
 
 /* vertical tab tweaks */
+
+/* TODO: fix this, I can't resize it now */
 .sidebar-splitter {
     display: none !important;
 }
 
 .tabbrowser-tab[pinned] {
     border-left: none !important;
+}
+
+/* bookmark bar can't be easily hidden, so i'm grayscaling it instead */
+#PersonalToolbar {
+    filter: grayscale(100%) !important;
 }
