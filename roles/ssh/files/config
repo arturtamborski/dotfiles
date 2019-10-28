@@ -1,52 +1,38 @@
-# -- global ------------------
+# ----------------------------------------------------------------- global --- #
 Host *
     User {{ user_name }}
     Forwardagent yes
     StrictHostKeyChecking no
-# ----------------------------
 
 
-# -- github ------------------
-    Host github.com
+# ----------------------------------------------------------------- github --- #
+Host github.com
     HostName github.com
     IdentityFile {{ ssh.configure.self.dst | dirname }}/keys/github
     IdentitiesOnly yes
     User git
-# ----------------------------
 
 
-# -- gitlab ------------------
-    Host gitlab.com
+# ----------------------------------------------------------------- gitlab --- #
+Host gitlab.com
     HostName gitlab.com
     IdentityFile {{ ssh.configure.self.dst | dirname }}/keys/gitlab
     IdentitiesOnly yes
     User git
-# ----------------------------
 
 
-# -- mikrus ------------------
-    Host mikrus
-    HostName srv02.mikr.us
-    Port 10515
-    IdentityFile {{ ssh.configure.self.dst | dirname }}/keys/mikrus
-    IdentitiesOnly yes
-    User root
-# ----------------------------
 
-
-# -- wmi ---------------------
-    Host wmi
+# -------------------------------------------------------------------- wmi --- #
+Host wmi
     HostName lts.wmi.amu.edu.pl
     Port 22
     IdentityFile {{ ssh.configure.self.dst | dirname }}/keys/wmi
     IdentitiesOnly yes
-# ----------------------------
 
 
-# -- git.wmi -----------------
-    Host git.wmi.amu.edu.pl
+# ---------------------------------------------------------------- git-wmi --- #
+Host git-wmi
     HostName git.wmi.amu.edu.pl
     IdentityFile {{ ssh.configure.self.dst | dirname }}/keys/git-wmi
     IdentitiesOnly yes
     User git
-# ----------------------------
