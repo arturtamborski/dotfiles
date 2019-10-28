@@ -20,6 +20,12 @@ apt:
     - "apt-transport-https"
     - "software-properties-common"
 
+  configure:
+    self:
+      src: "apt/files/config"
+      dst: "/etc/apt/apt.conf.d/99norecommends"
+      become: yes
+
 
 
 

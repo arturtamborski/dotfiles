@@ -5,40 +5,26 @@ some way of downloading and extracting kdbx files?
 .zsh envs
 .gnupg (tricky)
 .ICEauthority (fuuu)
-.java (well, kinda, not yet)
-
 git autocomplete
 zsh autocomplete
-git autocloner
 
-apply script which checks git status and applies given roles
+write script which checks git status and applies given roles
 
-cups ffs (and drivers maybe, if i remember the name)
-
-.ssh
+.ssh (is it even possible?)
 
 gnome tweaks (alternate tab, animation tweaks, do not disturb button, extended
 gestures, launch new instance, removable drive menu, screensot window sizer,
 sensors, user themes, window list, worksapace indicator, window navigator,
 
-gconf - move shit to their place with gconf, that will require some hacking tho
-like, this needs to be executed one time only somehow
-
-radare2 :>
-
 vim remap x to something that can be dotted (repeated)
 
 .npm
 .profile
-pycharm2
 serverless
 steam
 vscode
-waterfox?
 .X shit
-gconf?
 .gem/
-.gnupg/
 .gradle/
 .lein/
 .local/
@@ -49,10 +35,37 @@ gconf?
 .npm/
 .ptpython/
 .sqlite_history
-.terraform
-.vagrant
 .vnc/
-.vscode/
 .yarnrc
-.zcompdump
-.zhistory
+
+
+.ICEauthority
+.cache
+.cert
+.config
+.eclipse
+.gnome
+.gnupg
+.idlerc
+.irssi
+.java
+.lesshst
+.local
+.mozilla
+.ngrok2
+.notion-py
+.pki
+.python_history
+.ssh
+.storyscript
+.swt
+.themes
+.var
+.vim
+.wine
+.yjp
+VirtualBox VMs
+dockerignore
+mozilla
+ssh.tar
+sublime-text-3
