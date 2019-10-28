@@ -1,3 +1,4 @@
 # --------------------------------------------------------------------- go --- #
-export PATH="$PATH:/usr/local/go/bin"
 export GOPATH="{{ user_home }}/self/go"
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$GOPATH/bin"
