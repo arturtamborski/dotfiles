@@ -55,6 +55,7 @@
     - { role: pyenv,          tags: pyenv       }
     - { role: python,         tags: python      }
     - { role: qbittorrent,    tags: qbittorrent }
+    - { role: radare,         tags: radare      }
     - { role: readline,       tags: readline    }
     - { role: redshift,       tags: redshift    }
     - { role: ruby,           tags: ruby        }

@@ -1,0 +1,25 @@
+---
+
+- set_fact:
+    context: "{{ (lookup('vars', role_name) or {}) | combine({'role_name': role_name}) }}"
+
+
+- name: main
+  include_role:
+    public: yes
+    name: common
+    tasks_from: main
+  vars:
+    given: "{{ context }}"
+
+
+- name: clone
+  become: yes
+  git:
+    repo: "https://github.com/radare/radare2.git"
+    dest: "/opt/radare"
+
+
+- name: install
+  become: yes
+  command: "/opt/radare/sys/install.sh"

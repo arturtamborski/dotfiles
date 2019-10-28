@@ -652,6 +652,11 @@ qbittorrent:
 
 
 
+radare:
+
+
+
+
 readline:
   configure:
     self:
