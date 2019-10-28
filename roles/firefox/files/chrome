@@ -55,3 +55,6 @@ input:not(.urlbar-input):not(.textbox-input):not(.form-control):not([type='check
 #PersonalToolbar {
     filter: grayscale(100%) !important;
 }
+.bookmark-item {
+    color: #9f9f9f !important;
+}
