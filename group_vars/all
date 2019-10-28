@@ -108,6 +108,19 @@ c:
 
 
 
+# not yet working...
+clang:
+  install:
+    self:
+      lists:
+        - "deb http://apt.llvm.org/buster/ llvm-toolchain-buster-9 main"
+        - "deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-9 main"
+      packages:
+        - "llvm-toolchain-buster-9"
+
+
+
+
 common:
   given:
 
@@ -817,6 +830,24 @@ tmux:
 
 toolbox:
   url: "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.15.5796.tar.gz"
+
+
+
+
+tox:
+
+
+
+
+typora:
+  install:
+    self:
+      gpgkeys:
+        - "https://typora.io/linux/public-key.asc"
+      lists:
+        - "deb https://typora.io/linux ./"
+      packages:
+        - "typora"
 
 
 

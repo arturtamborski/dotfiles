@@ -15,6 +15,7 @@
     - { role: autoenv,        tags: autoenv     }
     - { role: awscli,         tags: awscli      }
     - { role: c,              tags: c           }
+    - { role: clang,          tags: clang       }
     - { role: common,         tags: common      }
     - { role: dbeaver,        tags: dbeaver     }
     - { role: dconf,          tags: dconf       }
@@ -64,12 +65,14 @@
     - { role: steam,          tags: steam       }
     - { role: sublime,        tags: sublime     }
     - { role: syncthing,      tags: syncthing   }
-#   - { role: tarsnap,        tags: tarsnap     }
+    - { role: tarsnap,        tags: tarsnap     }
     - { role: telegram,       tags: telegram    }
     - { role: terraform,      tags: terraform   }
     - { role: tlp,            tags: tlp         }
     - { role: tmux,           tags: tmux        }
     - { role: toolbox,        tags: toolbox     }
+    - { role: tox,            tags: tox         }
+    - { role: typora,         tags: typora      }
     - { role: vagrant,        tags: vagrant     }
     - { role: vim,            tags: vim         }
     - { role: virtualbox,     tags: virtualbox  }
