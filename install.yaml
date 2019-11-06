@@ -20,7 +20,6 @@
     - { role: dbeaver,        tags: dbeaver     }
     - { role: dconf,          tags: dconf       }
     - { role: defold,         tags: defold      }
-    - { role: desktop,        tags: desktop     }
     - { role: dircolors,      tags: dircolors   }
     - { role: docker,         tags: docker      }
     - { role: firefox,        tags: firefox     }
@@ -28,6 +27,7 @@
     - { role: gimp,           tags: gimp        }
     - { role: git,            tags: git         }
     - { role: github,         tags: github      }
+    - { role: gnome-shell,    tags: gnome-shell }
     - { role: gnupg,          tags: gnupg       }
     - { role: go,             tags: go          }
     - { role: gopass,         tags: gopass      }
@@ -60,7 +60,6 @@
     - { role: redshift,       tags: redshift    }
     - { role: ruby,           tags: ruby        }
     - { role: signal,         tags: signal      }
-    - { role: slack,          tags: slack       }
     - { role: spotify,        tags: spotify     }
     - { role: ssh,            tags: ssh         }
     - { role: steam,          tags: steam       }

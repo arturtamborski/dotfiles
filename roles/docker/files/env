@@ -2,3 +2,4 @@
 alias docker-stop-all="docker stop $(docker ps -aq)"
 alias docker-kill-all="docker kill $(docker ps -aq)"
 alias docker-rm-all="docker rm $(docker ps -aq)"
+alias docker-nuke-all="docker system prune --all --force --volumes"

@@ -114,7 +114,7 @@ c:
 
 
 
-# not yet working...
+# todo?
 clang:
   install:
     self:
@@ -159,32 +159,6 @@ dconf:
 
 defold:
   url: "https://www.defold.com/download/editor2/Defold-x86_64-linux.zip"
-
-
-
-
-desktop:
-  install:
-    self:
-      packages:
-        - "python-psutil"
-
-  registry:
-    /org/gnome/desktop/interface:
-      font-name: "Lato Medium 11"
-      text-scaling-factor: "0.75"
-      gtk-im-module: "gtk-im-context-simple"
-      enable-animations: "false"
-      gtk-theme: "Adwaita"
-    /org/gnome/desktop/screensaver:
-      picture-uri: "file:///usr/share/backgrounds/gnome/endless-shapes.jpg"
-      picture-options: "zoom"
-      primary-color: "#ffffff"
-      secondary-color: "#000000"
-    /org/gnome/desktop/wm/preferences:
-      button-layout: ":minimize,maximize,close"
-    /org/gnome/desktop/calendar:
-      show-weekdate: "true"
 
 
 
@@ -323,6 +297,33 @@ git:
 
 
 github:
+    # todo
+
+
+
+
+gnome-shell:
+  install:
+    self:
+      packages:
+      - "python-psutil"
+
+  registry:
+    /org/gnome/desktop/interface:
+      font-name: "Lato Medium 11"
+      text-scaling-factor: "0.75"
+      gtk-im-module: "gtk-im-context-simple"
+      enable-animations: "false"
+      gtk-theme: "Adwaita"
+    /org/gnome/desktop/screensaver:
+      picture-uri: "file:///usr/share/backgrounds/gnome/endless-shapes.jpg"
+      picture-options: "zoom"
+      primary-color: "#ffffff"
+      secondary-color: "#000000"
+    /org/gnome/desktop/wm/preferences:
+      button-layout: ":minimize,maximize,close"
+    /org/gnome/desktop/calendar:
+      show-weekdate: "true"
 
 
 
@@ -450,6 +451,7 @@ java:
 
 
 
+# todo
 journal:
 
 
@@ -689,6 +691,7 @@ redshift:
 
 
 
+# todo
 ruby:
 
 
@@ -699,11 +702,6 @@ signal:
     self:
       flatpaks:
         - "flathub org.signal.Signal"
-
-
-
-
-slack:
 
 
 
@@ -845,6 +843,7 @@ toolbox:
 
 
 
+# todo
 tox:
 
 
