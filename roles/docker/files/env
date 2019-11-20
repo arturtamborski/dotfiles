@@ -1,5 +1,6 @@
 # ----------------------------------------------------------------- docker --- #
-alias docker-stop-all="docker stop $(docker ps -aq)"
-alias docker-kill-all="docker kill $(docker ps -aq)"
-alias docker-rm-all="docker rm $(docker ps -aq)"
-alias docker-nuke-all="docker system prune --all --force --volumes"
+alias docker-stop-all='docker stop $(docker ps -aq)'
+alias docker-kill-all='docker kill $(docker ps -aq)'
+alias docker-rm-all='docker-stop-all && docker-kill-all && docker rm $(docker ps -aq)'
+alias docker-volume-all='docker-rm-all && docker volume rm $(docker volume ls -q)'
+alias docker-nuke-all='docker system prune --all --force --volumes'

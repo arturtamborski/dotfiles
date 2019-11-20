@@ -1,4 +1,5 @@
 # ------------------------------------------------------------------- less --- #
+export PAGER=less
 export LESSHISTFILE="{{ less.configure.self.dst }}" 
 export LESSCHARSET="utf-8"
 

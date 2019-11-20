@@ -70,7 +70,7 @@ awscli:
   configure:
     self:
       src: "awscli/files/script"
-      dst: "{{ user_conf }}/awscli/script"
+      dst: "{{ user_conf }}/awscli/config"
 
   environment:
     src: "awscli/files/env"
