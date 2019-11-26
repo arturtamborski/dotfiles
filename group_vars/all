@@ -567,6 +567,12 @@ network:
 
 
 
+
+nix:
+
+
+
+
 pip:
   install:
     self:

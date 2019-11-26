@@ -48,6 +48,7 @@
     - { role: monitors,       tags: monitors    }
     - { role: mutt,           tags: mutt        }
     - { role: network,        tags: network     }
+    - { role: nix,            tags: nix         }
     - { role: pipenv,         tags: pipenv      }
     - { role: post,           tags: post        }
     - { role: pre,            tags: pre         }
