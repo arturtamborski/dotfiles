@@ -2,6 +2,7 @@
 .idea/
 
 # python
+venv/
 .venv/
 *.py[cod]
 __pycache__/
